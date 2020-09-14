@@ -24,10 +24,37 @@
   -st-mixin: T06();
 }
 
-.root::controlButton:not(:first-child) {
+.root::closeButton {
   margin-left: 12px;
+  width: initial;
+  height: initial;
 }
 
 .root:not(:removeContentPadding)::content::innerContent {
   padding: 0 24px;
+}
+
+/*Control Buttons*/
+
+/*Bypass height */
+.root::closeButton, .root::helpButton {
+  width: initial
+  height: initial
+}
+
+/*Bypass inline SVG content */
+.root::closeButton::content, .root::helpButton::content {
+  display: none;
+}
+
+.root::closeButton::before {
+  content: "🚫";
+  width: 12px;
+  height: 12px;
+}
+
+.root::helpButton::before {
+  content: "❓";
+  width: 12px;
+  height: 12px;
 }

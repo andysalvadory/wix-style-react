@@ -48,6 +48,11 @@
   -st-default: Illustration;
 }
 
+:import {
+  -st-from: "../CloseButton/CloseButton.st.css";
+  -st-default: CloseButton;
+}
+
 .root {
   -st-states: theme(enum(standard, premium, destructive)), controlButtonAmount(number(min(0), max(2)));
   background-color: value(D80);
@@ -71,18 +76,24 @@
   right: unset;
 }
 
-.helpIcon {
-  width: value(helpIconSize);
-  height: value(helpIconSize);
+.helpButton {
+  -st-extends: CloseButton;
 }
 
-.controlButton:not(:first-child) {
+.closeButton {
+  -st-extends: CloseButton;
   margin-left: value(SP1);
 }
 
-:global([dir='rtl']) .controlButton:not(:first-child) {
+
+:global([dir='rtl']) .closeButton {
   margin-left: unset;
   margin-right: value(SP1);
+}
+
+.helpIcon {
+  width: value(helpIconSize);
+  height: value(helpIconSize);
 }
 
 /** Exposing stylable api of the LayoutBlock for extending purposes */

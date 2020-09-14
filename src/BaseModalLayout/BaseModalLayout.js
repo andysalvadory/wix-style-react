@@ -63,7 +63,7 @@ class BaseModalLayout extends React.PureComponent {
             {onHelpButtonClick && (
               <CloseButton
                 dataHook={dataHooks.helpButton}
-                className={classes.controlButton}
+                className={classes.helpButton}
                 onClick={onHelpButtonClick}
                 size="large"
                 skin="dark"
@@ -74,7 +74,7 @@ class BaseModalLayout extends React.PureComponent {
             {onCloseButtonClick && (
               <CloseButton
                 dataHook={dataHooks.closeButton}
-                className={classes.controlButton}
+                className={classes.closeButton}
                 onClick={onCloseButtonClick}
                 size="large"
                 skin="dark"

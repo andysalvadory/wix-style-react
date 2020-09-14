@@ -3,7 +3,7 @@ export const editorX = `
   <CustomModalLayout
     onCloseButtonClick={() => {}}
     onHelpButtonClick={() => {}}
-    title="Create New Coupon"
+    title="Dashboard"
   >
     Any content can go here
   </CustomModalLayout>
