@@ -1,0 +1,41 @@
+:import {
+  -st-from: "../../Foundation/stylable/typography.st.css";
+  -st-named: text-small-bold;
+}
+
+:import {
+  -st-from: "../../CustomModalLayout/CustomModalLayout.st.css";
+  -st-default: CustomModalLayout;
+}
+
+/* Colors */
+:vars {
+  D1: #000624
+  D7: #ffffff
+}
+
+/* Typography */
+.t06 {
+  -st-mixin: text-small-bold();
+  color: value(D1);
+}
+
+.root CustomModalLayout {
+  border-radius: 4px;
+}
+
+.root CustomModalLayout::header::innerContent {
+  padding: 24px 16px;
+}
+
+.root CustomModalLayout::header::title {
+  -st-mixin: t06();
+}
+
+.root CustomModalLayout::controlButton:not(:first-child) {
+  margin-left: 12px;
+}
+
+.root CustomModalLayout:not(:removeContentPadding)::content::innerContent {
+  padding: 0 16px;
+}

@@ -17,7 +17,11 @@ class ThemeProvider extends React.PureComponent {
     const { dataHook, theme = {}, children } = this.props;
 
     return (
-      <div style={this._parseTheme(theme)} data-hook={dataHook}>
+      <div
+        className={theme.className}
+        style={this._parseTheme(theme)}
+        data-hook={dataHook}
+      >
         {children}
       </div>
     );
@@ -32,6 +36,7 @@ ThemeProvider.propTypes = {
 
   /** A theme object */
   theme: PropTypes.shape({
+    className: PropTypes.string, // Applies a main class on the root element, useful when theming with the stylable approach
     color00: PropTypes.string,
     color05: PropTypes.string,
     color10: PropTypes.string,

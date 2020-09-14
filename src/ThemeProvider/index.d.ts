@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface ThemeInterface {
+  className?: string;
   color00?: React.CSSProperties['color'];
   color05?: React.CSSProperties['color'];
   color10?: React.CSSProperties['color'];

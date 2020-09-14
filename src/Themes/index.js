@@ -1,3 +1,3 @@
-import floatingPanelsTheme from './floatingPanels.js';
+export { default as floatingPanels } from './floatingPanels.js';
 
-export const floatingPanels = floatingPanelsTheme;
+export { default as editorX } from './editorX';

@@ -21,15 +21,7 @@ import ToggleSwitch from '../../ToggleSwitch';
 import Box from '../../Box';
 import SectionHelper from '../../SectionHelper';
 
-const colorsMap = {
-  '00': '#2B81CB',
-  '10': '#3899EC',
-  '20': '#4EB7F5',
-  '30': '#C1E4FE',
-  '40': '#DAEFFE',
-  '50': '#EAF7FF',
-  '60': '#F4FAFE',
-};
+import * as examples from './examples';
 
 const colors = [
   '#2B81CB',
@@ -158,6 +150,11 @@ Important: This is an experimental tool and should not be used in production unl
   </Layout>
 </ThemeProvider>
             `,
+          }),
+          example({
+            title: 'EditorX',
+            text: 'Get an EditorX flavor of the components',
+            source: examples.editorX,
           }),
         ],
       }),
