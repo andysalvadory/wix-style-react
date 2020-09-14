@@ -1,0 +1,15 @@
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: text-small-bold;
+}
+
+:import {
+  -st-from: "./colors.st.css";
+  -st-named: D1;
+}
+
+/* Typography */
+.T06 {
+  -st-mixin: text-small-bold();
+  color: value(D1);
+}

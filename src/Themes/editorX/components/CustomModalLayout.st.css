@@ -1,0 +1,33 @@
+:import {
+  -st-from: "../foundations/typography.st.css";
+  -st-named: T06;
+}
+
+:import {
+  -st-from: "../../../CustomModalLayout/CustomModalLayout.st.css";
+  -st-default: CustomModalLayout;
+}
+
+.root {
+  -st-extends: CustomModalLayout;
+}
+
+.root {
+  border-radius: 4px;
+}
+
+.root::header::innerContent {
+  padding: 16px 24px;
+}
+
+.root::header::title {
+  -st-mixin: T06();
+}
+
+.root::controlButton:not(:first-child) {
+  margin-left: 12px;
+}
+
+.root:not(:removeContentPadding)::content::innerContent {
+  padding: 0 24px;
+}
