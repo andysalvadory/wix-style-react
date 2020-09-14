@@ -7,7 +7,9 @@ class ThemeProvider extends React.PureComponent {
   _parseTheme(theme) {
     const style = {};
     for (const [key, value] of Object.entries(theme)) {
-      style[`--wsr-${kebabCase(key)}`] = value;
+      if (key !== 'className') {
+        style[`--wsr-${kebabCase(key)}`] = value;
+      }
     }
 
     return style;
