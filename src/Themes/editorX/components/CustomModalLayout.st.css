@@ -38,8 +38,8 @@
 
 /*Bypass height */
 .root::closeButton, .root::helpButton {
-  width: initial
-  height: initial
+  width: initial;
+  height: initial;
 }
 
 /*Bypass inline SVG content */
@@ -48,13 +48,15 @@
 }
 
 .root::closeButton::before {
-  content: "🚫";
+  content: '';
+  background-image: url("../icons/close.svg");
   width: 12px;
   height: 12px;
 }
 
 .root::helpButton::before {
-  content: "❓";
+  content: '';
+  background-image: url("../icons/help.svg");
   width: 12px;
   height: 12px;
 }
