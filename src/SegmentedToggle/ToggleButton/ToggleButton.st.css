@@ -5,7 +5,7 @@
 
 :import {
   -st-from: "../../Foundation/stylable/colors.st.css";
-  -st-named: F00, D10, D10-30, D80,  THEME-COLOR-10,  THEME-COLOR-50;
+  -st-named: F00, D10, D10-30, D80, THEME-COLOR-10,  THEME-COLOR-50;
 }
 
 :import {

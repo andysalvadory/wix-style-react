@@ -2,6 +2,16 @@ import * as React from 'react';
 
 export interface ThemeInterface {
   className?: string;
+  icons?: {
+    CloseButton?: {
+      small?: React.SFC,
+      medium?: React.SFC,
+      large?: React.SFC,
+    },
+    BaseModalLayout?: {
+      HeloButton?: React.SFC,
+    }
+  },
   color00?: React.CSSProperties['color'];
   color05?: React.CSSProperties['color'];
   color10?: React.CSSProperties['color'];
