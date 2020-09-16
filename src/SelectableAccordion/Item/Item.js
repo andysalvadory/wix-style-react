@@ -14,13 +14,13 @@ import { st, classes } from './Item.st.css';
 export default class SelectableAccordionItem extends React.PureComponent {
   static propTypes = {
     /** A title of the item */
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     /** An optional second row of the header */
-    subtitle: PropTypes.string,
+    subtitle: PropTypes.node,
 
-    /** A content of the item. Can be either string or React.Node */
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    /** A content of the item */
+    content: PropTypes.node,
 
     /** A type can be ether radio, checkbox, or toggle, which will effect the way an accordion item is selected */
     type: PropTypes.oneOf(['radio', 'checkbox', 'toggle']),
@@ -69,6 +69,10 @@ export default class SelectableAccordionItem extends React.PureComponent {
   _renderContent() {
     const { content } = this.props;
 
+    if (!content) {
+      return null;
+    }
+
     if (typeof content === 'string') {
       return (
         <Text size="small" weight="thin">
@@ -80,21 +84,51 @@ export default class SelectableAccordionItem extends React.PureComponent {
     return content;
   }
 
+  _renderTitle() {
+    const { title } = this.props;
+
+    if (!title) {
+      return null;
+    }
+
+    if (typeof title === 'string') {
+      return (
+        <Heading ellipsis appearance="H4">
+          {title}
+        </Heading>
+      );
+    }
+
+    return title;
+  }
+
+  _renderSubtitle() {
+    const { subtitle } = this.props;
+
+    if (!subtitle) {
+      return null;
+    }
+
+    if (typeof subtitle === 'string') {
+      return (
+        <Text tagName="div" size="small" weight="thin">
+          {subtitle}
+        </Text>
+      );
+    }
+
+    return subtitle;
+  }
+
   render() {
-    const { title, subtitle, open } = this.props;
+    const { open } = this.props;
 
     return (
       <div data-hook="selectable-accordion--item" className={st(classes.item)}>
         <div className={st(classes.selector)}>{this._renderSelector()}</div>
         <div onClick={this._onChange} className={st(classes.header)}>
-          <Heading ellipsis appearance="H4">
-            {title}
-          </Heading>
-          {subtitle && (
-            <Text tagName="div" size="small" weight="thin">
-              {subtitle}
-            </Text>
-          )}
+          {this._renderTitle()}
+          {this._renderSubtitle()}
         </div>
         <div className={st(classes.content)}>
           <Collapse open={open}>

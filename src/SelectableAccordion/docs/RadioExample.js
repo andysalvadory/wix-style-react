@@ -17,7 +17,7 @@ class RadioExample extends React.Component {
           {
             title:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-            subtitle: 'description',
+            subtitle: <span>I'm subtitle</span>,
             content: (
               <Text weight="bold">
                 Lorem ipsum dolor sit amet,

@@ -1,6 +1,8 @@
 .item {
   display: grid;
   grid-template-columns: auto 1fr;
+
+  padding-right: 30px;
 }
 
 .item:last-child .divider {
@@ -12,12 +14,15 @@
   justify-content: center;
   align-items: center;
 
+  padding-left: 30px;
   padding-right: 18px;
 }
 
 .header {
   overflow: hidden;
   cursor: pointer;
+
+  padding: 24px 0;
 }
 
 .content {
@@ -27,10 +32,6 @@
   grid-column-end: 2;
 }
 
-.item .divider {
-  margin: 24px 0;
-}
-
 .inner {
-  padding-top: 24px;
+  padding-bottom: 24px;
 }

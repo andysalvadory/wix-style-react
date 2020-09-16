@@ -20,9 +20,9 @@ class SelectableAccordion extends React.PureComponent {
     /** An array of Accordion items */
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        title: PropTypes.string,
-        subtitle: PropTypes.string,
-        content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+        title: PropTypes.node,
+        subtitle: PropTypes.node,
+        content: PropTypes.node,
         initiallyOpen: PropTypes.bool,
       }),
     ),
@@ -43,7 +43,7 @@ class SelectableAccordion extends React.PureComponent {
     super(props);
 
     this.state = {
-      openIndices: this._populateInitialOpenIndices(),
+      openIndices: this._populateInitiallyOpenIndices(),
     };
   }
 
@@ -51,7 +51,7 @@ class SelectableAccordion extends React.PureComponent {
     // TODO
   }
 
-  _populateInitialOpenIndices() {
+  _populateInitiallyOpenIndices() {
     const { items } = this.props;
     const openIndices = [];
 
