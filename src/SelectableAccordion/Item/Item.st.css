@@ -1,8 +1,18 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B60, D80;
+}
+
 .item {
+  -st-states: hovered;
+
   display: grid;
   grid-template-columns: auto 1fr;
+}
 
-  padding-right: 30px;
+.item:hovered .selector,
+.item:hovered .header {
+  background-color: value(B60);
 }
 
 .item:last-child .divider {
@@ -10,6 +20,8 @@
 }
 
 .selector {
+  cursor: pointer;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +34,7 @@
   overflow: hidden;
   cursor: pointer;
 
-  padding: 24px 0;
+  padding: 24px 30px 24px 0;
 }
 
 .content {

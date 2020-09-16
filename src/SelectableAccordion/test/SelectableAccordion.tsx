@@ -11,13 +11,7 @@ function selectableAccordionWithMandatoryProps() {
 }
 
 function selectableAccordionWithAllProps() {
-  return (
-    <SelectableAccordion
-      dataHook="dataHook"
-      className="className"
-      buttonText="buttonText"
-    />
-  );
+  return <SelectableAccordion dataHook="dataHook" className="className" />;
 }
 
 async function testkits() {

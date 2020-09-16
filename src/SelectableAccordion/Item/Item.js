@@ -42,6 +42,10 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   static displayName = 'SelectableAccordionItem';
 
+  state = {
+    hovered: false,
+  };
+
   _onChange = () => {
     const { idx, type, open, onChange } = this.props;
 
@@ -50,6 +54,18 @@ export default class SelectableAccordionItem extends React.PureComponent {
     }
 
     onChange(idx, !open);
+  };
+
+  _onMouseEnter = () => {
+    this.setState({
+      hovered: true,
+    });
+  };
+
+  _onMouseLeave = () => {
+    this.setState({
+      hovered: false,
+    });
   };
 
   _renderSelector() {
@@ -121,12 +137,28 @@ export default class SelectableAccordionItem extends React.PureComponent {
   }
 
   render() {
+    const { hovered } = this.state;
     const { open } = this.props;
 
     return (
-      <div data-hook="selectable-accordion--item" className={st(classes.item)}>
-        <div className={st(classes.selector)}>{this._renderSelector()}</div>
-        <div onClick={this._onChange} className={st(classes.header)}>
+      <div
+        data-hook="selectable-accordion--item"
+        className={st(classes.item, { hovered })}
+      >
+        <div
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
+          onClick={this._onChange}
+          className={st(classes.selector)}
+        >
+          {this._renderSelector()}
+        </div>
+        <div
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
+          onClick={this._onChange}
+          className={st(classes.header)}
+        >
           {this._renderTitle()}
           {this._renderSubtitle()}
         </div>
