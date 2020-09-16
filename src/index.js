@@ -154,6 +154,7 @@ export { default as Palette } from './Palette';
 export { default as VariableInput } from './VariableInput';
 export { default as Image } from './Image';
 export { default as Selector } from './Selector';
+export { default as SelectableAccordion } from './SelectableAccordion';
 export { default as SidePanel } from './SidePanel';
 export { default as FontUpgrade } from './FontUpgrade';
 export { default as StatusIndicator } from './StatusIndicator';

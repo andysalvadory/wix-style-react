@@ -1,0 +1,36 @@
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.item:last-child .divider {
+  display: none;
+}
+
+.selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-right: 18px;
+}
+
+.header {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.content {
+  overflow: hidden;
+
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.item .divider {
+  margin: 24px 0;
+}
+
+.inner {
+  padding-top: 24px;
+}
