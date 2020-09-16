@@ -4,14 +4,45 @@ import SelectableAccordion from '../SelectableAccordion';
 
 class RadioExample extends React.Component {
   render() {
+    const countries = [
+      { name: 'Alabama', code: 'AL' },
+      { name: 'Alaska', code: 'AK' },
+      { name: 'Arizona', code: 'AZ' },
+      { name: 'Arkansas', code: 'AR' },
+      { name: 'California', code: 'CA' },
+      { name: 'North Carolina', code: 'NC' },
+      { name: 'Colorado', code: 'CO' },
+      { name: 'Connecticut', code: 'CT' },
+      { name: 'Delaware', code: 'DL' },
+      { name: 'Florida', code: 'FL' },
+      { name: 'Georgia', code: 'GA' },
+      { name: 'Hawaii', code: 'HI' },
+      { name: 'Idaho', code: 'IL' },
+      { name: 'Illinois', code: 'IN' },
+      { name: 'Indiana', code: 'IA' },
+    ];
+    const options = countries.map(country => ({
+      ...country,
+      value: country.name,
+      id: country.code,
+    }));
+
     return (
       <SelectableAccordion
         type="radio"
         items={[
           {
             title: 'First row',
-            content:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+            content: (
+              <MultiSelect
+                mode="select"
+                tags={[]}
+                onSelect={() => {}}
+                onRemoveTag={() => {}}
+                options={options}
+                customSuffix={<TextButton>+ Add Tag</TextButton>}
+              />
+            ),
             initiallyOpen: true,
           },
           {

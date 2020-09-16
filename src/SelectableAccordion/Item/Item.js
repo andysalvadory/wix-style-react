@@ -91,7 +91,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
     if (typeof content === 'string') {
       return (
-        <Text size="small" weight="thin">
+        <Text className={st(classes.text)} size="small" weight="thin">
           {content}
         </Text>
       );
@@ -127,9 +127,11 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
     if (typeof subtitle === 'string') {
       return (
-        <Text tagName="div" size="small" weight="thin">
-          {subtitle}
-        </Text>
+        <div>
+          <Text ellipsis size="small" weight="thin">
+            {subtitle}
+          </Text>
+        </div>
       );
     }
 

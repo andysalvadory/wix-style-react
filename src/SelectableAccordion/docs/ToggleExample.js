@@ -16,7 +16,8 @@ class ToggleExample extends React.Component {
           },
           {
             title: 'Second row',
-            subtitle: 'description',
+            subtitle:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
             content: (
               <Text weight="bold">
                 Lorem ipsum dolor sit amet,
