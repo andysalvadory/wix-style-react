@@ -13,7 +13,6 @@ import {
   api,
   testkit,
 } from 'wix-storybook-utils/Sections';
-
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
@@ -45,7 +44,7 @@ export default {
 
   componentProps: {
     data: data,
-    getTooltipContent: index => index,
+    getTooltipContent: index => data.pairs[index].label.toLocaleDateString(),
     highlightedStartingIndex: 4,
     width: 400,
     height: 80,

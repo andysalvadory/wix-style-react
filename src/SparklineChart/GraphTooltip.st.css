@@ -1,0 +1,14 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G30, R30;
+}
+
+.absolutePosition {
+  position: absolute;
+}
+
+.contentWrapper {
+  white-space: nowrap;
+  padding: 18px 24px;
+  text-align: center;
+}
