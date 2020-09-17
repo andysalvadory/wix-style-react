@@ -1,19 +1,36 @@
 import React from 'react';
 import { ThemeProviderContext } from './ThemeProviderContext.js';
-import { defaultIcons } from './defaultIcons';
 
-/** In the future, every theme including the default will require a <ThemeProvider/> on top.
- * This will assist in smaller bundle size for whoever would override the icons or other heavy assets */
-export const ThemeProviderConsumerBackwardCompatible = props => (
+/**
+ * This is a utility for every component that uses an icon to declare its defaults but also replace it with the theme context
+ * Usage Example:
+ *
+ * <ThemeProviderConsumerBackwardCompatible
+ *   defaultIcons={{
+ *     CloseButton: CloseIcon,
+ *   }}
+ * >
+ *   {({ icons }) => {
+ *      const CloseIcon = icons.CloseButton
+ *      return <CloseIcon data-hook="additional-content"/>
+ *     }
+ *   }
+ * </ThemeProviderConsumerBackwardCompatible>
+ *
+ * Note that this implementation is temporary and needed only to preserve backwards compatability for components with built-in icons (like CloseButton).
+ * It will be removed in the future once a <ThemeProvider/> will be required on the top of any theme, including the default one.
+ * This will assist in creating smaller bundle size for themes that would override the default icons. */
+export const ThemeProviderConsumerBackwardCompatible = ({
+  defaultIcons,
+  ...rest
+}) => (
   <ThemeProviderContext.Consumer>
-    {context => {
-      return context && context.icons ? (
-        <ThemeProviderContext.Consumer {...props} />
-      ) : (
-        <ThemeProviderContext.Provider value={{ icons: defaultIcons }}>
-          <ThemeProviderContext.Consumer {...props} />
-        </ThemeProviderContext.Provider>
-      );
-    }}
+    {context => (
+      <ThemeProviderContext.Provider
+        value={{ icons: { ...defaultIcons, ...(context && context.icons) } }}
+      >
+        <ThemeProviderContext.Consumer {...rest} />
+      </ThemeProviderContext.Provider>
+    )}
   </ThemeProviderContext.Consumer>
 );

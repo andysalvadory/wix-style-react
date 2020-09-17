@@ -14,6 +14,7 @@ import {
   Illustration,
 } from './LayoutBlocks';
 import Box from '../Box';
+import Help from 'wix-ui-icons-common/system/Help24';
 
 const classNames = {
   headerClassName: classes.header,
@@ -59,7 +60,13 @@ class BaseModalLayout extends React.PureComponent {
           {children}
         </BaseModalLayoutContext.Provider>
         {controlButtonAmount > 0 && (
-          <ThemeProviderConsumerBackwardCompatible>
+          <ThemeProviderConsumerBackwardCompatible
+            defaultIcons={{
+              BaseModalLayout: {
+                HelpIcon: Help,
+              },
+            }}
+          >
             {({
               icons: {
                 BaseModalLayout: { HelpIcon },

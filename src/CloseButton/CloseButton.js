@@ -3,6 +3,8 @@ import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeP
 import { generateDataAttr } from '../utils/generateDataAttr';
 import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
 import { SIZES } from './constants';
+import Close from 'wix-ui-icons-common/system/Close';
+import CloseLarge from 'wix-ui-icons-common/system/CloseLarge';
 
 import PropTypes from 'prop-types';
 import { st, classes } from './CloseButton.st.css';
@@ -78,7 +80,15 @@ class CloseButton extends PureComponent {
             height: childSize,
           })
         ) : (
-          <ThemeProviderConsumerBackwardCompatible>
+          <ThemeProviderConsumerBackwardCompatible
+            defaultIcons={{
+              CloseButton: {
+                small: Close,
+                medium: CloseLarge,
+                large: CloseLarge,
+              },
+            }}
+          >
             {({ icons }) =>
               this._renderCloseIcon(icons.CloseButton[size], size)
             }
