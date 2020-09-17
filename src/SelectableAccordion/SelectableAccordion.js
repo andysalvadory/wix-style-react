@@ -47,53 +47,46 @@ class SelectableAccordion extends React.PureComponent {
     };
   }
 
-  componentDidUpdate() {
-    // TODO
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        openIndices: this._populateInitiallyOpenIndices(),
+      });
+    }
   }
 
   _populateInitiallyOpenIndices() {
     const { items } = this.props;
-    const openIndices = [];
+    const openIndices = {};
 
     for (let i = 0; i < items.length; i++) {
-      if (items[i].initiallyOpen) {
-        openIndices.push(i);
-      }
+      openIndices[i] = Boolean(items[i].initiallyOpen);
     }
 
     return openIndices;
   }
 
   _isOpen(idx) {
-    return this.state.openIndices.includes(idx);
+    return this.state.openIndices[idx];
   }
 
   _onItemChanged = (idx, open) => {
-    const { type, onSelectionChanged } = this.props;
+    const { type, items, onSelectionChanged } = this.props;
 
-    let newOpenIndices = [];
+    let openIndices = {};
 
     if (type === 'radio') {
-      newOpenIndices = [idx];
-    } else {
-      const openIndices = [...this.state.openIndices];
-
-      if (open) {
-        openIndices.push(idx);
-      } else {
-        openIndices.splice(
-          openIndices.findIndex(val => val === idx),
-          1,
-        );
+      for (let i = 0; i < items.length; i++) {
+        openIndices[i] = i === idx;
       }
-
-      newOpenIndices = openIndices;
+    } else {
+      openIndices = {
+        ...this.state.openIndices,
+        [idx]: open,
+      };
     }
 
-    this.setState(
-      { openIndices: newOpenIndices },
-      onSelectionChanged(newOpenIndices),
-    );
+    this.setState({ openIndices }, onSelectionChanged(openIndices));
   };
 
   render() {

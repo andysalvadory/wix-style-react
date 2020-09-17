@@ -12,10 +12,12 @@ class CheckboxExample extends React.Component {
             title: 'First row',
             content:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+            initiallyOpen: true,
           },
           {
             title: 'Second row',
             subtitle: 'description',
+            initiallyOpen: false,
             content: (
               <Text weight="bold">
                 Lorem ipsum dolor sit amet,

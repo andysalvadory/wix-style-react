@@ -19,6 +19,11 @@
   display: none;
 }
 
+.selector,
+.header {
+  transition: background-color 0.3s;
+}
+
 .selector {
   cursor: pointer;
 

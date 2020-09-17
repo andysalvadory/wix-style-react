@@ -145,6 +145,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
     return (
       <div
         data-hook="selectable-accordion--item"
+        data-state={open ? 'open' : 'collapsed'}
         className={st(classes.item, { hovered })}
       >
         <div
@@ -156,6 +157,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
           {this._renderSelector()}
         </div>
         <div
+          data-hook="selectable-accordion--item--header"
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onClick={this._onChange}
