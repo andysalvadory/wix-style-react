@@ -8,6 +8,7 @@ const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
 const TOOLTIP_ELEMENT_RADIUS = 4;
 const DEFAULT_COLOR = '#3370FB';
+
 /** SparklineChart */
 class SparklineChart extends React.PureComponent {
   constructor(props) {
