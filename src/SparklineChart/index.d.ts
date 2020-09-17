@@ -1,9 +1,24 @@
 import * as React from 'react';
 
+type chartData = {
+  name: string
+  pairs: pair[]
+};
+
+type pair = {
+  label: string;
+  values: number[]
+};
+
 export interface SparklineChartProps {
   dataHook?: string;
   className?: string;
-  buttonText?: string;
+  data: chartData;
+  color?: string;
+  width?: number;
+  height?: number;
+  highlightedStartingIndex?: number;
+  getTooltipContent?: (index: number) => React.ReactNode;
 }
 
-export default class SparklineChart extends React.PureComponent<SparklineChartProps>{}
+export default class SparklineChart extends React.PureComponent<SparklineChartProps>{ }
