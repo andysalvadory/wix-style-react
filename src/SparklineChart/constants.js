@@ -1,4 +1,3 @@
 export const dataHooks = {
-  sparklineChartCount: 'sparklineChart-count',
-  sparklineChartButton: 'sparklineChart-button',
+  chartPopover: 'sparklineChart-popover',
 };

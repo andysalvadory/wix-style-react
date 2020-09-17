@@ -1,9 +1,8 @@
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
-import { GraphTooltip } from './GraphTooltip';
+import { ChartTooltip } from './ChartTooltip';
 import { getDatasetMax, classSelector } from './utils';
-// import { dataHooks } from './constants';
 
 const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
@@ -36,6 +35,7 @@ class SparklineChart extends React.PureComponent {
       height = 40,
       data,
       highlightedStartingIndex = 0,
+      color = DEFAULT_COLOR,
     } = this.props;
 
     const margin = {
@@ -45,10 +45,7 @@ class SparklineChart extends React.PureComponent {
       left: halfWidth,
     };
 
-    const coloredData = {
-      ...data,
-      color: data.color || DEFAULT_COLOR,
-    };
+    const coloredData = { ...data, color };
     const innerTop = margin.top;
     const innerLeft = margin.left;
     const innerHeight = height - innerTop - margin.bottom;
@@ -419,7 +416,7 @@ class SparklineChart extends React.PureComponent {
               })}
           </g>
         </svg>
-        {this.enableTooltip && <GraphTooltip dataPoints={dataPoints} />}
+        {this.enableTooltip && <ChartTooltip dataPoints={dataPoints} />}
       </div>
     );
   }
@@ -434,16 +431,15 @@ SparklineChart.propTypes = {
   /** A css class to be applied to the component's root element */
   className: PropTypes.string,
 
-  /** width of the sparkline chart */
+  /** Sets the width of the sparkline (pixels) */
   width: PropTypes.number,
 
-  /** height of the sparkline chart */
+  /** Sets the height of the sparkline (pixels) */
   height: PropTypes.number,
 
   /** Chart data */
   data: PropTypes.shape({
     name: PropTypes.string,
-    color: PropTypes.string,
     pairs: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.node,
@@ -452,10 +448,13 @@ SparklineChart.propTypes = {
     ),
   }),
 
+  /** Sets the color of the sparkline  */
+  color: PropTypes.string,
+
   /** Indicates the starting index of the highlighted area. Default is 0  */
   highlightedStartingIndex: PropTypes.number,
 
-  /** Tooltip template function */
+  /** Tooltip content (JSX) getter function.  */
   getTooltipContent: PropTypes.func,
 };
 

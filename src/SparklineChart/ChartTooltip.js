@@ -1,8 +1,9 @@
 import React from 'react';
-import { classes } from './GraphTooltip.st.css';
+import { classes } from './ChartTooltip.st.css';
 import Popover from '../Popover';
+import { dataHooks } from './constants';
 
-export const GraphTooltip = props => {
+export const ChartTooltip = props => {
   const { dataPoints } = props;
 
   return (
@@ -25,6 +26,7 @@ export const GraphTooltip = props => {
                 appendTo="parent"
                 placement="top"
                 dynamicWidth
+                dataHooks={dataHooks.chartPopover}
               >
                 <Popover.Element>{null}</Popover.Element>
                 <Popover.Content>
