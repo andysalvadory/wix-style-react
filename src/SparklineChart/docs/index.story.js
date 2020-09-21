@@ -135,7 +135,7 @@ export default {
               { label: new Date('Thu Sep 8 2020'), value: 8 },
               { label: new Date('Thu Sep 9 2020'), value: 7 },
               { label: new Date('Thu Sep 10 2020'), value: 9 },
-            ]}
+             ]}
             color='#ee00ff'
             width={400}
             height={80}
