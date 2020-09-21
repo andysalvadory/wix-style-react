@@ -21,18 +21,15 @@ import SparklineChart from '..';
 const example = config => baseExample({ components: allComponents, ...config });
 const code = config => baseCode({ components: allComponents, ...config });
 
-const data = {
-  name: 'visits',
-  pairs: [
-    { label: new Date('Thu Sep 4 2020'), value: 3 },
-    { label: new Date('Thu Sep 5 2020'), value: 17 },
-    { label: new Date('Thu Sep 6 2020'), value: 18 },
-    { label: new Date('Thu Sep 7 2020'), value: 12 },
-    { label: new Date('Thu Sep 8 2020'), value: 8 },
-    { label: new Date('Thu Sep 9 2020'), value: 7 },
-    { label: new Date('Thu Sep 10 2020'), value: 9 },
-  ],
-};
+const data = [
+  { label: new Date('Thu Sep 4 2020'), value: 3 },
+  { label: new Date('Thu Sep 5 2020'), value: 17 },
+  { label: new Date('Thu Sep 6 2020'), value: 18 },
+  { label: new Date('Thu Sep 7 2020'), value: 12 },
+  { label: new Date('Thu Sep 8 2020'), value: 8 },
+  { label: new Date('Thu Sep 9 2020'), value: 7 },
+  { label: new Date('Thu Sep 10 2020'), value: 9 },
+];
 
 export default {
   category: storySettings.category,
@@ -45,7 +42,7 @@ export default {
   componentProps: {
     data: data,
     color: '#FF0000',
-    getTooltipContent: index => data.pairs[index].label.toLocaleDateString(),
+    getTooltipContent: index => data[index].label.toLocaleDateString(),
     highlightedStartingIndex: 4,
     width: 400,
     height: 80,
@@ -81,9 +78,7 @@ export default {
             title: 'Simple Usage',
             description: `A simple sparkline example.`,
             source: ` <SparklineChart
-                data={{
-                  name: 'visits',
-                  pairs: [
+                data={[
                     { label: new Date('Thu Sep 4 2020'), value: 3 },
                     { label: new Date('Thu Sep 5 2020'), value: 17 },
                     { label: new Date('Thu Sep 6 2020'), value: 18 },
@@ -91,9 +86,7 @@ export default {
                     { label: new Date('Thu Sep 8 2020'), value: 8 },
                     { label: new Date('Thu Sep 9 2020'), value: 7 },
                     { label: new Date('Thu Sep 10 2020'), value: 9 },
-                                  ],
-                }}
-
+                  ]}
           />`,
           }),
 
@@ -102,18 +95,15 @@ export default {
             description: 'SparklineChart supports tooltip on hover.',
             source: `<SparklineChart
             getTooltipContent={index => <span style={{color: '#ffffff'}}>{index}</span>}
-            data={{
-              name: 'visits',
-              pairs: [
-                { label: new Date('Thu Sep 4 2020'), value: 3 },
-                { label: new Date('Thu Sep 5 2020'), value: 17 },
-                { label: new Date('Thu Sep 6 2020'), value: 18 },
-                { label: new Date('Thu Sep 7 2020'), value: 12 },
-                { label: new Date('Thu Sep 8 2020'), value: 8 },
-                { label: new Date('Thu Sep 9 2020'), value: 7 },
-                { label: new Date('Thu Sep 10 2020'), value: 9 },
-                              ],
-            }}
+            data={[
+              { label: new Date('Thu Sep 4 2020'), value: 3 },
+              { label: new Date('Thu Sep 5 2020'), value: 17 },
+              { label: new Date('Thu Sep 6 2020'), value: 18 },
+              { label: new Date('Thu Sep 7 2020'), value: 12 },
+              { label: new Date('Thu Sep 8 2020'), value: 8 },
+              { label: new Date('Thu Sep 9 2020'), value: 7 },
+              { label: new Date('Thu Sep 10 2020'), value: 9 },
+            ]}
            />`,
           }),
 
@@ -122,36 +112,30 @@ export default {
             description:
               'SparklineChart allows highlighting partial values on the chart line.',
             source: `<SparklineChart
-            data={{
-              name: 'visits',
-              pairs: [
-                { label: new Date('Thu Sep 4 2020'), value: 3 },
-                { label: new Date('Thu Sep 5 2020'), value: 17 },
-                { label: new Date('Thu Sep 6 2020'), value: 18 },
-                { label: new Date('Thu Sep 7 2020'), value: 12 },
-                { label: new Date('Thu Sep 8 2020'), value: 8 },
-                { label: new Date('Thu Sep 9 2020'), value: 7 },
-                { label: new Date('Thu Sep 10 2020'), value: 9 },
-                              ],
-            }}
+            data={[
+              { label: new Date('Thu Sep 4 2020'), value: 3 },
+              { label: new Date('Thu Sep 5 2020'), value: 17 },
+              { label: new Date('Thu Sep 6 2020'), value: 18 },
+              { label: new Date('Thu Sep 7 2020'), value: 12 },
+              { label: new Date('Thu Sep 8 2020'), value: 8 },
+              { label: new Date('Thu Sep 9 2020'), value: 7 },
+              { label: new Date('Thu Sep 10 2020'), value: 9 },
+            ]}
             highlightedStartingIndex={4}
            />`,
           }),
           example({
             title: 'Custom Color & Size',
             source: `<SparklineChart
-            data={{
-              name: 'visits',
-              pairs: [
-                { label: new Date('Thu Sep 4 2020'), value: 3 },
-                { label: new Date('Thu Sep 5 2020'), value: 17 },
-                { label: new Date('Thu Sep 6 2020'), value: 18 },
-                { label: new Date('Thu Sep 7 2020'), value: 12 },
-                { label: new Date('Thu Sep 8 2020'), value: 8 },
-                { label: new Date('Thu Sep 9 2020'), value: 7 },
-                { label: new Date('Thu Sep 10 2020'), value: 9 },
-                              ],
-            }}
+            data={[
+              { label: new Date('Thu Sep 4 2020'), value: 3 },
+              { label: new Date('Thu Sep 5 2020'), value: 17 },
+              { label: new Date('Thu Sep 6 2020'), value: 18 },
+              { label: new Date('Thu Sep 7 2020'), value: 12 },
+              { label: new Date('Thu Sep 8 2020'), value: 8 },
+              { label: new Date('Thu Sep 9 2020'), value: 7 },
+              { label: new Date('Thu Sep 10 2020'), value: 9 },
+            ]}
             color='#ee00ff'
             width={400}
             height={80}

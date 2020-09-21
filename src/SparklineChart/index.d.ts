@@ -1,19 +1,14 @@
 import * as React from 'react';
 
 type chartData = {
-  name: string
-  pairs: pair[]
-};
-
-type pair = {
   label: string;
-  values: number[]
+  values: number;
 };
 
 export interface SparklineChartProps {
   dataHook?: string;
   className?: string;
-  data: chartData;
+  data: chartData[];
   color?: string;
   width?: number;
   height?: number;

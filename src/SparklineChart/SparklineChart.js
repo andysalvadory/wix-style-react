@@ -46,7 +46,6 @@ class SparklineChart extends React.PureComponent {
       left: halfWidth,
     };
 
-    const coloredData = { ...data, color };
     const innerTop = margin.top;
     const innerLeft = margin.left;
     const innerHeight = height - innerTop - margin.bottom;
@@ -56,7 +55,7 @@ class SparklineChart extends React.PureComponent {
     };
     const minMax = getDatasetMax([adaptedDataSet]);
     const firstLabel = this._getLabelAt(data, 0);
-    const lastLabel = this._getLabelAt(data, data.pairs.length - 1);
+    const lastLabel = this._getLabelAt(data, data.length - 1);
 
     const xScale = d3
       .scaleTime()
@@ -70,7 +69,7 @@ class SparklineChart extends React.PureComponent {
     const lineGenerator = d3
       .line()
       .x((dataPoint, i) => {
-        return xScale(data.pairs[i].label);
+        return xScale(this._getLabelAt(data, i));
       })
       .y(dataPoint => {
         return yScale(dataPoint);
@@ -80,7 +79,7 @@ class SparklineChart extends React.PureComponent {
     const areaGenerator = d3
       .area()
       .x((dataPoint, i) => {
-        return xScale(data.pairs[i].label);
+        return xScale(this._getLabelAt(data, i));
       })
       .y0(() => innerHeight)
       .y1(dataPoint => {
@@ -97,26 +96,27 @@ class SparklineChart extends React.PureComponent {
       innerBottom: margin.top + innerHeight,
       innerWidth,
       innerHeight,
-      data: coloredData,
+      data,
       xScale,
       yScale,
       minMax,
       highlightedStartingIndex,
       lineGenerator,
       areaGenerator,
+      color,
     };
   };
 
   _getLabelAt = (data, position) => {
-    return data.pairs[position] && data.pairs[position].label;
+    return data[position] && data[position].label;
   };
 
   _getValueAt(data, position) {
-    return data.pairs[position] && data.pairs[position].value;
+    return data[position] && data[position].value;
   }
 
-  _getValues = data => data.pairs.map(pair => pair.value);
-  _getLabels = data => data.pairs.map(pair => pair.label);
+  _getValues = data => data.map(pair => pair.value);
+  _getLabels = data => data.map(pair => pair.label);
 
   _drawSparkline = () => {
     const { width, height, data } = this.chartContext;
@@ -155,7 +155,7 @@ class SparklineChart extends React.PureComponent {
   };
 
   _getLineColorId(dataSet, componentId) {
-    return `${dataSet.name}${componentId}color`;
+    return `${componentId}color`;
   }
 
   _getAreaMaskId(componentId) {
@@ -163,14 +163,12 @@ class SparklineChart extends React.PureComponent {
   }
 
   _drawLines = dataContainer => {
-    const { data, lineGenerator, areaGenerator } = this.chartContext;
+    const { data, lineGenerator, areaGenerator, color } = this.chartContext;
 
     const dataSets = [data];
     dataContainer
       .selectAll('.chartLines')
-      .data(dataSets, dataSet => {
-        return dataSet.name;
-      })
+      .data(dataSets)
       .join('g')
       .attr('class', 'chartLines')
       .selectAll('g')
@@ -188,10 +186,10 @@ class SparklineChart extends React.PureComponent {
               `url(#${this._getAreaMaskId(this.randomComponentId)})`,
             )
             .attr('fill', dataSet => {
-              return `url(#${dataSet.color})`;
+              return `url(#${color})`;
             })
             .attr('d', dataSet => {
-              return areaGenerator(dataSet.pairs.map(() => 0));
+              return areaGenerator(dataSet.map(() => 0));
             });
           group
             .append('path')
@@ -201,7 +199,7 @@ class SparklineChart extends React.PureComponent {
             .attr('stroke-linecap', 'round')
             .attr('stroke', 'white')
             .attr('d', dataSet => {
-              return lineGenerator(dataSet.pairs.map(() => 0));
+              return lineGenerator(dataSet.map(() => 0));
             });
 
           group
@@ -217,7 +215,7 @@ class SparklineChart extends React.PureComponent {
               )})`;
             })
             .attr('d', dataSet => {
-              return lineGenerator(dataSet.pairs.map(() => 0));
+              return lineGenerator(dataSet.map(() => 0));
             });
 
           this._updateLines(group);
@@ -280,6 +278,7 @@ class SparklineChart extends React.PureComponent {
       innerWidth,
       height,
       width,
+      color,
     } = context;
     const highlightedStartBefore = context.xScale(
       this._getLabelAt(data, highlightedStartingIndex - 1),
@@ -315,7 +314,7 @@ class SparklineChart extends React.PureComponent {
             context.yScale(currentValue) - TOOLTIP_ELEMENT_RADIUS / 2,
         };
         pointsData.push(pointData);
-        dataPointsTooltipColors.push(data.color);
+        dataPointsTooltipColors.push(color);
         return pointsData;
       },
       [],
@@ -341,35 +340,35 @@ class SparklineChart extends React.PureComponent {
 
             <linearGradient
               gradientUnits={'userSpaceOnUse'}
-              key={`${data.name}a`}
+              key={`${this.randomComponentId}a`}
               id={this._getLineColorId(data, this.randomComponentId)}
               x1="0px"
               y1={`0px`}
               x2={`${innerWidth}px`}
               y2={'0px'}
             >
-              <stop
-                offset="0"
-                style={{ stopColor: '#dfe5eb', stopOpacity: 1 }}
-              />
-              {this.enableHighlightedAreaEffect && (
+              {this.enableHighlightedAreaEffect && [
                 <stop
+                  key={0}
+                  offset="0"
+                  style={{ stopColor: '#dfe5eb', stopOpacity: 1 }}
+                />,
+                <stop
+                  key={1}
                   offset={highlightedRelativeLocation - inter}
                   style={{ stopColor: '#dfe5eb', stopOpacity: 1 }}
-                />
-              )}
-              <stop
-                offset={highlightedRelativeLocation}
-                style={{ stopColor: data.color, stopOpacity: 1 }}
-              />
-              <stop
-                offset={highlightedRelativeLocation}
-                style={{ stopColor: data.color, stopOpacity: 1 }}
-              />
+                />,
+
+                <stop
+                  key={2}
+                  offset={highlightedRelativeLocation}
+                  style={{ stopColor: color, stopOpacity: 1 }}
+                />,
+              ]}
               <stop
                 offset="1"
                 style={{
-                  stopColor: data.color,
+                  stopColor: color,
                   stopOpacity: 1,
                 }}
               />
@@ -377,21 +376,18 @@ class SparklineChart extends React.PureComponent {
 
             <linearGradient
               gradientUnits={'userSpaceOnUse'}
-              key={data.name}
-              id={data.color}
+              key={this.randomComponentId}
+              id={color}
               x1="0px"
               y1={`${context.innerHeight}px`}
               x2="0px"
               y2={'0px'}
             >
-              <stop
-                offset="10%"
-                style={{ stopColor: data.color, stopOpacity: 0 }}
-              />
+              <stop offset="10%" style={{ stopColor: color, stopOpacity: 0 }} />
               <stop
                 offset="90%"
                 style={{
-                  stopColor: data.color,
+                  stopColor: color,
                   stopOpacity: 0.5,
                 }}
               />
@@ -439,15 +435,12 @@ SparklineChart.propTypes = {
   height: PropTypes.number,
 
   /** Chart data */
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    pairs: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.node,
-        value: PropTypes.number,
-      }),
-    ),
-  }),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node,
+      value: PropTypes.number,
+    }),
+  ),
 
   /** Sets the color of the sparkline  */
   color: PropTypes.string,

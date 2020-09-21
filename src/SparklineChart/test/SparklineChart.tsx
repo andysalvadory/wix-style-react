@@ -6,19 +6,18 @@ import { sparklineChartTestkitFactory as sparklineChartPuppeteerTestkitFactory }
 import * as enzyme from 'enzyme';
 import * as puppeteer from 'puppeteer';
 
-function sparklineChartWithMandatoryProps() {
-  return <SparklineChart />;
-}
+// function sparklineChartWithMandatoryProps() {
+//   return <SparklineChart />;
+// }
 
-function sparklineChartWithAllProps() {
-  return (
-    <SparklineChart
-      dataHook="dataHook"
-      className="className"
-      buttonText="buttonText"
-    />
-  );
-}
+// function sparklineChartWithAllProps() {
+//   return (
+//     <SparklineChart
+//       dataHook="dataHook"
+//       className="className"
+//     />
+//   );
+// }
 
 async function testkits() {
   const testkit = sparklineChartTestkitFactory({
