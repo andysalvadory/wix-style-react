@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import { scaleTime, scaleLinear } from 'd3-scale';
+import { max, bisector } from 'd3-array';
+import { line, area, curveMonotoneX } from 'd3-shape';
+import { select, pointer } from 'd3-selection';
+import { easeQuadIn } from 'd3-ease';
 import { ChartTooltip } from './ChartTooltip';
 import { classes } from './SparklineChart.st.css';
 import { classSelector } from './utils';
+import 'd3-transition';
 
 const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
@@ -52,31 +57,27 @@ class SparklineChart extends React.PureComponent {
     const innerHeight = height - innerTop - margin.bottom;
     const innerWidth = width - innerLeft - margin.right;
 
-    const max = d3.max(this._getValues(data));
+    const maxValue = max(this._getValues(data));
     const firstLabel = this._getLabelAt(data, 0);
     const lastLabel = this._getLabelAt(data, data.length - 1);
 
-    const xScale = d3
-      .scaleTime()
+    const xScale = scaleTime()
       .domain([firstLabel, lastLabel])
       .range([innerLeft, innerWidth]);
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, max])
+    const yScale = scaleLinear()
+      .domain([0, maxValue])
       .range([innerHeight, innerTop]);
 
-    const lineGenerator = d3
-      .line()
+    const lineGenerator = line()
       .x((dataPoint, i) => {
         return xScale(this._getLabelAt(data, i));
       })
       .y(dataPoint => {
         return yScale(dataPoint);
       })
-      .curve(d3.curveMonotoneX);
+      .curve(curveMonotoneX);
 
-    const areaGenerator = d3
-      .area()
+    const areaGenerator = area()
       .x((dataPoint, i) => {
         return xScale(this._getLabelAt(data, i));
       })
@@ -84,7 +85,7 @@ class SparklineChart extends React.PureComponent {
       .y1(dataPoint => {
         return yScale(dataPoint);
       })
-      .curve(d3.curveMonotoneX);
+      .curve(curveMonotoneX);
 
     return {
       margin,
@@ -120,7 +121,7 @@ class SparklineChart extends React.PureComponent {
     const { width, height, data } = this.chartContext;
     const labels = this._getLabels(data);
 
-    const container = d3.select(this.svgRef.current);
+    const container = select(this.svgRef.current);
 
     container.attr('width', width).attr('height', height);
     const dataContainer = container.select(
@@ -128,18 +129,15 @@ class SparklineChart extends React.PureComponent {
     );
 
     this._drawLines(dataContainer);
-    d3.select(this.componentRef.current)
+    select(this.componentRef.current)
       .on('mouseleave', () => {
         this.setState({ hoveredLabels: [] });
       })
       .on('mousemove', d => {
-        const { pointer } = d3;
         const dateUnderPointer = this.chartContext.xScale.invert(pointer(d)[0]);
-        const currentDateIndex = d3
-          .bisector(function(date) {
-            return date;
-          })
-          .left(labels, dateUnderPointer, 1);
+        const currentDateIndex = bisector(function(date) {
+          return date;
+        }).left(labels, dateUnderPointer, 1);
 
         const beforeDateIndex = currentDateIndex - 1;
 
@@ -249,7 +247,7 @@ class SparklineChart extends React.PureComponent {
       .select(className)
       .transition()
       .duration(300)
-      .ease(d3.easeQuadIn)
+      .ease(easeQuadIn)
       .attr('d', fncUpdater);
   };
 
@@ -291,11 +289,9 @@ class SparklineChart extends React.PureComponent {
     const labels = this._getLabels(data);
 
     const hoveredLabelsIndexes = hoveredLabels.map(dimension => {
-      return d3
-        .bisector(function(d) {
-          return d;
-        })
-        .left(labels, dimension, 0);
+      return bisector(function(d) {
+        return d;
+      }).left(labels, dimension, 0);
     });
 
     const dataPointsTooltipColors = [];
