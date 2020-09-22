@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { st, classes } from './BaseModalLayout.st.css';
 import { dataHooks } from './constants';
 import CloseButton from '../CloseButton';
+import Help from 'wix-ui-icons-common/system/Help24';
 import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 import { BaseModalLayoutContext } from './BaseModalLayoutContext';
 import {
@@ -14,7 +15,6 @@ import {
   Illustration,
 } from './LayoutBlocks';
 import Box from '../Box';
-import Help from 'wix-ui-icons-common/system/Help24';
 
 const classNames = {
   headerClassName: classes.header,
