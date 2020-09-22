@@ -122,6 +122,7 @@ const javascriptFiles = [
   ['SocialPreview.bundle.min.js', 35],
   ['SortableGrid.bundle.min.js', 32],
   ['SortableList.bundle.min.js', 30],
+  ['SparklineChart.bundle.min.js', 52],
   ['StarsRatingBar.bundle.min.js', 37],
   ['StatisticsWidget.bundle.min.js', 47],
   ['StatisticsWidget.bundle.min.js', 47],
@@ -151,7 +152,6 @@ const javascriptFiles = [
   ['VerticalTabs.bundle.min.js', 38],
   ['VerticalTabsItem.bundle.min.js', 38],
   ['WarningIndicator.bundle.min.js', 40],
-  ['SparklineChart.bundle.min.js', 10],
 ];
 
 const cssFiles = [
@@ -248,6 +248,7 @@ const cssFiles = [
   ['Skeleton.min.css', 1],
   ['Slider.min.css', 2],
   ['SortableGrid.min.css', 1],
+  ['SparklineChart.min.css', 1],
   ['StarsRatingBar.min.css', 1],
   ['StatisticsWidget.min.css', 2],
   ['StatusIndicator.min.css', 1],
@@ -267,7 +268,6 @@ const cssFiles = [
   ['Tooltip.min.css', 2],
   ['VariableInput.min.css', 2],
   ['WarningIndicator.min.css', 2],
-  ['SparklineChart.min.css', 1],
 ];
 
 const getJS = () =>

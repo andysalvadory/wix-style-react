@@ -6,18 +6,29 @@ import { sparklineChartTestkitFactory as sparklineChartPuppeteerTestkitFactory }
 import * as enzyme from 'enzyme';
 import * as puppeteer from 'puppeteer';
 
-// function sparklineChartWithMandatoryProps() {
-//   return <SparklineChart />;
-// }
+const data = [
+  { label: new Date('Thu Sep 4 2020'), value: 3 },
+  { label: new Date('Thu Sep 5 2020'), value: 17 },
+  { label: new Date('Thu Sep 6 2020'), value: 18 }];
 
-// function sparklineChartWithAllProps() {
-//   return (
-//     <SparklineChart
-//       dataHook="dataHook"
-//       className="className"
-//     />
-//   );
-// }
+function sparklineChartWithMandatoryProps() {
+  return <SparklineChart data={data} />;
+}
+
+function sparklineChartWithAllProps() {
+  return (
+    <SparklineChart
+      dataHook="dataHook"
+      className="className"
+      data={data}
+      color={'#fff000'}
+      width={400}
+      height={80}
+      highlightedStartingIndex={1}
+      getTooltipContent={(index:number): React.ReactNode => <div>tool tip content</div>}
+    />
+  );
+}
 
 async function testkits() {
   const testkit = sparklineChartTestkitFactory({

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 type chartData = {
-  label: string;
-  values: number;
+  label: Date;
+  value: number;
 };
 
 export interface SparklineChartProps {

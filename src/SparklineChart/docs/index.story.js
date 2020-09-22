@@ -65,7 +65,7 @@ export default {
           description({
             title: 'Description',
 
-            text: 'Simple sparkline chart component.',
+            text: 'A tiny chart that provides a visual representation of data.',
           }),
 
           importExample(),
@@ -76,8 +76,9 @@ export default {
 
           example({
             title: 'Simple Usage',
-            description: `A simple sparkline example.`,
+            description: `A simple sparkline example. The SparklineChart supports custom tooltip on hover. When getTooltipContent is not set, the tooltip will be disabled `,
             source: ` <SparklineChart
+            getTooltipContent={index => <span style={{color: '#ffffff'}}>{index}</span>}
                 data={[
                     { label: new Date('Thu Sep 4 2020'), value: 3 },
                     { label: new Date('Thu Sep 5 2020'), value: 17 },
@@ -89,24 +90,6 @@ export default {
                   ]}
           />`,
           }),
-
-          example({
-            title: 'ToolTip',
-            description: 'SparklineChart supports tooltip on hover.',
-            source: `<SparklineChart
-            getTooltipContent={index => <span style={{color: '#ffffff'}}>{index}</span>}
-            data={[
-              { label: new Date('Thu Sep 4 2020'), value: 3 },
-              { label: new Date('Thu Sep 5 2020'), value: 17 },
-              { label: new Date('Thu Sep 6 2020'), value: 18 },
-              { label: new Date('Thu Sep 7 2020'), value: 12 },
-              { label: new Date('Thu Sep 8 2020'), value: 8 },
-              { label: new Date('Thu Sep 9 2020'), value: 7 },
-              { label: new Date('Thu Sep 10 2020'), value: 9 },
-            ]}
-           />`,
-          }),
-
           example({
             title: 'Highlighted Area',
             description:

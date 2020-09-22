@@ -2,20 +2,21 @@ import React from 'react';
 import { classes } from './ChartTooltip.st.css';
 import Popover from '../Popover';
 import { dataHooks } from './constants';
+import Text from '../Text';
 
 export const ChartTooltip = props => {
   const { dataPoints } = props;
 
   return (
-    <div style={{ fontSize: 0 }}>
-      {dataPoints.map((pointData, index) => {
+    <div>
+      {dataPoints.map((dataPoint, index) => {
         return (
           <div
             key={index}
             className={classes.absolutePosition}
             style={{
-              left: pointData.xCoordinate,
-              top: pointData.yCoordinate,
+              left: dataPoint.xCoordinate,
+              top: dataPoint.yCoordinate,
             }}
           >
             <Popover
@@ -24,13 +25,13 @@ export const ChartTooltip = props => {
               shown
               appendTo="parent"
               placement="top"
-              dynamicWidth
+              fluid
               dataHooks={dataHooks.chartPopover}
             >
               <Popover.Element>{null}</Popover.Element>
               <Popover.Content>
                 <div className={classes.contentWrapper}>
-                  {pointData.content}
+                  <Text>{dataPoint.content}</Text>
                 </div>
               </Popover.Content>
             </Popover>

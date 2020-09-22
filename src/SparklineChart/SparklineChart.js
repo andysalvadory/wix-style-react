@@ -1,8 +1,9 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import { ChartTooltip } from './ChartTooltip';
-import { getDatasetMax, classSelector } from './utils';
+import { classes } from './SparklineChart.st.css';
+import { classSelector } from './utils';
 
 const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
@@ -20,8 +21,8 @@ class SparklineChart extends React.PureComponent {
     this.randomComponentId = Math.random().toString();
     this.chartContext = {};
 
-    this.svgRef = createRef(null);
-    this.componentRef = createRef(null);
+    this.svgRef = React.createRef(null);
+    this.componentRef = React.createRef(null);
     this.enableHighlightedAreaEffect = highlightedStartingIndex > 0;
 
     this.state = {
@@ -50,10 +51,8 @@ class SparklineChart extends React.PureComponent {
     const innerLeft = margin.left;
     const innerHeight = height - innerTop - margin.bottom;
     const innerWidth = width - innerLeft - margin.right;
-    const adaptedDataSet = {
-      values: this._getValues(data),
-    };
-    const minMax = getDatasetMax([adaptedDataSet]);
+
+    const max = d3.max(this._getValues(data));
     const firstLabel = this._getLabelAt(data, 0);
     const lastLabel = this._getLabelAt(data, data.length - 1);
 
@@ -63,7 +62,7 @@ class SparklineChart extends React.PureComponent {
       .range([innerLeft, innerWidth]);
     const yScale = d3
       .scaleLinear()
-      .domain([0, minMax.max])
+      .domain([0, max])
       .range([innerHeight, innerTop]);
 
     const lineGenerator = d3
@@ -99,7 +98,6 @@ class SparklineChart extends React.PureComponent {
       data,
       xScale,
       yScale,
-      minMax,
       highlightedStartingIndex,
       lineGenerator,
       areaGenerator,
@@ -125,7 +123,9 @@ class SparklineChart extends React.PureComponent {
     const container = d3.select(this.svgRef.current);
 
     container.attr('width', width).attr('height', height);
-    const dataContainer = container.select(classSelector('dataContainer'));
+    const dataContainer = container.select(
+      classSelector(classes.dataContainer),
+    );
 
     this._drawLines(dataContainer);
     d3.select(this.componentRef.current)
@@ -394,7 +394,7 @@ class SparklineChart extends React.PureComponent {
             </linearGradient>
           </defs>
           <g>
-            <g className={'dataContainer'}></g>
+            <g className={classes.dataContainer}></g>
             {this.enableTooltip &&
               dataPoints.map((pointData, index) => {
                 return (
@@ -440,7 +440,7 @@ SparklineChart.propTypes = {
       label: PropTypes.node,
       value: PropTypes.number,
     }),
-  ),
+  ).isRequired,
 
   /** Sets the color of the sparkline  */
   color: PropTypes.string,
