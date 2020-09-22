@@ -122,6 +122,7 @@ require('../src/RichTextInputArea/docs/index.story');
 require('../src/Search/docs/index.story');
 require('../src/SectionHelper/docs/index.story');
 require('../src/SegmentedToggle/docs/index.story');
+require('../src/SelectableAccordion/docs/index.story');
 require('../src/Sidebar/docs/index.story');
 require('../src/SidebarBackButton/docs/index.story');
 require('../src/SidebarDivider/docs/index.story');

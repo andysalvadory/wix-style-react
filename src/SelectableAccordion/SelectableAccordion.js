@@ -34,7 +34,6 @@ class SelectableAccordion extends React.PureComponent {
   static defaultProps = {
     type: 'toggle',
     items: [],
-    onSelectionChanged: () => {},
   };
 
   static displayName = 'SelectableAccordion';
@@ -86,7 +85,10 @@ class SelectableAccordion extends React.PureComponent {
       };
     }
 
-    this.setState({ openIndices }, onSelectionChanged(openIndices));
+    this.setState(
+      { openIndices },
+      () => onSelectionChanged && onSelectionChanged(openIndices),
+    );
   };
 
   render() {

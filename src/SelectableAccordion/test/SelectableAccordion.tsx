@@ -11,7 +11,22 @@ function selectableAccordionWithMandatoryProps() {
 }
 
 function selectableAccordionWithAllProps() {
-  return <SelectableAccordion dataHook="dataHook" className="className" />;
+  return (
+    <SelectableAccordion
+      dataHook="dataHook"
+      className="className"
+      items={[
+        {
+          title: 'hello',
+          subtitle: 'hello',
+          content: <div />,
+          initiallyOpen: true,
+        },
+      ]}
+      type="checkbox"
+      onSelectionChanged={(ids: number[]) => {}}
+    />
+  );
 }
 
 async function testkits() {

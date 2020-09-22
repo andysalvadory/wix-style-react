@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { SelectableAccordionItemProps as _SelectableAccordionItemProps } from './Item';
+import { SelectableAccordionItemCommonProps } from './Item';
 
-type SelectableAccordionItemProps = Pick<
-  _SelectableAccordionItemProps,
-  'type' | 'title' | 'subtitle' | 'content' | 'onChange'
-> & { initiallyOpen: boolean };
+type SelectableAccordionItemProps = SelectableAccordionItemCommonProps & {
+  initiallyOpen?: boolean;
+};
 
 export interface SelectableAccordionProps {
   dataHook?: string;
