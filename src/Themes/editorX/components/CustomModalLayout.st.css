@@ -48,7 +48,7 @@
   * Making this a CSS Var means opening a field for the Heading component
   * --heading-line-height 24px;
   * --heading-font-size: 16px;
-  * --heading-weight: 400;
+  * --heading-weight: 700;
   */
   -st-mixin: T06();
   color: value(titleColor);

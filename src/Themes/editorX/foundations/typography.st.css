@@ -8,6 +8,6 @@
 /* Typography */
 .T06 {
   --wsr-font-family: Madefor;
-  --wsr-font-weight-bold: 400;
+  --wsr-font-weight-bold: 700;
   -st-mixin: text-medium-bold();
 }
