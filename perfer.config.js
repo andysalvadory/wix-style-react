@@ -139,7 +139,7 @@ const javascriptFiles = [
   ['TestimonialList.bundle.min.js', 34],
   ['Text.bundle.min.js', 33],
   ['TextButton.bundle.min.js', 35],
-  ['ThemeProvider.bundle.min.js', 4],
+  ['ThemeProvider.bundle.min.js', 5],
   ['Thumbnail.bundle.min.js', 38],
   ['TimeInput.bundle.min.js', 84],
   ['Timeline.bundle.min.js', 34],
