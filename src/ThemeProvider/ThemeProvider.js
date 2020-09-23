@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
-import { ThemeProviderContext } from './ThemeProviderContext';
+import { ThemeContext } from './ThemeContext';
 
 /** ThemeProvider */
 class ThemeProvider extends React.PureComponent {
@@ -24,9 +24,9 @@ class ThemeProvider extends React.PureComponent {
         style={this._parseTheme(theme)}
         data-hook={dataHook}
       >
-        <ThemeProviderContext.Provider value={{ icons: theme.icons }}>
+        <ThemeContext.Provider value={{ icons: theme.icons }}>
           {children}
-        </ThemeProviderContext.Provider>
+        </ThemeContext.Provider>
       </div>
     );
   }

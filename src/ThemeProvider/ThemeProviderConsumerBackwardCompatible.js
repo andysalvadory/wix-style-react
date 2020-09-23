@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProviderContext } from './ThemeProviderContext.js';
+import { ThemeContext } from './ThemeContext';
 
 /**
  * This is a utility for every component that uses an icon to declare its defaults but also replace it with the theme context
@@ -24,13 +24,13 @@ export const ThemeProviderConsumerBackwardCompatible = ({
   defaultIcons,
   ...rest
 }) => (
-  <ThemeProviderContext.Consumer>
+  <ThemeContext.Consumer>
     {context => (
-      <ThemeProviderContext.Provider
+      <ThemeContext.Provider
         value={{ icons: { ...defaultIcons, ...(context && context.icons) } }}
       >
-        <ThemeProviderContext.Consumer {...rest} />
-      </ThemeProviderContext.Provider>
+        <ThemeContext.Consumer {...rest} />
+      </ThemeContext.Provider>
     )}
-  </ThemeProviderContext.Consumer>
+  </ThemeContext.Consumer>
 );

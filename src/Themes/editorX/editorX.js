@@ -1,8 +1,8 @@
-import { st, classes } from './editorX.st.css';
+import { classes } from './editorX.st.css';
 import { Close, Help } from './icons';
 
 export default () => ({
-  className: st(classes.root),
+  className: classes.root,
   icons: {
     CloseButton: {
       small: Close,
