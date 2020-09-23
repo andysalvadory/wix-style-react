@@ -1,6 +1,6 @@
 :import {
   -st-from: "../../../Foundation/stylable/typography.st.css";
-  -st-named: text-small-bold;
+  -st-named: text-medium-bold;
 }
 
 :import {
@@ -10,6 +10,6 @@
 
 /* Typography */
 .T06 {
-  -st-mixin: text-small-bold();
+  -st-mixin: text-medium-bold();
   color: value(D1);
 }
