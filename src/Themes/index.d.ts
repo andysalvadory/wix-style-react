@@ -7,3 +7,5 @@ type FloatingPanelsProps = ThemeInterface & {
 export function floatingPanels(
   FloatingPanelsProps: FloatingPanelsProps,
 ): ThemeInterface;
+
+export function editorX(): ThemeInterface;

@@ -198,15 +198,23 @@ const InteractiveCustomModalLayout = ({ wait, ...props }) => {
   );
 };
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props, componentDidMount }) => {
-    storiesOf(
-      `CustomModalLayout${describe ? '/' + describe : ''}`,
-      module,
-    ).add(
-      it,
-      () => <InteractiveCustomModalLayout {...commonProps} {...props} />,
-      { eyes: { waitBeforeScreenshot: `[data-test-ready="true"]` } },
-    );
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) =>
+  tests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}CustomModalLayout/${describe}`,
+        module,
+      ).add(
+        it,
+        () =>
+          testWithTheme(
+            <InteractiveCustomModalLayout {...commonProps} {...props} />,
+          ),
+        { eyes: { waitBeforeScreenshot: `[data-test-ready="true"]` } },
+      );
+    });
   });
-});
+
+runTests();
