@@ -5,15 +5,9 @@
   -st-named: text-medium-bold;
 }
 
-:import {
-  -st-from: "./colors.st.css";
-  -st-named: D1;
-}
-
 /* Typography */
 .T06 {
   --wsr-font-family: Madefor;
   --wsr-font-weight-bold: 400;
   -st-mixin: text-medium-bold();
-  color: value(D1);
 }
