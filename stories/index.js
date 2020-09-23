@@ -201,3 +201,6 @@ require('./PopoverMenu/index.story'); // 7.3 PopoverMenu
 // require('../src/CustomModalLayout/docs/design.story'); // 9.3 Custom Modal (WIP)
 require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
 require('../src/MessageBox/docs');
+
+// Editor-X
+require('../src/Themes/editorX/docs');

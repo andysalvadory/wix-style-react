@@ -21,8 +21,6 @@ import ToggleSwitch from '../../ToggleSwitch';
 import Box from '../../Box';
 import SectionHelper from '../../SectionHelper';
 
-import * as examples from './examples';
-
 const colors = [
   '#2B81CB',
   '#3899EC',
@@ -150,11 +148,6 @@ Important: This is an experimental tool and should not be used in production unl
   </Layout>
 </ThemeProvider>
             `,
-          }),
-          example({
-            title: 'EditorX',
-            text: 'Get an EditorX flavor of the components',
-            source: examples.editorX,
           }),
         ],
       }),

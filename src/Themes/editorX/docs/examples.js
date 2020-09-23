@@ -1,4 +1,4 @@
-export const editorX = `
+export const playground = `
 <ThemeProvider theme={Themes.editorX()}>
   <CustomModalLayout
     onCloseButtonClick={() => {}}
