@@ -83,8 +83,7 @@ class Ellipsis extends React.PureComponent {
     if (newTextContent !== textContent) {
       newState.textContent = newTextContent;
 
-      const shouldBeActive =
-        this._isOverflowingHorizontally() || this._isOverflowingVertically();
+      const shouldBeActive = this._checkShouldBeActive();
 
       if (shouldBeActive !== isActive) {
         newState.isActive = shouldBeActive;
@@ -101,8 +100,7 @@ class Ellipsis extends React.PureComponent {
   _updateIsActive = () => {
     const { isActive } = this.state;
 
-    const shouldBeActive =
-      this._isOverflowingHorizontally() || this._isOverflowingVertically();
+    const shouldBeActive = this._checkShouldBeActive();
     if (shouldBeActive !== isActive) {
       this.setState({ isActive: shouldBeActive });
     }
@@ -112,6 +110,9 @@ class Ellipsis extends React.PureComponent {
     const { current: textElement } = this.ref;
     return textElement && textElement.textContent;
   };
+
+  _checkShouldBeActive = () =>
+    this._isOverflowingHorizontally() || this._isOverflowingVertically();
 
   _isOverflowingHorizontally = () => {
     const { current: textElement } = this.ref;
