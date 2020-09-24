@@ -1,4 +1,5 @@
 import { browser, $ } from 'protractor';
+import eventually from 'wix-eventually';
 import { createTestStoryUrl } from '../../../../test/utils/storybook-helpers';
 import { Category } from '../../../../stories/storiesHierarchy';
 
@@ -26,7 +27,7 @@ describe('Ellipsis', () => {
     expect(isTextRendered()).toBe(true);
 
     // Ellipsis element
-    expect(isEllipsisRendered()).toBe(true);
+    await eventually(() => expect(isEllipsisRendered()).toBe(true));
   });
 
   it('should not have ellipsis', async () => {
