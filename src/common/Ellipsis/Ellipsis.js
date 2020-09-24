@@ -2,10 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import shallowEqual from 'shallowequal';
+import requestAnimationFramePolyfill from '../utils/request-animation-frame';
 import { st, classes, vars } from './Ellipsis.st.css';
 import Tooltip from '../../Tooltip';
 import { ZIndex } from '../../ZIndex';
 import { TooltipCommonProps } from '../PropTypes/TooltipCommon';
+
+/**
+ *  This has been added in order to fix jsdom not having requestAnimation frame
+ *  installed. Jest by default has this polyfilled, but mocha fails on it.
+ */
+if (process.env.NODE_ENV === 'test') {
+  requestAnimationFramePolyfill.install();
+}
 
 const TextComponent = React.memo(
   React.forwardRef(({ render, ellipsis, maxLines, textDidUpdate }, ref) => {
