@@ -7,6 +7,23 @@ import Tooltip from '../../Tooltip';
 import { ZIndex } from '../../ZIndex';
 import { TooltipCommonProps } from '../PropTypes/TooltipCommon';
 
+const TextComponent = React.memo(
+  React.forwardRef(({ render, ellipsis, maxLines }, ref) => {
+    const _getEllipsisClasses = () => {
+      const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
+
+      return className =>
+        ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
+    };
+
+    return render({
+      ref,
+      ellipsisClasses: _getEllipsisClasses(),
+      ellipsisInlineStyle: { [vars.maxLines]: maxLines },
+    });
+  }),
+);
+
 class Ellipsis extends React.PureComponent {
   static propTypes = {
     /** When true, text that is longer than it's container will be truncated to a single line followed by ellipsis. Otherwise the text will break into several lines. */
@@ -99,22 +116,9 @@ class Ellipsis extends React.PureComponent {
     this._updateEllipsisState();
   }
 
-  _renderText = () => {
-    const { render, maxLines } = this.props;
-
-    return render({
-      ref: this.ref,
-      ellipsisClasses: this._getEllipsisClasses(),
-      ellipsisInlineStyle: { [vars.maxLines]: maxLines },
-    });
-  };
-
-  _getEllipsisClasses() {
-    const { ellipsis, maxLines } = this.props;
-    const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
-
-    return className =>
-      ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
+  _renderText() {
+    const { render, ellipsis, maxLines } = this.props;
+    return <TextComponent {...{ render, ellipsis, maxLines }} ref={this.ref} />;
   }
 
   render() {
