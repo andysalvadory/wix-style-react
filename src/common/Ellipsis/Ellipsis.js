@@ -82,13 +82,15 @@ class Ellipsis extends React.PureComponent {
     const newTextContent = this._getTextContent();
     if (newTextContent !== textContent) {
       newState.textContent = newTextContent;
+    }
 
-      const shouldBeActive = this._checkShouldBeActive();
+    const shouldBeActive = this._checkShouldBeActive();
+    if (shouldBeActive !== isActive) {
+      newState.isActive = shouldBeActive;
+    }
 
-      if (shouldBeActive !== isActive) {
-        newState.isActive = shouldBeActive;
-      }
-
+    const stateChanged = Object.keys(newState).length > 0;
+    if (stateChanged) {
       this.setState(newState);
     }
   };
