@@ -16,9 +16,12 @@ class TextComponent extends React.PureComponent {
       ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
   };
 
+  componentDidMount() {
+    this.props.textDidUpdate();
+  }
+
   componentDidUpdate() {
-    const { textDidUpdate } = this.props;
-    textDidUpdate();
+    this.props.textDidUpdate();
   }
 
   render() {
