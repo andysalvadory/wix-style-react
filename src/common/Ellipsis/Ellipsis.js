@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import shallowEqual from 'shallowequal';
-import requestAnimationFramePolyfill from '../utils/request-animation-frame';
+import requestAnimationFramePolyfill from '../../utils/request-animation-frame';
 import { st, classes, vars } from './Ellipsis.st.css';
 import Tooltip from '../../Tooltip';
 import { ZIndex } from '../../ZIndex';
