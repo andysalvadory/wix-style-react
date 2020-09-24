@@ -8,13 +8,15 @@ import { ZIndex } from '../../ZIndex';
 import { TooltipCommonProps } from '../PropTypes/TooltipCommon';
 
 const TextComponent = React.memo(
-  React.forwardRef(({ render, ellipsis, maxLines }, ref) => {
+  React.forwardRef(({ render, ellipsis, maxLines, textDidUpdate }, ref) => {
     const _getEllipsisClasses = () => {
       const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
 
       return className =>
         ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
     };
+
+    requestAnimationFrame(textDidUpdate);
 
     return render({
       ref,
@@ -62,22 +64,53 @@ class Ellipsis extends React.PureComponent {
 
     this.state = {
       isActive: false,
+      textContent: null,
     };
 
     this.ref = React.createRef();
   }
 
   /**
+   * Once text component has rendered,
+   * Update text content and tooltip active state
+   * @private
+   */
+  _textDidUpdate = () => {
+    const { isActive, textContent } = this.state;
+    const newState = {};
+
+    const newTextContent = this._getTextContent();
+    if (newTextContent !== textContent) {
+      newState.textContent = newTextContent;
+
+      const shouldBeActive =
+        this._isOverflowingHorizontally() || this._isOverflowingVertically();
+
+      if (shouldBeActive !== isActive) {
+        newState.isActive = shouldBeActive;
+      }
+
+      this.setState(newState);
+    }
+  };
+
+  /**
    * An ellipsis is considered active when either the text's scroll width/height is wider than it's container or itself.
    * @private
    */
-  _updateEllipsisState = () => {
+  _updateIsActive = () => {
     const { isActive } = this.state;
+
     const shouldBeActive =
       this._isOverflowingHorizontally() || this._isOverflowingVertically();
-
-    if (shouldBeActive !== isActive)
+    if (shouldBeActive !== isActive) {
       this.setState({ isActive: shouldBeActive });
+    }
+  };
+
+  _getTextContent = () => {
+    const { current: textElement } = this.ref;
+    return textElement && textElement.textContent;
   };
 
   _isOverflowingHorizontally = () => {
@@ -109,16 +142,21 @@ class Ellipsis extends React.PureComponent {
    * A callback for resizing the window must be debounced in order to improve performance.
    * @private
    */
-  _debouncedUpdate = debounce(this._updateEllipsisState, 100);
+  _debouncedUpdate = debounce(this._updateIsActive, 100);
 
   componentDidMount() {
     window.addEventListener('resize', this._debouncedUpdate);
-    this._updateEllipsisState();
   }
 
   _renderText() {
     const { render, ellipsis, maxLines } = this.props;
-    return <TextComponent {...{ render, ellipsis, maxLines }} ref={this.ref} />;
+    return (
+      <TextComponent
+        {...{ render, ellipsis, maxLines }}
+        textDidUpdate={this._textDidUpdate}
+        ref={this.ref}
+      />
+    );
   }
 
   render() {
@@ -139,14 +177,14 @@ class Ellipsis extends React.PureComponent {
       textAlign,
       zIndex,
     } = this.props;
-    const { isActive } = this.state;
+    const { isActive, textContent } = this.state;
     const { current: textElement } = this.ref;
 
     return showTooltip && isActive ? (
       <Tooltip
         className={st(classes.tooltip, wrapperClassName)}
         disabled={!isActive || !textElement}
-        content={textElement && textElement.textContent}
+        content={textContent}
         {...{
           appendTo,
           disabled: disabled || !showTooltip,
@@ -172,7 +210,7 @@ class Ellipsis extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (!shallowEqual(prevProps, this.props)) {
-      this._updateEllipsisState();
+      this._updateIsActive();
     }
   }
 
