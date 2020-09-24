@@ -9,7 +9,7 @@ import { TooltipCommonProps } from '../PropTypes/TooltipCommon';
 
 const TextComponent = React.memo(
   React.forwardRef(({ render, ellipsis, maxLines, textDidUpdate }, ref) => {
-    const _getEllipsisClasses = () => {
+    const getEllipsisClasses = () => {
       const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
 
       return className =>
@@ -20,7 +20,7 @@ const TextComponent = React.memo(
 
     return render({
       ref,
-      ellipsisClasses: _getEllipsisClasses(),
+      ellipsisClasses: getEllipsisClasses(),
       ellipsisInlineStyle: { [vars.maxLines]: maxLines },
     });
   }),
