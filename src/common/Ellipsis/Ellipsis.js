@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import shallowEqual from 'shallowequal';
@@ -7,24 +7,29 @@ import Tooltip from '../../Tooltip';
 import { ZIndex } from '../../ZIndex';
 import { TooltipCommonProps } from '../PropTypes/TooltipCommon';
 
-const TextComponent = React.memo(
-  React.forwardRef(({ render, ellipsis, maxLines, textDidUpdate }, ref) => {
-    useLayoutEffect(textDidUpdate);
+class TextComponent extends React.PureComponent {
+  _getEllipsisClasses = () => {
+    const { ellipsis, maxLines } = this.props;
+    const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
 
-    const getEllipsisClasses = () => {
-      const ellipsisLines = maxLines > 1 ? 'multiline' : 'singleLine';
+    return className =>
+      ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
+  };
 
-      return className =>
-        ellipsis ? st(classes.text, { ellipsisLines }, className) : className;
-    };
+  componentDidUpdate() {
+    const { textDidUpdate } = this.props;
+    textDidUpdate();
+  }
 
+  render() {
+    const { render, maxLines, textElementRef } = this.props;
     return render({
-      ref,
-      ellipsisClasses: getEllipsisClasses(),
+      ref: textElementRef,
+      ellipsisClasses: this._getEllipsisClasses(),
       ellipsisInlineStyle: { [vars.maxLines]: maxLines },
     });
-  }),
-);
+  }
+}
 
 class Ellipsis extends React.PureComponent {
   static propTypes = {
@@ -157,7 +162,7 @@ class Ellipsis extends React.PureComponent {
       <TextComponent
         {...{ render, ellipsis, maxLines }}
         textDidUpdate={this._textDidUpdate}
-        ref={this.ref}
+        textElementRef={this.ref}
       />
     );
   }
