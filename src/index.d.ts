@@ -1,4 +1,4 @@
-import * as Themes from './Themes';
+import * as Themes from './Themes/floatingPanels';
 
 export { Themes };
 

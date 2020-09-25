@@ -14,7 +14,7 @@ import {
 } from 'wix-storybook-utils/Sections';
 
 import { storySettings } from '../test/storySettings';
-import allComponents from '../../../stories/utils/allComponents';
+import { floatingPanelsComponents } from '../../../stories/utils/allComponents';
 
 import ThemeProvider from '..';
 import ToggleSwitch from '../../ToggleSwitch';
@@ -50,7 +50,10 @@ const ColorsExample = () => (
 );
 
 const example = config =>
-  baseExample({ components: { ColorsExample, ...allComponents }, ...config });
+  baseExample({
+    components: { ColorsExample, ...floatingPanelsComponents },
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
@@ -132,9 +135,10 @@ Important: This is an experimental tool and should not be used in production unl
 
           example({
             title: 'Use a pre made theme',
-            text: 'Using a pre made theme function to generate a theme',
+            text:
+              'Using a pre made theme function to generate a theme (import {theme} from "wix-style-react/themes/floatingPanels',
             source: `
-<ThemeProvider theme={themes.floatingPanels({ mainColor: '#00aa00' })}>
+<ThemeProvider theme={theme({ mainColor: '#00aa00' })}>
   <Layout>
     <Cell>
       <ToggleSwitch checked />

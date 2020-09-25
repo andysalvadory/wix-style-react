@@ -11,12 +11,13 @@ import {
 } from 'wix-storybook-utils/Sections';
 
 import { storySettings } from './storySettings';
-import allComponents from '../../../../stories/utils/allComponents';
+import { editorXComponents } from '../../../../stories/utils/allComponents';
 import SectionHelper from '../../../SectionHelper';
 
 import * as examples from './examples';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const example = config =>
+  baseExample({ components: editorXComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -50,10 +51,10 @@ export default {
 
           importExample(`
 import { ThemeProvider } from 'wix-style-react';
-import { editorX } from 'wix-style-react/themes';
+import { theme } from 'wix-style-react/themes/editorX';
 
 () => (
-  <ThemeProvider theme={editorX()}>
+  <ThemeProvider theme={theme()}>
     ...
   </ThemeProvider>
 );
@@ -62,7 +63,7 @@ import { editorX } from 'wix-style-react/themes';
           title('Examples'),
           example({
             title: 'Playground',
-            text: 'Example of some components that support this theme ',
+            text: 'Example of some components that support this theme',
             source: examples.playground,
           }),
         ],

@@ -4,12 +4,12 @@ export interface ThemeInterface {
   className?: string;
   icons?: {
     CloseButton?: {
-      small?: React.SFC,
-      medium?: React.SFC,
-      large?: React.SFC,
+      small?: React.FC,
+      medium?: React.FC,
+      large?: React.FC,
     },
     BaseModalLayout?: {
-      HeloButton?: React.SFC,
+      HeloButton?: React.FC,
     }
   },
   color00?: React.CSSProperties['color'];

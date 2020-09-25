@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ThemeProvider from '..';
-import { floatingPanels } from '../../Themes';
+import { theme } from '../../Themes/floatingPanels';
 import Close from 'wix-ui-icons-common/system/Close';
 
 function themeProviderWithMandatoryProps() {
@@ -44,7 +44,7 @@ function themeProviderWithFloatingPanelsTheme() {
   return (
     <ThemeProvider
       dataHook="dataHook"
-      theme={floatingPanels({ mainColor: '#555555' })}
+      theme={theme({ mainColor: '#555555' })}
     />
   );
 }

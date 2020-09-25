@@ -1,1 +1,1 @@
-export { default } from './editorX';
+export { default as theme } from './editorX';

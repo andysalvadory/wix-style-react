@@ -1,5 +1,5 @@
 export const playground = `
-<ThemeProvider theme={themes.editorX()}>
+<ThemeProvider theme={theme()}>
   <CustomModalLayout
     onCloseButtonClick={() => {}}
     onHelpButtonClick={() => {}}

@@ -7,7 +7,7 @@ const themeName = 'Editor-X';
 const testWithTheme = test => {
   return (
     <ThemeProvider theme={editorXTheme()}>
-      <div>{test}</div>
+      <>{test}</>
     </ThemeProvider>
   );
 };

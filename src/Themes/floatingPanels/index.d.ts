@@ -1,11 +1,9 @@
-import { ThemeInterface } from '../ThemeProvider';
+import { ThemeInterface } from '../../ThemeProvider';
 
 type FloatingPanelsProps = ThemeInterface & {
   mainColor?: string;
 };
 
-export function floatingPanels(
+export function theme(
   FloatingPanelsProps: FloatingPanelsProps,
 ): ThemeInterface;
-
-export function editorX(): ThemeInterface;

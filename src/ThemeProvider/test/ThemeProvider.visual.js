@@ -11,7 +11,7 @@ import ToggleButton from '../../ToggleButton';
 import { CropRotate, More } from 'wix-ui-icons-common';
 import SegmentedToggle from '../../SegmentedToggle';
 import Box from '../../Box';
-import { floatingPanels } from '../../Themes';
+import { theme } from '../../Themes/floatingPanels';
 import Slider from '../../Slider';
 import Tabs from '../../Tabs';
 import RadioGroup from '../../RadioGroup';
@@ -25,7 +25,7 @@ const tests = [
       {
         it: 'Floating Panels',
         props: {
-          theme: floatingPanels({
+          theme: theme({
             mainColor: '#ff0000',
             textColorPrimary: '#009000',
             textColorPrimaryLight: '#00ff00',
