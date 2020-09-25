@@ -49,10 +49,11 @@ export default {
           }),
 
           importExample(`
-import { Themes, ThemeProvider } from 'wix-style-react';
+import { ThemeProvider } from 'wix-style-react';
+import { editorX } from 'wix-style-react/themes';
 
 () => (
-  <ThemeProvider theme={Themes.editorX()}>
+  <ThemeProvider theme={editorX()}>
     ...
   </ThemeProvider>
 );

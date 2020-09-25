@@ -1,0 +1,7 @@
+{
+  "name": "themes",
+  "description": "Theme styles and component on top of wix-style-react-components",
+  "main": "../dist/src/Themes/index.js",
+  "module": "../dist/es/src/Themes/index.js",
+  "typings": "../dist/es/src/Themes/index.d.ts"
+}

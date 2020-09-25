@@ -134,7 +134,7 @@ Important: This is an experimental tool and should not be used in production unl
             title: 'Use a pre made theme',
             text: 'Using a pre made theme function to generate a theme',
             source: `
-<ThemeProvider theme={Themes.floatingPanels({ mainColor: '#00aa00' })}>
+<ThemeProvider theme={themes.floatingPanels({ mainColor: '#00aa00' })}>
   <Layout>
     <Cell>
       <ToggleSwitch checked />

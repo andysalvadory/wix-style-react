@@ -1,6 +1,3 @@
-import * as Themes from './Themes';
-
-export { Themes };
 export { default as PopoverMenu } from './PopoverMenu';
 export { default as AddItem } from './AddItem';
 export { default as AudioPlayer } from './AudioPlayer';
