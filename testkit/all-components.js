@@ -14,6 +14,7 @@ const NON_COMPONENT_FOLDER = [
   'Typography',
   'Foundation',
   'beta',
+  'Themes',
 ];
 
 const matches = haystack => needle => haystack.some(h => needle === h);
