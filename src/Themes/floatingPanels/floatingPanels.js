@@ -1,4 +1,4 @@
-import { calcColors } from '../utils';
+import { calcColors } from './utils';
 
 export default function FloatingPanels({ mainColor, ...rest } = {}) {
   return {
