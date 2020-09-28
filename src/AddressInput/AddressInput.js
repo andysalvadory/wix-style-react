@@ -13,26 +13,30 @@ class AddressInput extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.initialValue,
+      inputValue: props.initialValue || '',
     };
   }
 
   _onChange = value => {
     const { onChange } = this.props;
-    this.setState(
-      {
-        value,
-      },
-      () => {
-        onChange && onChange(this.state.value);
-      },
-    );
+    onChange && onChange(value);
   };
 
   _debouncedOnChange = debounce(this._onChange, this.props.debounceDuration);
 
   _onInputChange = ({ target: { value } }) => {
+    this.setState({
+      inputValue: value,
+    });
     this._debouncedOnChange(value);
+  };
+
+  _onSelect = value => {
+    const { onSelect } = this.props;
+    this.setState({
+      inputValue: value.value,
+    });
+    onSelect && onSelect(value);
   };
 
   render() {
@@ -43,7 +47,6 @@ class AddressInput extends React.PureComponent {
       roundInput,
       clearButton,
       options,
-      debounceDuration,
     } = this.props;
 
     return (
@@ -54,6 +57,8 @@ class AddressInput extends React.PureComponent {
         onChange={this._onInputChange}
         size={size}
         options={options}
+        onSelect={this._onSelect}
+        value={this.state.inputValue}
         prefix={
           <Input.IconAffix>
             <SearchIcon />
