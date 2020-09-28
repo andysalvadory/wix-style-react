@@ -5,6 +5,9 @@
   "AddItem": {
     "path": "src/AddItem"
   },
+  "AddressInput": {
+    "path": "src/AddressInput"
+  },
   "Animate": {
     "path": "src/Animate"
   },

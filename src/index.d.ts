@@ -473,6 +473,10 @@ export * from './FeatureList';
 export { default as MarketingPageLayoutContent } from './MarketingPageLayoutContent';
 
 export { default as FunnelChart } from './FunnelChart';
+
+export { default as AddressInput } from './AddressInput';
+export * from './AddressInput';
+
 export * from './FunnelChart';
 
 export * from './MarketingPageLayoutContent';
