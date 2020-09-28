@@ -39,6 +39,18 @@ class AddressInput extends React.PureComponent {
     onSelect && onSelect(value);
   };
 
+  _onClear = () => {
+    const { onClear } = this.props;
+    this.setState(
+      {
+        inputValue: '',
+      },
+      () => {
+        onClear && onClear();
+      },
+    );
+  };
+
   render() {
     const {
       dataHook,
@@ -59,6 +71,7 @@ class AddressInput extends React.PureComponent {
         options={options}
         onSelect={this._onSelect}
         value={this.state.inputValue}
+        onClear={this._onClear}
         prefix={
           <Input.IconAffix>
             <SearchIcon />
