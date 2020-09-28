@@ -30,7 +30,7 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    size: 'medium',
   },
 
   exampleProps: {
@@ -62,13 +62,10 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example with compact preview',
-            source: '<AddressInput buttonText="Hello World!"/>',
-          }),
-
-          code({
-            title: 'Full Interactive Preview',
-            description: 'A non compact version of same code example as above',
-            source: '<AddressInput buttonText="Hello World!"/>',
+            source: `<AddressInput options={[
+              { id: 0, value: 'First option' },
+              { id: 1, value: 'Second option' },
+            ]} />`,
           }),
         ],
       }),

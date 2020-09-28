@@ -1,7 +1,7 @@
 import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  category: Category.COMPONENTS,
+  category: Category.INTERNAL,
   storyName: 'AddressInput',
   dataHook: 'story-address-input',
 };
