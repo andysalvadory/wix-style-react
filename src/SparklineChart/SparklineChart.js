@@ -424,7 +424,7 @@ SparklineChart.propTypes = {
   /** Chart data */
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.node,
+      label: PropTypes.instanceOf(Date),
       value: PropTypes.number,
     }),
   ).isRequired,
