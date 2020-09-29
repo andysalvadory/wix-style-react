@@ -149,6 +149,19 @@ describe('multiSelectCheckbox', () => {
       );
     });
 
+    it('should display value passed as prop (controlled input)', async () => {
+      const selectedOptions = [options[0].id, options[1].id];
+      const value = 'Controlled input value';
+      const { inputDriver } = createDriver(
+        <MultiSelectCheckbox
+          options={options}
+          selectedOptions={selectedOptions}
+          value={value}
+        />,
+      );
+      expect(await inputDriver.getValue()).toBe(value);
+    });
+
     describe('valueParser', () => {
       it('should use the default valueParser', async () => {
         const options = [{ value: 'Option 1', id: 'Option 1' }];

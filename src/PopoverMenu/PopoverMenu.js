@@ -195,6 +195,7 @@ class PopoverMenu extends React.PureComponent {
           dataHook: child.props.dataHook,
           prefixIcon: child.props.prefixIcon,
           disabled: child.props.disabled,
+          subtitle: child.props.subtitle,
         };
       }
 
@@ -228,7 +229,15 @@ class PopoverMenu extends React.PureComponent {
         });
       }
 
-      const { id, disabled, onClick, dataHook, skin, ...rest } = option;
+      const {
+        id,
+        disabled,
+        onClick,
+        dataHook,
+        skin,
+        subtitle,
+        ...rest
+      } = option;
 
       const { focused } = this.state;
 
@@ -249,6 +258,7 @@ class PopoverMenu extends React.PureComponent {
         size: textSize,
         className: classes.listItem,
         ellipsis,
+        subtitle,
       });
     });
   };

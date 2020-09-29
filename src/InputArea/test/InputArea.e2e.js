@@ -2,7 +2,7 @@ import { inputAreaTestkitFactory } from '../../../testkit/protractor';
 import { eyesItInstance } from '../../../test/utils/eyes-it';
 import { setupBeforeEach } from '../../../test/utils/e2e-helpers';
 
-import { storySettings, testStories } from '../docs/storySettings';
+import { storySettings, testStories } from './storySettings';
 import InputArea from '../InputArea';
 
 const LONG_INPUT = 'all work and no play makes jack a dull boy\n';

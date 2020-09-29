@@ -8,7 +8,8 @@ import {
   divider,
   example as baseExample,
 } from 'wix-storybook-utils/Sections';
-import AllIcons from './AllIcons';
+import AllIcons from 'wix-ui-icons-common/dist/es/stories/general/GeneralCategoryList';
+import API_Table from 'wix-ui-icons-common/dist/es/stories/APITable';
 import TextButton from '../../src/TextButton';
 
 import allComponents from '../utils/allComponents';
@@ -17,15 +18,6 @@ import { Category } from '../storiesHierarchy';
 import * as examples from './examples';
 import SectionHelper from '../../src/SectionHelper';
 import Box from '../../src/Box';
-
-const API_Table = `
-| Name | Type | Default Value | Required | Description |
-| --- | --- | --- | --- | --- |
-| className | string |  |   | Set custom class to svg root of icon |
-| size | string |  |   | Set the size of the icon |
-| style | object |  |   | Set style object to svg root of icon |
-| ***All other Props are passed to the SVG element*** | | | | |
-`;
 
 const packageURL = 'https://www.npmjs.com/package/wix-ui-icons-common';
 

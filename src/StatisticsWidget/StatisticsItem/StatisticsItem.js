@@ -68,7 +68,7 @@ class StatisticsItem extends React.PureComponent {
     return (
       <div className={st(classes.description, { alignItems })}>
         {size === SIZES.tiny ? (
-          <Text size="small" secondary>
+          <Text size="small" dataHook={DataHooks.description} secondary>
             {description}
           </Text>
         ) : (

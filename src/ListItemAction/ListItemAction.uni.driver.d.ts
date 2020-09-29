@@ -5,5 +5,7 @@ export interface ListItemActionUniDriver extends BaseUniDriver {
   getTitleText: () => Promise<string>;
   isPrefixIconExists: () => Promise<boolean>;
   getSkin: () => Promise<string | null>;
+  isSubtitleExists: () => Promise<boolean>;
+  getSubtitleText: () => Promise<string>;
   isDisabled: () => Promise<boolean>;
 }

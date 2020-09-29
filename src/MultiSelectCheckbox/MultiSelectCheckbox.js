@@ -74,11 +74,16 @@ class MultiSelectCheckbox extends InputWithOptions {
   }
 
   inputAdditionalProps() {
+    const value =
+      this.props.value !== undefined
+        ? this.props.value
+        : this.selectedOptionsToText();
+
     return {
       readOnly: false,
       disableEditing: true,
       inputElement: <Input textOverflow="ellipsis" disableEditing />,
-      value: this.selectedOptionsToText(),
+      value,
     };
   }
 

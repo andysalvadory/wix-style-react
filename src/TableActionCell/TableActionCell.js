@@ -12,26 +12,25 @@ import { classes } from './TableActionCell.st.css';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 
 /* eslint-disable react/prop-types */
-function renderPrimaryAction({ text, skin, onClick, disabled }) {
-  return (
-    <Button
-      disabled={disabled}
-      skin={skin}
-      onClick={event => {
-        onClick();
-
-        // Making sure we don't also trigger onRowClick
-        event.stopPropagation();
-      }}
-    >
-      {text}
-    </Button>
-  );
-}
+const renderPrimaryAction = ({ text, skin, onClick, disabled }, size) => (
+  <Button
+    disabled={disabled}
+    skin={skin}
+    dataHook={dataHooks.primaryAction}
+    size={size}
+    onClick={event => {
+      onClick();
+      // Making sure we don't also trigger onRowClick
+      event.stopPropagation();
+    }}
+  >
+    {text}
+  </Button>
+);
 /* eslint-enable react/prop-types */
 
-function renderVisibleActions(actions) {
-  return actions.map(
+const renderVisibleActions = (actions, size) =>
+  actions.map(
     (
       {
         text,
@@ -46,7 +45,7 @@ function renderVisibleActions(actions) {
     ) => (
       <Tooltip
         key={index}
-        dataHook={dataHook || dataHooks.tableActionCellVisibleActionTooltip}
+        dataHook={dataHook || dataHooks.visibleActionTooltip}
         disabled={disabled && disabledDescription === ''}
         content={
           disabled && Boolean(disabledDescription) ? disabledDescription : text
@@ -54,60 +53,61 @@ function renderVisibleActions(actions) {
         {...tooltipProps}
       >
         <IconButton
+          dataHook={dataHooks.visibleAction}
           skin="inverted"
           disabled={disabled}
           onClick={event => {
             onClick();
             event.stopPropagation();
           }}
+          size={size}
         >
           {icon}
         </IconButton>
       </Tooltip>
     ),
   );
-}
 
-function renderHiddenActions(actions, popoverMenuProps) {
-  return (
-    <PopoverMenu
-      dataHook={dataHooks.tableActionCellPopoverMenu}
-      appendTo="parent"
-      placement="top"
-      textSize="small"
-      triggerElement={
-        <IconButton skin="inverted" dataHook={dataHooks.triggerElement}>
-          <More />
-        </IconButton>
-      }
-      {...popoverMenuProps}
-    >
-      {actions.map(
-        ({ text, icon, onClick, disabled, dataHook, divider }, index) =>
-          !divider ? (
-            <PopoverMenu.MenuItem
-              key={index}
-              dataHook={dataHook || dataHooks.tableActionCellPopoverMenuItem}
-              prefixIcon={icon}
-              onClick={() => onClick()}
-              text={text}
-              disabled={disabled}
-            />
-          ) : (
-            <PopoverMenu.Divider />
-          ),
-      )}
-    </PopoverMenu>
-  );
-}
+const renderHiddenActions = (actions, popoverMenuProps, size) => (
+  <PopoverMenu
+    dataHook={dataHooks.popoverMenu}
+    appendTo="parent"
+    placement="top"
+    textSize="small"
+    triggerElement={
+      <IconButton
+        skin="inverted"
+        dataHook={dataHooks.triggerElement}
+        size={size}
+      >
+        <More />
+      </IconButton>
+    }
+    {...popoverMenuProps}
+  >
+    {actions.map(
+      ({ text, icon, onClick, disabled, dataHook, divider }, index) =>
+        !divider ? (
+          <PopoverMenu.MenuItem
+            key={index}
+            dataHook={dataHook || dataHooks.popoverMenuItem}
+            prefixIcon={icon}
+            onClick={() => onClick()}
+            text={text}
+            disabled={disabled}
+          />
+        ) : (
+          <PopoverMenu.Divider />
+        ),
+    )}
+  </PopoverMenu>
+);
 
-function renderPlaceholder() {
-  return (
-    <IconButton skin="inverted">
-      <ChevronRight />
-    </IconButton>
-  );
-}
+const renderPlaceholder = () => (
+  <IconButton dataHook={dataHooks.placeholder} skin="inverted">
+    <ChevronRight />
+  </IconButton>
+);
 
 const TableActionCell = props => {
   const {
@@ -117,6 +117,7 @@ const TableActionCell = props => {
     numOfVisibleSecondaryActions,
     alwaysShowSecondaryActions,
     popoverMenuProps,
+    size,
   } = props;
 
   const visibleActions = secondaryActions.slice(
@@ -128,27 +129,24 @@ const TableActionCell = props => {
   return (
     <span data-hook={dataHook} className={classes.root}>
       {primaryAction && (
-        <HoverSlot
-          display="onHover"
-          data-hook={dataHooks.tableActionCellPrimaryAction}
-        >
-          {renderPrimaryAction(primaryAction)}
+        <HoverSlot display="onHover">
+          {renderPrimaryAction(primaryAction, size)}
         </HoverSlot>
       )}
 
       {visibleActions.length > 0 && (
         <HoverSlot
+          data-hook={dataHooks.visibleActionsWrapper}
           display={alwaysShowSecondaryActions ? 'always' : 'onHover'}
-          data-hook={dataHooks.tableActionCellVisibleActions}
         >
-          {renderVisibleActions(visibleActions)}
+          {renderVisibleActions(visibleActions, size)}
         </HoverSlot>
       )}
 
       {hiddenActions.length > 0 && (
-        <div onClick={e => e.stopPropagation()} className={classes.popoverMenu}>
+        <div onClick={e => e.stopPropagation()}>
           <HoverSlot display="always">
-            {renderHiddenActions(hiddenActions, popoverMenuProps)}
+            {renderHiddenActions(hiddenActions, popoverMenuProps, size)}
           </HoverSlot>
         </div>
       )}
@@ -156,11 +154,7 @@ const TableActionCell = props => {
       {primaryAction &&
         (!secondaryActions.length ||
           secondaryActions.length === numOfVisibleSecondaryActions) && (
-          <HoverSlot
-            display="notOnHover"
-            className={classes.placeholderIcon}
-            data-hook={dataHooks.tableActionCellPlaceholder}
-          >
+          <HoverSlot display="notOnHover" className={classes.placeholderIcon}>
             {renderPlaceholder()}
           </HoverSlot>
         )}
@@ -175,7 +169,7 @@ TableActionCell.propTypes = {
 
   /**
    * An object containing the primary action properties: `text` is the action
-   * text , `theme` is the button theme (can be `whiteblue` or `fullblue`),
+   * text , `skin` is the button theme (can be `standard` or `inverted`),
    * `onClick` is the callback function for the action, whose signature is
    * `onClick(rowData, rowNum)`.
    * `disabled` is an optional prop for the primary action to be disabled
@@ -219,6 +213,9 @@ TableActionCell.propTypes = {
 
   /** Props being passed to the secondary actions' <PopoverMenu/> */
   popoverMenuProps: PropTypes.shape(PopoverMenu.propTypes),
+
+  /** Size of actions */
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 TableActionCell.defaultProps = {
@@ -226,6 +223,7 @@ TableActionCell.defaultProps = {
   secondaryActions: [],
   numOfVisibleSecondaryActions: 0,
   alwaysShowSecondaryActions: false,
+  size: 'medium',
 };
 
 export default TableActionCell;

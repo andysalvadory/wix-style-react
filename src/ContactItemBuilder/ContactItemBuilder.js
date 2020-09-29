@@ -4,43 +4,50 @@ import Avatar from '../Avatar/Avatar';
 import Text from '../Text';
 import { dataHooks } from './ContactItemBuilderDataHooks';
 import PropTypes from 'prop-types';
+import deprecationLog from '../utils/deprecationLog';
 
-export const ContactItem = props => (
-  <div className={styles.contactItemOption}>
-    <div className={styles.avatar}>
-      <Avatar
-        name={props.title}
-        size="size30"
-        imgProps={{ src: props.imageUrl }}
-        data-hook={dataHooks.pickerOptionAvatar}
-      />
-    </div>
-    <div className={styles.contactItemTitles}>
-      <Text
-        ellipsis
-        size="medium"
-        weight="normal"
-        secondary={!props.selected}
-        light={props.selected}
-        dataHook={dataHooks.pickerOptionTitle}
-      >
-        {props.title}
-      </Text>
-      {props.subtitle ? (
+export const ContactItem = props => {
+  deprecationLog(
+    'This component is deprecated. Please use ListItemSelect instead',
+  );
+
+  return (
+    <div className={styles.contactItemOption}>
+      <div className={styles.avatar}>
+        <Avatar
+          name={props.title}
+          size="size30"
+          imgProps={{ src: props.imageUrl }}
+          data-hook={dataHooks.pickerOptionAvatar}
+        />
+      </div>
+      <div className={styles.contactItemTitles}>
         <Text
           ellipsis
-          size="small"
-          weight="thin"
+          size="medium"
+          weight="normal"
           secondary={!props.selected}
           light={props.selected}
-          dataHook={dataHooks.pickerOptionSubtitle}
+          dataHook={dataHooks.pickerOptionTitle}
         >
-          {props.subtitle}
+          {props.title}
         </Text>
-      ) : null}
+        {props.subtitle ? (
+          <Text
+            ellipsis
+            size="small"
+            weight="thin"
+            secondary={!props.selected}
+            light={props.selected}
+            dataHook={dataHooks.pickerOptionSubtitle}
+          >
+            {props.subtitle}
+          </Text>
+        ) : null}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 ContactItem.propTypes = {
   title: PropTypes.string.isRequired,

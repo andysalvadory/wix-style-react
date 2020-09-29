@@ -11,6 +11,7 @@ const CustomModalLayout = ({
   children,
   removeContentPadding,
   showHeaderDivider,
+  showFooterDivider,
   hideContentDividers,
   width,
   className,
@@ -20,16 +21,16 @@ const CustomModalLayout = ({
   const compStyle = width ? { ...style, width } : style;
   return (
     <BaseModalLayout
-      style={compStyle}
-      data-contentpadding={!removeContentPadding}
       {...restProps}
       className={st(classes.root, { removeContentPadding }, className)}
+      style={compStyle}
+      data-contentpadding={!removeContentPadding}
     >
       <BaseModalLayout.Header showHeaderDivider={showHeaderDivider} />
       <BaseModalLayout.Content contentHideDividers={hideContentDividers}>
         {children}
       </BaseModalLayout.Content>
-      <BaseModalLayout.Footer />
+      <BaseModalLayout.Footer showFooterDivider={showFooterDivider} />
       <BaseModalLayout.Footnote />
     </BaseModalLayout>
   );
@@ -93,8 +94,10 @@ CustomModalLayout.propTypes = {
   removeContentPadding: PropTypes.bool,
   /** The modal desired width */
   width: PropTypes.string,
-  /** Shows a divider at the bottom of the Header*/
+  /** Shows a divider at the bottom of the Header */
   showHeaderDivider: PropTypes.bool,
+  /** Shows a divider at the top of the Footer */
+  showFooterDivider: PropTypes.bool,
   /** Hides dividers that shows above/below the content while scrolling */
   hideContentDividers: PropTypes.bool,
 };

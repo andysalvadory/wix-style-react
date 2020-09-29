@@ -27,6 +27,13 @@ function TextButtonWithAllProps() {
       underline="always"
       href="foobar"
       weight="normal"
+      ellipsis
+      showTooltip
+      tooltipProps={{
+        appendTo: 'scrollParent',
+        flip: true,
+        maxWidth: '700px',
+      }}
     />
   );
 }

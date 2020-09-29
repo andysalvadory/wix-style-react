@@ -15,11 +15,12 @@ function tableActionCellWithAllProps() {
       dataHook="hook"
       numOfVisibleSecondaryActions={2}
       popoverMenuProps={{}}
+      size="medium"
       primaryAction={{
         disabled: true,
         onClick: () => {},
         text: 'text',
-        theme: 'fullblue',
+        skin: 'standard',
       }}
       secondaryActions={[
         {
@@ -27,7 +28,7 @@ function tableActionCellWithAllProps() {
           disabledDescription: 'You are not allowed for this action',
           tooltipProps: {
             maxWidth: 250,
-            textAlign: 'start',
+            textAlign: 'center',
           },
           disabled: true,
           icon: <div />,

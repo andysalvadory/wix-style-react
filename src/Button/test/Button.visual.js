@@ -60,4 +60,15 @@ visualize('Button', () => {
       </Box>
     ));
   });
+
+  story('Ellipsis', () => {
+    snap('Ellipsis', () => (
+      <Box width="300px">
+        <Button ellipsis>
+          This is a very very very very long text that will be cropped by
+          ellipsis at some point
+        </Button>
+      </Box>
+    ));
+  });
 });

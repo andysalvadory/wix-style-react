@@ -178,12 +178,15 @@ export const contentWidgetsComponentsNames = {
   MarketingLayout: 'MarketingLayout',
   BarChart: 'BarChart',
   Timeline: 'Timeline',
+  FunnelChart: 'FunnelChart',
+  AreaChart: 'AreaChart',
 };
 
 /**
  * Components Family IC
  */
 export const internalComponentsNames = {
+  DropdownLayout: 'DropdownLayout',
   TagList: 'TagList',
   ListItemAction: 'ListItemAction',
   ListItemEditable: 'ListItemEditable',

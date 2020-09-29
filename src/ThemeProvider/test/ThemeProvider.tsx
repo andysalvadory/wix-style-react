@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ThemeProvider from '..';
-import { floatingPanels } from '../../Themes';
+import { theme } from '../../Themes/floatingPanels';
 
 function themeProviderWithMandatoryProps() {
   return <ThemeProvider />;
@@ -28,11 +28,11 @@ function themeProviderWithAllProps() {
   );
 }
 
-function themeProviderWithFloatingPanelsTheme() {
+function themeProviderWiththemeTheme() {
   return (
     <ThemeProvider
       dataHook="dataHook"
-      theme={floatingPanels({ mainColor: '#555555' })}
+      theme={theme({ mainColor: '#555555' })}
     />
   );
 }

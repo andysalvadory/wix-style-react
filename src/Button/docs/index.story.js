@@ -112,6 +112,13 @@ export default {
                 `,
             source: examples.custom,
           }),
+
+          example({
+            title: 'Ellipsis',
+            text:
+              'If a Button parent container is too small and the text does not fit then Button can have ellipsis enabled by passing ellipsis={true} .',
+            source: examples.ellipsis,
+          }),
         ],
       }),
 

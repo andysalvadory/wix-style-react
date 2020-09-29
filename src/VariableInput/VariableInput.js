@@ -32,6 +32,7 @@ class VariableInput extends React.PureComponent {
       rows,
       size,
       disabled,
+      readOnly,
       placeholder,
       status,
       statusMessage,
@@ -48,6 +49,7 @@ class VariableInput extends React.PureComponent {
           classes.root,
           {
             disabled,
+            readOnly,
             size,
             status,
             singleLine: !multiline,
@@ -61,7 +63,8 @@ class VariableInput extends React.PureComponent {
           editorState={this.state.editorState}
           onChange={this._onEditorChange}
           placeholder={placeholder}
-          readOnly={disabled}
+          readOnly={disabled || readOnly}
+          {...(readOnly && { tabIndex: 0 })}
           {...(!multiline && singleLineProps)}
         />
 
@@ -219,21 +222,24 @@ VariableInput.propTypes = {
   /** When set to true this component is disabled */
   disabled: PropTypes.bool,
 
+  /** Sets the input to readOnly */
+  readOnly: PropTypes.bool,
+
   /** Initial value to display in the editor */
   initialValue: PropTypes.string,
 
-  /** When set to true, component will allow multiple lines, otherwise will scroll horizontaly and ignore return key*/
+  /** When set to true, component will allow multiple lines, otherwise will scroll horizontally and ignore return key*/
   multiline: PropTypes.bool,
 
   /** Callback function for changes while typing.
    * `onChange(value: String): void` */
   onChange: PropTypes.func,
 
-  /** Callback funciton after calling `insertVariable()` and `setValue()`
+  /** Callback function after calling `insertVariable()` and `setValue()`
    * `onSubmit(value: String): void` */
   onSubmit: PropTypes.func,
 
-  /** Callback funciton when focusing out.`
+  /** Callback function when focusing out.`
    * `onBlur(value: String): void` */
   onBlur: PropTypes.func,
 

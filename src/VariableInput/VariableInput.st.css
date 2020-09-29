@@ -1,7 +1,7 @@
 
 :import {
     -st-from: "../Foundation/stylable/colors.st.css";
-    -st-named: D80, THEME-COLOR-30, THEME-COLOR-10, F00, THEME-COLOR-50, R10, D40, R30, D10-30, D60
+    -st-named: D80, THEME-COLOR-30, THEME-COLOR-10, F00, THEME-COLOR-50, R10, D40, R30, D10-30, D60, D70
 }
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
@@ -12,7 +12,7 @@
   -st-named: defaultScrollBar;
 }
 .root {
-  -st-states: disabled, status(enum(error, warning)), size(enum(small, medium, large)), singleLine;
+  -st-states: disabled, readOnly, status(enum(error, warning)), size(enum(small, medium, large)), singleLine;
   --rows: 1;
   --rowHeight: 24px;
   --contentHeight: 7px;
@@ -74,6 +74,14 @@
 .root:disabled :global(.public-DraftEditor-content):hover {
   background-color: value(D80);
   cursor: default;
+}
+.root:readOnly:not(:disabled) :global(.public-DraftEditor-content) {
+  background-color: value(D70);
+  border-color: value(D60);
+}
+.root:hover:readOnly:not(:disabled) :global(.public-DraftEditor-content):not(:focus) {
+  background-color: value(THEME-COLOR-50);
+  border-color: value(THEME-COLOR-30);
 }
 .root .tagWrapper {
   padding-left: 2px;

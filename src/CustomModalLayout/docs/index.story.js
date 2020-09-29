@@ -24,6 +24,7 @@ import PageExample from '!raw-loader!./examples/PageExample';
 import TableExample from '!raw-loader!./examples/TableExample';
 import MarketingExample from '!raw-loader!./examples/MarketingExample';
 import HelpButtonExample from '!raw-loader!./examples/HelpButtonExample';
+import DropdownExample from '!raw-loader!./examples/DropdownExample';
 import CustomModalLayout from '..';
 import Checkbox from '../../Checkbox';
 import Text from '../../Text';
@@ -121,6 +122,12 @@ export default {
             title: 'Custom Page Example',
             text: 'Open a custom page in a modal',
             source: PageExample,
+          }),
+          example({
+            title: 'Opening popovers from a modal',
+            text:
+              "CustomModalLayout doesn't let to overflow the content. To make popover elements work properly they need to be used with popover prop appendTo set to window.",
+            source: DropdownExample,
           }),
         ],
       }),

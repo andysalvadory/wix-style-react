@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { st, classes } from './ComposerSidebar.st.css';
 import { dataHooks } from './constants';
-import { ToggleButton, Box } from '..';
+import Box from '../Box';
+import ToggleButton from '../ToggleButton';
 
 /** ComposerSidebar */
 class ComposerSidebar extends React.PureComponent {

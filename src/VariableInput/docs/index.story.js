@@ -108,6 +108,12 @@ export default {
           }),
 
           example({
+            title: 'ReadOnly',
+            text: 'Use `readOnly` attribute to make the component read-only',
+            source: examples.readOnly,
+          }),
+
+          example({
             title: 'Multiline',
             text:
               'Use `multiline` attribute to control the component scroll direction',

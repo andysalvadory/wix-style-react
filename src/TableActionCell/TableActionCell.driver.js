@@ -4,52 +4,44 @@ import { dataHooks } from './constants';
 import buttonDriverFactory from '../Button/Button.legacy.driver';
 
 const tableActionCellDriverFactory = ({ element, wrapper, eventTrigger }) => {
-  const getVisibleActionsWrapper = () =>
-    element.querySelector(
-      `[data-hook="${dataHooks.tableActionCellVisibleActions}"]`,
-    );
+  const visibleActions = () =>
+    element.querySelectorAll(`[data-hook="${dataHooks.visibleAction}"]`);
 
   const getPrimaryActionButtonDriver = () =>
     buttonDriverFactory({
       element: element.querySelector(
-        `[data-hook="${dataHooks.tableActionCellPrimaryAction}"] button`,
+        `[data-hook="${dataHooks.primaryAction}"]`,
       ),
     });
 
   const getVisibleActionTooltipDriver = actionIndex =>
     tooltipDriverFactory({
-      element: getVisibleActionsWrapper().querySelectorAll(
-        `[data-hook="${dataHooks.tableActionCellVisibleActionTooltip}"]`,
+      element: element.querySelectorAll(
+        `[data-hook="${dataHooks.visibleActionTooltip}"]`,
       )[actionIndex],
       eventTrigger,
     });
 
   const getVisibleActionByDataHookTooltipDriver = dataHook =>
     tooltipDriverFactory({
-      element: getVisibleActionsWrapper().querySelector(
-        `[data-hook="${dataHook}"]`,
-      ),
+      element: element.querySelector(`[data-hook="${dataHook}"]`),
       eventTrigger,
     });
 
   const getVisibleActionButtonDriver = actionIndex =>
     buttonDriverFactory({
-      element: getVisibleActionsWrapper().querySelectorAll('button')[
-        actionIndex
-      ],
+      element: visibleActions()[actionIndex],
     });
 
   const getVisibleActionByDataHookButtonDriver = dataHook =>
     buttonDriverFactory({
-      element: getVisibleActionsWrapper().querySelector(
-        `[data-hook="${dataHook}"]`,
-      ),
+      element: element.querySelector(`[data-hook="${dataHook}"]`),
     });
 
   const getHiddenActionsPopoverMenuDriver = () =>
     popoverMenuTestkitFactory({
       wrapper,
-      dataHook: dataHooks.tableActionCellPopoverMenu,
+      dataHook: dataHooks.popoverMenu,
     });
 
   return {
@@ -65,10 +57,7 @@ const tableActionCellDriverFactory = ({ element, wrapper, eventTrigger }) => {
     getIsPrimaryActionButtonDisabled: () =>
       getPrimaryActionButtonDriver().isButtonDisabled(),
     /** Get the number of the visible secondary actions */
-    getVisibleActionsCount: () => {
-      const wrapper = getVisibleActionsWrapper();
-      return wrapper ? wrapper.childElementCount : 0;
-    },
+    getVisibleActionsCount: () => visibleActions().length,
     /** Get the number of hidden secondary actions (in the <PopoverMenu/>, requires it to be open) */
     getHiddenActionsCount: () =>
       getHiddenActionsPopoverMenuDriver().childrenCount(),

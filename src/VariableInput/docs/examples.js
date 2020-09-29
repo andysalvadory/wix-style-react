@@ -59,6 +59,13 @@ variableParser={value => {
   return value === 'page.name' ? 'Page name' : false;
 }}
 />`;
+export const readOnly = `<VariableInput
+readOnly
+initialValue="Example {{page.name}}"
+variableParser={value => {
+  return value === 'page.name' ? 'Page name' : false;
+}}
+/>`;
 export const multiline = `<VariableInput
 initialValue="Example {{page.name}} Example {{page.name}} Example {{page.name}} Example {{page.name}}"
 multiline={false}

@@ -106,4 +106,16 @@ describe('ListItemAction', () => {
       expect(onClick).not.toBeCalled();
     });
   });
+
+  describe('subtitle', () => {
+    it('should have subtitle', async () => {
+      const subtitleText = 'subtitle';
+      const { driver } = render(
+        <ListItemAction title={'title'} subtitle={subtitleText} />,
+      );
+
+      expect(await driver.isSubtitleExists()).toBe(true);
+      expect(await driver.getSubtitleText()).toBe(subtitleText);
+    });
+  });
 });

@@ -13,6 +13,7 @@ function RichTextInputAreaWithMandatoryProps() {
 function RichTextInputAreaWithAllProps() {
   return (
     <RichTextInputArea
+      className="value"
       dataHook="value"
       initialValue="value"
       placeholder="value"

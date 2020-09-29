@@ -6,7 +6,7 @@ export interface FunnelChartItem {
 }
 
 type percentageDifferenceCbData = {
-  currentItem: FunnelChartItem, nextItem: FunnelChartItem, difference: string
+  currentIndex: number, difference: string
 }
 
 export interface FunnelChartProps {
@@ -14,8 +14,8 @@ export interface FunnelChartProps {
   className?: string;
   data: FunnelChartItem[];
   hideDifferenceBadge?: boolean;
-  differenceBadgeTooltipContent?: ({currentItem, nextItem, difference}: percentageDifferenceCbData) => string,
-  onDifferenceBadgeTooltipShow?: ({currentItem: nextItem, difference}: percentageDifferenceCbData) => void,
+  differenceBadgeTooltipContent?: ({currentIndex, difference}: percentageDifferenceCbData) => string,
+  onDifferenceBadgeTooltipShow?: ({currentIndex, difference}: percentageDifferenceCbData) => void,
 }
 
 export default class FunnelChart extends React.PureComponent<FunnelChartProps>{}

@@ -1,10 +1,10 @@
 :import {
   -st-from: '../Foundation/stylable/colors.st.css';
-  -st-named: B10, D20, D80, G10, O10, R10, Y10;
+  -st-named: B10, D20, D80, G10, O10, R10, Y10, B30;
 }
 
 .root {
-  -st-states: custom, skin(enum(standard, danger, warning, urgent, success));
+  -st-states: custom, skin(enum(standard, danger, warning, urgent, success, neutralStandard));
   border-radius: 18px;
   color: value(D80);
   display: flex;
@@ -19,6 +19,14 @@
 
 .root:skin(standard) {
   background-color: value(B10);
+}
+
+.root:skin(neutralStandard) {
+  background-color: value(B30);
+}
+
+.root:skin(neutralStandard) .text {
+  color: value(D20);
 }
 
 .root:skin(danger) {
@@ -39,6 +47,7 @@
 
 .text {
   margin: auto;
+  min-width: 6px;
 }
 
 .root:custom {

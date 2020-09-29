@@ -3,6 +3,7 @@ import PopoverMenu from '..';
 import { popoverMenuTestkitFactory } from '../../../testkit';
 import { popoverMenuTestkitFactory as popoverMenuEnzymeTestkitFactory } from '../../../testkit/enzyme';
 import * as enzyme from 'enzyme';
+import {Edit} from 'wix-ui-icons-common';
 
 function PopoverMenuWithMandatoryProps() {
   return <PopoverMenu triggerElement={<span />} />;
@@ -36,7 +37,21 @@ function PopoverMenuWithMoveByX() {
 
 function PopoverMenuWithMoveByY() {
   return <PopoverMenu triggerElement={<span />} moveBy={{ y: 1 }} />;
-}
+
+
+  function PopoverMenuMenuItemWithAllProps() {
+    return (
+      <PopoverMenu.MenuItem
+      text="title"
+      onClick={() => (alert("menuItem clicked"))}
+      skin="dark"
+      prefixIcon={<Edit />}
+      dataHook="menu-item-hook"
+      disabled={false}
+      subtitle="subtitle"
+      />
+    );
+  }}
 
 async function testkits() {
   const testkit = popoverMenuTestkitFactory({

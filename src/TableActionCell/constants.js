@@ -2,10 +2,12 @@ const tableActionCellPrefix = 'table-action-cell';
 
 export const dataHooks = {
   triggerElement: `${tableActionCellPrefix}-trigger-element`,
-  tableActionCellPlaceholder: `${tableActionCellPrefix}-placeholder`,
-  tableActionCellVisibleActions: `${tableActionCellPrefix}-visible-actions`,
-  tableActionCellPrimaryAction: `${tableActionCellPrefix}-primary-action`,
-  tableActionCellVisibleActionTooltip: `${tableActionCellPrefix}-visible-action-tooltip`,
-  tableActionCellPopoverMenu: `${tableActionCellPrefix}-popover-menu`,
-  tableActionCellPopoverMenuItem: `${tableActionCellPrefix}-popover-menu-item`,
+  placeholder: `${tableActionCellPrefix}-placeholder`,
+  primaryAction: `${tableActionCellPrefix}-primary-action`,
+  visibleActionTooltip: `${tableActionCellPrefix}-visible-action-tooltip`,
+  popoverMenu: `${tableActionCellPrefix}-popover-menu`,
+  popoverMenuItem: `${tableActionCellPrefix}-popover-menu-item`,
+  visibleAction: `${tableActionCellPrefix}-visible-action`,
+  visibleActionsWrapper: `${tableActionCellPrefix}-visible-actions-wrapper`,
+  visibleActionButton: `${tableActionCellPrefix}-visible-action-button`,
 };

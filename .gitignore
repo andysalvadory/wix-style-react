@@ -30,6 +30,7 @@ autodocs-registry
 !protractor.conf.js
 !babel.config.js
 !perfer.config.js
+!jest.config.js
 .DS_Store
 /*.scss
 /bundles

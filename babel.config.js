@@ -1,32 +1,32 @@
-module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        modules: false,
-      },
+module.exports = api => {
+  const isTest = api.env('test');
+
+  return {
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: isTest ? 'commonjs' : false,
+        },
+      ],
+      '@babel/preset-react',
     ],
-    '@babel/preset-react',
-  ],
-  plugins: [
-    '@babel/plugin-proposal-export-namespace-from',
-    [
-      '@babel/plugin-proposal-class-properties',
-      {
-        loose: false,
-      },
+    plugins: [
+      '@babel/plugin-proposal-export-namespace-from',
+      [
+        '@babel/plugin-proposal-class-properties',
+        {
+          loose: false,
+        },
+      ],
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          helpers: true,
+          regenerator: true,
+        },
+      ],
     ],
-    [
-      '@babel/plugin-transform-runtime',
-      {
-        helpers: true,
-        regenerator: true,
-      },
-    ],
-  ],
-  ignore: [
-    './scripts/component-generator/templates/',
-    './test/e2e-runtime/',
-    './node_modules',
-  ],
+    ignore: ['./test/e2e-runtime/', './node_modules'],
+  };
 };

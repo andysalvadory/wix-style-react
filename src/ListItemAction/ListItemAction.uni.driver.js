@@ -10,6 +10,10 @@ export const ListItemActionDriverFactory = base => {
       base.$('[data-hook="list-item-action-title"]').text(),
     isPrefixIconExists: async () =>
       base.$('[data-hook="list-item-action-prefix-icon"]').exists(),
+    isSubtitleExists: async () =>
+      base.$('[data-hook="list-item-action-subtitle"]').exists(),
+    getSubtitleText: async () =>
+      base.$('[data-hook="list-item-action-subtitle"]').text(),
     getSkin: () => base.attr('data-skin'),
     isDisabled: async () => (await base.attr('data-disabled')) === 'true',
   };

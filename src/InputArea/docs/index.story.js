@@ -1,31 +1,47 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  code as baseCode,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
+
+import { storySettings } from '../test/storySettings';
+import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
 
 import InputArea from '..';
 
-import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
+const example = config => baseExample({ components: allComponents, ...config });
+const code = config => baseCode({ components: allComponents, ...config });
 
-import ExampleError from './ExampleError';
-import ExampleErrorRaw from '!raw-loader!./ExampleError';
-
-import ExampleWarning from './ExampleWarning';
-import ExampleWarningRaw from '!raw-loader!./ExampleWarning';
-
-import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
-
-import ExampleRefs from './ExampleRefs';
-import ExampleRefsRaw from '!raw-loader!./ExampleRefs';
-
-import ExampleSizes from './ExampleSizes';
-import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
-
-import { storySettings } from './storySettings';
+const exampleStatus = [
+  {
+    label: 'Error',
+    value: 'error',
+  },
+  {
+    label: 'Warning',
+    value: 'warning',
+  },
+  {
+    label: 'Loading',
+    value: 'loading',
+  },
+];
 
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
+
   component: InputArea,
   componentPath: '..',
 
@@ -38,47 +54,58 @@ export default {
   },
 
   exampleProps: {
-    status: [
-      {
-        label: 'Error',
-        value: 'error',
-      },
-      {
-        label: 'Warning',
-        value: 'warning',
-      },
-      {
-        label: 'Loading',
-        value: 'loading',
-      },
-    ],
+    status: exampleStatus,
   },
 
-  examples: (
-    <div>
-      <CodeExample title="Standard" code={ExampleStandardRaw}>
-        <ExampleStandard />
-      </CodeExample>
+  sections: [
+    header({
+      sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${InputArea.displayName}/`,
+    }),
 
-      <CodeExample title="Error" code={ExampleErrorRaw}>
-        <ExampleError />
-      </CodeExample>
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description({
+            title: 'Description',
+            text: 'A multi-line text input component',
+          }),
 
-      <CodeExample title="Warning" code={ExampleWarningRaw}>
-        <ExampleWarning />
-      </CodeExample>
+          importExample(),
 
-      <CodeExample title="Controlled input" code={ExampleControlledRaw}>
-        <ExampleControlled />
-      </CodeExample>
+          divider(),
 
-      <CodeExample title="Sizes" code={ExampleSizesRaw}>
-        <ExampleSizes />
-      </CodeExample>
+          title('Examples'),
 
-      <CodeExample title="Commands test" code={ExampleRefsRaw}>
-        <ExampleRefs />
-      </CodeExample>
-    </div>
-  ),
+          example({
+            title: 'Standard',
+            text: 'A simple use with a placeholder',
+            source: examples.standard,
+          }),
+          example({
+            title: 'Letter counting',
+            text:
+              'InputArea can indicate how many letters was typed, in order to show the counter you should set both `maxLength` and `hasCounter`.',
+            source: examples.letterCounting,
+          }),
+          example({
+            title: 'Disabled and Read only',
+            text: 'InputArea supports `disabled` and `readOnly` states',
+            source: examples.disabledReadOnly,
+          }),
+          example({
+            title: 'With status',
+            text: 'InputArea supports `error`, `warning`, and `loading` status',
+            source: examples.status,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

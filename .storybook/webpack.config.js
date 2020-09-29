@@ -6,7 +6,7 @@ const makeTestkitTemplate = platform =>
   `import { <%= component.displayName %>Testkit } from 'wix-style-react/dist/testkit${platform}';`;
 
 const testkitsWarning = `
-To learn how to initialize and use testkits, see <a href="/pages/wix-style-react/?path=/story/introduction-testing--testing" target="_blank">Testing guide</a>
+To learn how to initialize and use testkits, see <a href="/?path=/story/introduction-testing--testing" target="_blank">Testing guide</a>
 `;
 
 module.exports = ({ config }) => {

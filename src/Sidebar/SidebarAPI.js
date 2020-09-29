@@ -1,4 +1,4 @@
-import createReactContext from 'create-react-context';
+import React from 'react';
 
-export const SidebarContext = createReactContext();
-export const SidebarItemContext = createReactContext();
+export const SidebarContext = React.createContext();
+export const SidebarItemContext = React.createContext();

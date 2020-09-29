@@ -24,6 +24,13 @@ function ButtonWithAllProps() {
       size="large"
       skin="dark"
       suffixIcon={<div />}
+      ellipsis
+      showTooltip
+      tooltipProps={{
+        appendTo: 'scrollParent',
+        flip: true,
+        maxWidth: '700px',
+      }}
     />
   );
 }

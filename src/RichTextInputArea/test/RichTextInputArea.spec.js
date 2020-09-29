@@ -4,7 +4,6 @@ import eventually from 'wix-eventually';
 
 import RichTextInputArea from '../RichTextInputArea';
 import richTextInputAreaPrivateDriverFactory from '../RichTextInputArea.private.uni.driver';
-import toolbarButtonStyles from '../Toolbar/RichTextToolbarButton.scss';
 import { createRendererWithUniDriver } from '../../../test/utils/react';
 import { scrollBehaviorPolyfill } from '../../../testkit/polyfills';
 import { cleanup } from '../../../test/utils/unit';
@@ -200,9 +199,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getBoldButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickBoldButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
     });
 
@@ -225,9 +224,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getItalicButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickItalicButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
     });
 
@@ -250,9 +249,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getUnderlineButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickUnderlineButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
     });
 
@@ -275,9 +274,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getBulletedListButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickBulletedListButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
     });
 
@@ -300,9 +299,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getNumberedListButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickNumberedListButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
     });
 
@@ -334,9 +333,9 @@ describe('RichTextInputArea', () => {
         const driver = createDriver(<RichTextInputArea />);
         const button = await driver.getLinkButton();
 
+        expect(await driver.isActive(button)).toBe(false);
         await driver.clickLinkButton();
-
-        expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
+        expect(await driver.isActive(button)).toBe(true);
       });
 
       it('should render text without link after clicking the button, when the selected text contains a link', async () => {

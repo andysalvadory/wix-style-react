@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import createReactContext from 'create-react-context';
 
-export const BulkSelectionContext = createReactContext();
+export const BulkSelectionContext = React.createContext();
 
 export const BulkSelectionState = Object.freeze({
   ALL: 'ALL',

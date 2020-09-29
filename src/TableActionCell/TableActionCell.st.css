@@ -4,11 +4,6 @@
 }
 
 :import {
-  -st-from: "../PopoverMenu/PopoverMenu.st.css";
-  -st-default: PopoverMenu;
-}
-
-:import {
   -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
   -st-default: Popover;
 }
@@ -19,10 +14,6 @@
   justify-content: flex-end;
   height: 36px;
   position: relative;
-}
-
-.popoverMenu Text {
-  white-space: nowrap;
 }
 
 .hoverSlot {

@@ -1,7 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-
-import styles from './RichTextToolbarButton.scss';
+import { st, classes } from './RichTextToolbarButton.st.css';
 import Tooltip from '../../Tooltip';
 
 const RichTextToolbarButton = ({
@@ -15,12 +13,12 @@ const RichTextToolbarButton = ({
   <Tooltip content={tooltipText}>
     <button
       type="button"
+      data-active={isActive}
       data-hook={dataHook}
-      className={classNames(
-        styles.button,
-        isDisabled && styles.disabled,
-        !isDisabled && isActive && styles.active,
-      )}
+      className={st(classes.button, {
+        disabled: isDisabled,
+        active: !isDisabled && isActive,
+      })}
       onClick={isDisabled ? undefined : onClick}
     >
       {children}

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import styles from './Proportion.scss';
+import { st, classes } from './Proportion.st.css';
 import { PREDEFINED_RATIOS } from './ratios';
 
 class Proportion extends React.PureComponent {
@@ -25,13 +24,12 @@ class Proportion extends React.PureComponent {
 
   render() {
     const { dataHook, className, aspectRatio } = this.props;
-    const wrapperClass = classnames(styles.root, className);
     const aspectRatioHolder = this._getAspectRatioHolder();
     const disabled = aspectRatio === PREDEFINED_RATIOS.none ? true : false;
     const content = this._getContent(disabled);
 
     return (
-      <div className={wrapperClass} data-hook={dataHook}>
+      <div className={st(classes.root, className)} data-hook={dataHook}>
         {!disabled && aspectRatioHolder}
         {content}
       </div>
@@ -43,7 +41,7 @@ class Proportion extends React.PureComponent {
     return disabled ? (
       children
     ) : (
-      <div className={styles.contentWrapper}>{children}</div>
+      <div className={classes.contentWrapper}>{children}</div>
     );
   }
 
@@ -60,7 +58,7 @@ class Proportion extends React.PureComponent {
     return (
       <img
         data-hook={'proportion-aspect'}
-        className={styles.ratioHolder}
+        className={classes.ratioHolder}
         src={`data:image/svg+xml,${encodeURIComponent(svg)}`}
       />
     );

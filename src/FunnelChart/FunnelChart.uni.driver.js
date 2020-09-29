@@ -28,7 +28,7 @@ export const funnelChartDriverFactory = (base, body) => {
     getItemsCount: () => countByHook(base, dataHooks.funnelChartItem),
 
     /**
-     * Gets item value at index
+     * Gets item displayed value (after compaction) at index
      * @param {number} index Item index
      * @return {Promise<string>}
      */

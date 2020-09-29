@@ -100,3 +100,53 @@ class BuildersExample extends React.Component {
   }
 }
 `;
+
+export const controlled = `
+class ControlledExample extends React.Component {
+  state = { selectedOptions: ['Logan Chandler'], value: 'Logan Chandler' };
+
+  getValue = selectedOptions => {
+    if (selectedOptions.length === 3) {
+      return 'All Personal Trainers';
+    }
+    return selectedOptions.join(', ');
+  };
+
+  onSelect = optionId => {
+    if (optionId) {
+      const selectedOptions = [...this.state.selectedOptions, optionId];
+      const value = this.getValue(selectedOptions);
+      this.setState({ selectedOptions, value });
+    }
+  };
+
+  onDeselect = optionId => {
+    const selectedOptions = this.state.selectedOptions.filter(
+      item => item !== optionId,
+    );
+    const value = this.getValue(selectedOptions);
+    this.setState({ selectedOptions, value });
+  }
+
+  render() {
+    const { selectedOptions, value } = this.state;
+    const optionsList = [
+      listItemSectionBuilder({
+        title: 'Personal Trainers',
+      }),
+      { value: 'Logan Chandler', id: 'Logan Chandler' },
+      { value: 'Paul Simon', id: 'Paul Simon' },
+      { value: 'Art Garfunkel', id: 'Art Garfunkel' },
+    ];
+    return (
+      <MultiSelectCheckbox
+        options={optionsList}
+        selectedOptions={selectedOptions}
+        onSelect={this.onSelect}
+        onDeselect={this.onDeselect}
+        value={value}
+      />
+    );
+  }
+}
+`;

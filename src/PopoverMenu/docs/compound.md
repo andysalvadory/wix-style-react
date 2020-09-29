@@ -10,6 +10,7 @@
 | onClick    | func                              | -            | false      | The click handler                    |
 | dataHook   | string                            | -            | false      | Hook for testing purposes            |
 | disabled   | boolean                           | false        | false      | Disables the item when set to true   |
+| subtitle   | string                            | -            | false      | Text of the menu item subtitle       |
 
 ### `<PopoverMenu.Divider>`
 

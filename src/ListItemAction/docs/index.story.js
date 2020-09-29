@@ -110,6 +110,12 @@ export default {
           }),
 
           example({
+            title: 'Subtitle',
+            text: 'A subtitle text can be set.',
+            source: examples.subtitle,
+          }),
+
+          example({
             title: 'Custom HTML tag',
             text: `
                   This component can be rendered as any given HTML tag – \`<button/>\`, \`<a/>\`, \`<Link/>\` (from react router), \`<div/>\`, \`<span/>\` etc.<br/>

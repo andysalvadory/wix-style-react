@@ -7,7 +7,6 @@ import {
   title,
   divider,
   example as baseExample,
-  code as baseCode,
   playground,
   api,
   testkit,
@@ -19,7 +18,6 @@ import allComponents from '../../../stories/utils/allComponents';
 import FunnelChart from '..';
 
 const example = config => baseExample({ components: allComponents, ...config });
-const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -111,7 +109,7 @@ export default {
           example({
             title: "With badge's tooltips",
             description:
-              "Use differenceBadgeTooltipContent to control tooltips's content by item and badge's value",
+              "Use differenceBadgeTooltipContent to control tooltips's content by current index and badge's value",
             source: `<Box direction="vertical" backgroundColor="WHITE" padding={2}>
             <FunnelChart data={[
               {
@@ -135,7 +133,7 @@ export default {
                 label: 'ordered',
               },
             ]}
-            differenceBadgeTooltipContent={({currentItem, nextItem, difference}) => \`$\{difference} from  $\{currentItem.label} continued to $\{nextItem.label}\`}
+            differenceBadgeTooltipContent={({currentIndex, difference}) => \`$\{difference} from data at index $\{currentIndex} continued next\`}
             />
             </Box>`,
           }),

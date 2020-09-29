@@ -120,8 +120,8 @@ export default {
             example({
               title: 'Ellipsis',
               text:
-                'TextButton can be used in combination with Text component achieve ellipsis functionality.',
-              source: examples.fluid,
+                'If a TextButton parent container is too small and the text does not fit then TextButton can have ellipsis enabled by passing ellipsis={true} .',
+              source: examples.ellipsis,
             }),
 
             example({

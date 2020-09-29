@@ -61,6 +61,13 @@ const tests = [
         },
       },
       {
+        it: 'readOnly',
+        props: {
+          initialValue: 'Welcome to my {{page.name}} ',
+          readOnly: true,
+        },
+      },
+      {
         it: 'placeholder',
         props: {
           placeholder: 'This is a placeholder',

@@ -84,9 +84,7 @@ visualize('TextButton', () => {
   story('ellipsis', () => {
     snap('Using Text', () => (
       <Box width="150px">
-        <TextButton fluid>
-          <Text ellipsis>TextButton that gets shrinked</Text>
-        </TextButton>
+        <TextButton ellipsis>TextButton that gets shrinked</TextButton>
       </Box>
     ));
   });

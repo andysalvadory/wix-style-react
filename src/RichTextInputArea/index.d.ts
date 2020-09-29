@@ -4,6 +4,7 @@ export type RichTextInputAreaStatus = 'error' | 'warning' | 'loading';
 
 export interface RichTextInputAreaProps {
   dataHook?: string;
+  className?: string;
   initialValue?: string;
   placeholder?: string;
   disabled?: boolean;

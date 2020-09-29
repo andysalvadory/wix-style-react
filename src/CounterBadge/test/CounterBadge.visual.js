@@ -6,7 +6,15 @@ import HeartFilled from 'wix-ui-icons-common/HeartFilled';
 
 const componentProps = {
   children: [undefined, 0, 33, 1000, 'Hello World', <HeartFilled />],
-  skin: ['general', 'standard', 'danger', 'warning', 'urgent', 'success'],
+  skin: [
+    'general',
+    'standard',
+    'neutralStandard',
+    'danger',
+    'warning',
+    'urgent',
+    'success',
+  ],
 };
 
 let permutations = [];

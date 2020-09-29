@@ -37,10 +37,12 @@ describe(FunnelChart.displayName, () => {
       const driver = render(<FunnelChart data={dataExample} />).driver;
       expect(await driver.exists()).toBe(true);
       expect(await driver.getItemsCount()).toBe(3);
-      dataExample.map(async (item, index) => {
-        expect(await driver.getValueAt(index)).toBe(item.value);
-        expect(await driver.getLabelAt(index)).toBe(item.label);
-      });
+      expect(await driver.getValueAt(0)).toBe('1K');
+      expect(await driver.getLabelAt(0)).toBe('visits');
+      expect(await driver.getValueAt(1)).toBe('800');
+      expect(await driver.getLabelAt(1)).toBe('views');
+      expect(await driver.getValueAt(2)).toBe('400');
+      expect(await driver.getLabelAt(2)).toBe('cart');
     });
 
     it('should not render badges', async () => {
@@ -68,12 +70,10 @@ describe(FunnelChart.displayName, () => {
       const driver = render(
         <FunnelChart
           data={dataExample}
-          differenceBadgeTooltipContent={({
-            currentItem,
-            nextItem,
-            difference,
-          }) =>
-            `${difference} from ${currentItem.label} moved to ${nextItem.label}`
+          differenceBadgeTooltipContent={({ currentIndex, difference }) =>
+            `${difference} from ${dataExample[currentIndex].label} moved to ${
+              dataExample[currentIndex + 1].label
+            }`
           }
         />,
       ).driver;

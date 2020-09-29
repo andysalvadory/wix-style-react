@@ -25,6 +25,7 @@ function ListItemActionWithAllProps() {
       as="button"
       onClick={_ev => {}}
       highlighted
+      subtitle="subtitle"
     />
   );
 }
@@ -44,6 +45,7 @@ function ListItemActionBuilderWithAllProps() {
     skin: 'dark',
     tabIndex: 1,
     title: 'title',
+    subtitle: 'subtitle'
   });
 
   value({ as: 'a', href: '' });

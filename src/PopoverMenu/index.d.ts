@@ -39,6 +39,7 @@ export interface PopoverMenuItemProps {
   prefixIcon?: React.ReactNode;
   dataHook?: string;
   disabled?: boolean;
+  subtitle?: string;
 }
 
 export interface PopoverMenuDividerProps {

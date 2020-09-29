@@ -95,7 +95,6 @@ class RadioButton extends React.PureComponent {
             htmlFor={this.id}
             className={classnames({
               [classes.vcenter]: vAlign === 'center',
-              [classes.vtop]: vAlign === 'top',
             })}
           >
             <div

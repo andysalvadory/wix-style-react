@@ -47,6 +47,7 @@ export type ListItemActionProps = ListItemActionWithAsProp<{
   disabled?: boolean;
   tooltipModifiers?: EllipsisCommonProps;
   highlighted?: boolean;
+  subtitle?: string;
 }>;
 
 export default class ListItemAction extends React.PureComponent<
@@ -72,6 +73,7 @@ export const listItemActionBuilder: <T extends Partial<
   autoFocus?: boolean;
   className?: string;
   ellipsis?: boolean;
+  subtitle?: string;
 }) => {
   id: string | number;
   disabled: boolean | undefined;

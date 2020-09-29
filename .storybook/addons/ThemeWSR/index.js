@@ -4,7 +4,7 @@ import { ADDON_ID, ADDON_TITLE } from './shared';
 import { useState } from 'react';
 import { Card, Heading, ThemeProvider, Text } from '../../../src';
 import StylePanel from './StylePanel';
-import { floatingPanels } from '../../../src/Themes';
+import { theme } from '../../../src/Themes/floatingPanels';
 
 const ThemeWSR = makeDecorator({
   name: ADDON_TITLE,
@@ -12,7 +12,7 @@ const ThemeWSR = makeDecorator({
   allowDeprecatedUsage: true,
   wrapper: (getStory, context) => {
     const [active, setActive] = useState(false);
-    const [theme, setTheme] = useState({});
+    const [themeData, setThemeData] = useState({});
     const channel = addons.getChannel();
     const panelWidth = 350;
     const panelX = 25;
@@ -59,7 +59,7 @@ const ThemeWSR = makeDecorator({
 
     return (
       <div style={{ position: 'relative' }} ref={ref => (containerRef = ref)}>
-        <ThemeProvider theme={floatingPanels(theme)}>
+        <ThemeProvider theme={theme(themeData)}>
           {getStory(context)}
         </ThemeProvider>
         <div
@@ -94,7 +94,7 @@ const ThemeWSR = makeDecorator({
             />
             <Card.Divider />
             <Card.Content>
-              <StylePanel onChange={theme => setTheme(theme)} />
+              <StylePanel onChange={themeData => setThemeData(themeData)} />
             </Card.Content>
           </Card>
         </div>

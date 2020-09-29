@@ -81,17 +81,25 @@ export const link = `
 
 export const ellipsis = `
 <Layout cols={2} gap={10}>
-  <Box width="100px">
-    <Text>Long text doesn't fit into a single line and then wraps.</Text>
+  <Box width="150px">
+    <Text>Text that wraps forever. It doesn't show any ellipsis.</Text>
   </Box>
-  <Box width="100px">
-    <Text ellipsis>Long text doesn't fit into a single line and then hides.</Text>
+  <Box width="150px">
+    <Text ellipsis maxLines={2}>
+      Text with ellipsis. It can be set to wrap, but after some lines it turns
+      into ellipsis. Full text is revealed on hover.
+    </Text>
   </Box>
-  <Box width="250px">
-    <Text ellipsis showTooltip={false}>Long text without tooltip. The next characters don't fit to the line.</Text>
+</Layout>
+`;
+
+export const ellipsisNoTooltip = `
+<Layout cols={2} gap={10}>
+  <Box width="120px">
+    <Text ellipsis>I show tooltip on hover</Text>
   </Box>
-  <Box width="250px">
-    <Text maxLines={2} ellipsis>This is a very very very very long text that doesn't fit into two lines and then hides.</Text>
+  <Box width="120px">
+    <Text ellipsis showTooltip={false}>I don't show anything on hover</Text>
   </Box>
 </Layout>
 `;

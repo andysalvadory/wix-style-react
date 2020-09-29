@@ -55,6 +55,7 @@ export type TextSkin =
   | 'error'
   | 'success'
   | 'premium'
-  | 'disabled';
+  | 'disabled'
+  | 'primary';
 
 export type TextWeight = 'thin' | 'normal' | 'bold';

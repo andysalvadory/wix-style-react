@@ -121,11 +121,7 @@ class AutoCompleteWithLabel extends React.PureComponent {
 
     const suffixContainer = suffix
       ? suffix.map((item, index) => {
-          return (
-            <div key={`${dataHook}-${index}`} className={classes.groupIcon}>
-              {item}
-            </div>
-          );
+          return <div key={`${dataHook}-${index}`}>{item}</div>;
         })
       : [];
 

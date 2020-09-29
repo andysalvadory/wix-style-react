@@ -256,7 +256,7 @@ class DropdownLayout extends React.PureComponent {
   };
 
   _renderNode(node) {
-    return node ? <div className={classes.node}>{node}</div> : null;
+    return node ? <div>{node}</div> : null;
   }
 
   _wrapWithInfiniteScroll = scrollableElement => (

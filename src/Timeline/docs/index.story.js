@@ -22,6 +22,10 @@ import Timeline from '..';
 const example = config => baseExample({ components: allComponents, ...config });
 const code = config => baseCode({ components: allComponents, ...config });
 
+const oneItem = [{ label: 'Item 1' }];
+const twoItems = [...oneItem, { label: 'Item 2' }];
+const threeItems = [...twoItems, { label: 'Item 3' }];
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
@@ -30,17 +34,21 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    items: [],
+    items: oneItem,
   },
 
-  exampleProps: {},
+  exampleProps: {
+    items: [
+      { label: '1 item', value: oneItem },
+      { label: '2 items', value: twoItems },
+      { label: '3 items', value: threeItems },
+    ],
+  },
 
   sections: [
     header({
       sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${Timeline.displayName}/`,
-      component: (
-        <Timeline items={[{ label: 'Item 1' }, { label: 'Item 2' }]} />
-      ),
+      component: <Timeline items={twoItems} />,
     }),
 
     tabs([

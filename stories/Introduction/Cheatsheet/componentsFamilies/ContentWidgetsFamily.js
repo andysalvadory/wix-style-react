@@ -11,6 +11,7 @@ import {
 import { contentWidgetsSymbolsToComponents } from '../../../symbolsComponentsMapping/families/contentWidgetsFamily';
 
 import { createLinkedComponentsNames } from '../sharedComponents/utils';
+import { standardData as areaChartData } from '../../../../src/AreaChart/docs/examples';
 
 import {
   contentWidgetsSymbols,
@@ -42,6 +43,8 @@ import {
   MarketingLayout,
   BarChart,
   Timeline,
+  FunnelChart,
+  AreaChart,
 } from 'wix-style-react';
 
 const groupSymbol = symbolsGroup.contentWidgets;
@@ -552,18 +555,23 @@ const BarChartExample = () => {
   );
 };
 
-const ArenaChartExample = () => {
-  const symbol = contentWidgetsSymbols.arenaChart;
+const AreaChartExample = () => {
+  const symbol = contentWidgetsSymbols.areaChart;
   const components = contentWidgetsSymbolsToComponents[symbol];
 
   const singleComponentProps = {
     name: symbol,
-    componentsNames: components,
+    componentsNames: createLinkedComponentsNames(components),
   };
 
   return (
     <SingleComponentStacked {...singleComponentProps}>
-      <NotDeveloped />
+      <Preview wrapWithCardContent stretch>
+        <AreaChart
+          data={areaChartData}
+          tooltipContent={item => 'tooltip ' + item.label}
+        />
+      </Preview>
     </SingleComponentStacked>
   );
 };
@@ -637,6 +645,56 @@ const TimelineExample = () => {
   );
 };
 
+const FunnelChartExample = () => {
+  const symbol = contentWidgetsSymbols.funnelChart;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  const funnelChartData = [
+    {
+      value: 1220,
+      label: 'visits',
+    },
+    {
+      value: 800,
+      label: 'product views',
+    },
+    {
+      value: 630,
+      label: 'cart',
+    },
+    {
+      value: 410,
+      label: 'checkout',
+    },
+    {
+      value: 200,
+      label: 'ordered',
+    },
+  ];
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview stretch wrapWithCardContent>
+        <FunnelChart
+          data={funnelChartData}
+          differenceBadgeTooltipContent={({
+            currentItem,
+            nextItem,
+            difference,
+          }) =>
+            `${difference} from  ${currentItem.label} continued to ${nextItem.label}`
+          }
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
 const ContentWidgetsFamily = () => (
   <FamilyStructure title={groupSymbol}>
     <ImageWidgetExample />
@@ -649,8 +707,9 @@ const ContentWidgetsFamily = () => (
     <OmniSetupExample />
     <MarketingLayoutCardExample />
     <BarChartExample />
-    <ArenaChartExample />
+    <AreaChartExample />
     <TimelineExample />
+    <FunnelChartExample />
   </FamilyStructure>
 );
 

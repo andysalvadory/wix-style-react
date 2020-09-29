@@ -5,6 +5,10 @@
     "*"
   ],
   "exposure": [
-    "wix.com"
-  ]
+    "custom"
+  ],
+  "customUrls": {
+    "main": "https://wix-style-react.com",
+    "preview": "https://preview.wix-style-react.com/<%= tag %>"
+  }
 }

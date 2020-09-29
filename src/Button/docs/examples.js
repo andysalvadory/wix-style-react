@@ -93,3 +93,11 @@ export const custom = `
   </Box>
 </Layout>
 `;
+
+export const ellipsis = `
+<Box width="300px">
+  <Button ellipsis>
+    This is a very very very very long text that will be cropped by ellipsis at some point
+  </Button>
+</Box>
+`;

@@ -6,7 +6,7 @@
 :import {
   -st-from: '../Foundation/stylable/colors.st.css';
   -st-named: P10, P20, D80, D10, D20, F00, D10-30, D80-70, R10, R20,
-   THEME-COLOR-10,  THEME-COLOR-20;
+    THEME-COLOR-10, THEME-COLOR-20;
 }
 
 :import {
@@ -17,7 +17,7 @@
 
 .root {
   -st-extends: ButtonNext;
-  -st-states: skin(string), underline(string), weight(string), size(string), fluid;
+  -st-states: skin(string), underline(string), weight(string), size(string), fluid, ellipsis;
 
   color: value(THEME-COLOR-10);
   white-space: nowrap;
@@ -56,7 +56,12 @@
   box-shadow: 0 0 0 3px value(F00);
 }
 
-.root:fluid, .root:fluid::content {
+.root:ellipsis {
+  max-width: 100%;
+}
+
+.root:fluid,
+.root:fluid::content {
   width: 100%;
 }
 
@@ -174,6 +179,7 @@
   -st-mixin: text-tiny-thin;
   height: 18px;
 }
+
 .root:size(tiny):weight(normal) {
   -st-mixin: text-tiny-normal;
   height: 18px;

@@ -21,7 +21,7 @@ class StatisticsWidget extends React.PureComponent {
      *  * `valueInShort` - Short version of value. Will be applied when there is no space for long value. If not specified, part of the value will be hidden with ellipsis
      *  * `description` - Description of the statistic. Displayed in the second row.
      *  * `descriptionInfo` - More info about the description. Displayed as an info icon with this text inside a tooltip
-     *  * `percentage` - Change in percents. Positive number - arrow up, negative - arrow down
+     *  * `percentage` - Change in percents. Positive number - arrow up, negative - arrow down.
      *  * `invertedPercentage` - When set to true renders positive percentage in red and negative in green.
      *  * `onClick` - Callback to be executed on click (also on Enter/Space key press)
      *  * `children` - Node to render on bottom of section.

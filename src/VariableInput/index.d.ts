@@ -5,6 +5,7 @@ export interface VariableInputProps {
   className?: string;
   dataHook?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   initialValue?: string;
   multiline?: boolean;
   onChange?: (value: string) => void;

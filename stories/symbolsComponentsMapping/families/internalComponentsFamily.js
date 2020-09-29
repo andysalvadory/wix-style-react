@@ -5,6 +5,10 @@ import { internalComponentsNames } from '../components';
  * Symbol => Component IC
  */
 export const internalComponentsSymbolsToComponents = {
+  [internalComponentsSymbols.dropdownLayout]: [
+    internalComponentsNames.DropdownLayout,
+  ],
+
   [internalComponentsSymbols.tagList]: [internalComponentsNames.TagList],
   [internalComponentsSymbols.listItemAction]: [
     internalComponentsNames.ListItemAction,

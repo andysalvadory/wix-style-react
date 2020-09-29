@@ -1,7 +1,3 @@
-import * as Themes from './Themes';
-
-export { Themes };
-
 export * from './common';
 
 export { default as Accordion } from './Accordion';
@@ -461,6 +457,10 @@ export { default as FacesRatingBar } from './FacesRatingBar';
 export * from './FacesRatingBar';
 
 export { default as ThemeProvider } from './ThemeProvider';
+
+export { default as AreaChart } from './AreaChart';
+export * from './AreaChart';
+
 export * from './ThemeProvider';
 
 export { default as FeatureList } from './FeatureList';

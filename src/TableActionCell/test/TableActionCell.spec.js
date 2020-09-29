@@ -2,10 +2,12 @@ import React from 'react';
 import eventually from 'wix-eventually';
 import {
   createRendererWithDriver,
+  createRendererWithUniDriver,
   cleanup,
 } from '../../../test/utils/react/index';
 import TableActionCell from '../TableActionCell';
 import { tableActionCellPrivateDriverFactory } from './TableActionCell.private.driver';
+import { tableActionCellPrivateUniDriverFactory } from './TableActionCell.private.uni.driver';
 
 const primaryActionProps = (actionTrigger = () => {}, disabled = false) => ({
   primaryAction: {
@@ -40,6 +42,12 @@ const secondaryActionsProps = ({
 describe('Table Action Cell', () => {
   describe('[sync]', () => {
     runTests(createRendererWithDriver(tableActionCellPrivateDriverFactory));
+  });
+
+  describe('[async]', () => {
+    runTests(
+      createRendererWithUniDriver(tableActionCellPrivateUniDriverFactory),
+    );
   });
 
   function runTests(render) {
@@ -133,12 +141,15 @@ describe('Table Action Cell', () => {
       ).toEqual('Icon 1');
 
       const tooltipDriver1 = await driver.getVisibleActionTooltipDriver(0);
+      await tooltipDriver1.mouseEnter();
+
+      expect(await tooltipDriver1.getTooltipText()).toEqual('Action 0');
+
       const tooltipDriver2 = await driver.getVisibleActionByDataHookTooltipDriver(
         'data-hook-for-1',
       );
-
-      expect(tooltipDriver1.getTooltipText()).toEqual('Action 0');
-      expect(tooltipDriver2.getTooltipText()).toEqual('Action 1');
+      await tooltipDriver2.mouseEnter();
+      expect(await tooltipDriver2.getTooltipText()).toEqual('Action 1');
     });
 
     it('should put hidden secondary action in a PopoverMenu', async () => {
@@ -289,44 +300,53 @@ describe('Table Action Cell', () => {
       });
 
       describe('when action is disabled', () => {
-        let disabledAction;
-        beforeEach(() => {
-          disabledAction = {
-            text: `Disabled Action`,
-            icon: <span>Icon</span>,
-            onClick: () => void 0,
-            disabled: true,
-          };
-        });
         describe('when disabledDescription is supplied', () => {
+          const disabledDescription = 'disabled item description';
           it('should show the supplied description as tooltip', async () => {
-            disabledAction.disabledDescription = 'disabled item description';
+            const secondaryActions = [
+              {
+                text: `Disabled Action`,
+                icon: <span>Icon</span>,
+                onClick: () => {},
+                disabled: true,
+                disabledDescription,
+              },
+            ];
 
             const { driver } = render(
               <TableActionCell
                 {...primaryActionProps()}
-                secondaryActions={[disabledAction]}
+                secondaryActions={secondaryActions}
                 numOfVisibleSecondaryActions={1}
               />,
             );
 
             const tooltipDriver = await driver.getVisibleActionTooltipDriver(0);
-            expect(tooltipDriver.getTooltipText()).toEqual(
-              'disabled item description',
+            await tooltipDriver.mouseEnter();
+
+            expect(await tooltipDriver.getTooltipText()).toEqual(
+              disabledDescription,
             );
           });
 
           describe('when overriding tooltip content with tooltipProps', () => {
             it('should show the supplied content as tooltip', async () => {
-              disabledAction.disabledDescription = 'disabled item description';
-              disabledAction.tooltipProps = {
-                content: 'Some custom tooltip content',
-              };
+              const tooltipContent = 'Some custom tooltip content';
+              const secondaryActions = [
+                {
+                  text: `Disabled Action`,
+                  icon: <span>Icon</span>,
+                  onClick: () => {},
+                  disabled: true,
+                  disabledDescription,
+                  tooltipProps: { content: tooltipContent },
+                },
+              ];
 
               const { driver } = render(
                 <TableActionCell
                   {...primaryActionProps()}
-                  secondaryActions={[disabledAction]}
+                  secondaryActions={secondaryActions}
                   numOfVisibleSecondaryActions={1}
                 />,
               );
@@ -334,8 +354,9 @@ describe('Table Action Cell', () => {
               const tooltipDriver = await driver.getVisibleActionTooltipDriver(
                 0,
               );
-              expect(tooltipDriver.getTooltipText()).toEqual(
-                'Some custom tooltip content',
+              await tooltipDriver.mouseEnter();
+              expect(await tooltipDriver.getTooltipText()).toEqual(
+                tooltipContent,
               );
             });
           });
@@ -343,16 +364,28 @@ describe('Table Action Cell', () => {
 
         describe('when disabledDescription is not supplied', () => {
           it('should show action text as tooltip', async () => {
+            const actionText = `Disabled Action`;
+            const secondaryActions = [
+              {
+                text: actionText,
+                icon: <span>Icon</span>,
+                onClick: () => {},
+                disabled: true,
+              },
+            ];
+
             const { driver } = render(
               <TableActionCell
                 {...primaryActionProps()}
-                secondaryActions={[disabledAction]}
+                secondaryActions={secondaryActions}
                 numOfVisibleSecondaryActions={1}
               />,
             );
 
             const tooltipDriver = await driver.getVisibleActionTooltipDriver(0);
-            expect(tooltipDriver.getTooltipText()).toEqual('Disabled Action');
+            await tooltipDriver.mouseEnter();
+
+            expect(await tooltipDriver.getTooltipText()).toEqual(actionText);
           });
         });
       });

@@ -765,4 +765,23 @@ export default {
       ],
     },
   },
+
+  AreaChart: {
+    props: {
+      data: [
+        {
+          value: 100,
+          label: 'label_1',
+        },
+        {
+          value: 200,
+          label: 'label_2',
+        },
+        {
+          value: 300,
+          label: 'label_3',
+        },
+      ],
+    },
+  },
 };

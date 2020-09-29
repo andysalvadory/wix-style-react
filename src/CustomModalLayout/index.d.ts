@@ -19,6 +19,7 @@ export interface CustomModalLayoutProps extends BaseModalLayoutProps {
   width?: string;
   removeContentPadding?: boolean;
   showHeaderDivider?: boolean;
+  showFooterDivider?: boolean;
   contentHideDividers?: boolean;
 }
 

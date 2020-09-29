@@ -258,11 +258,12 @@ export const uncontrolledEllipsis = `
         <TextButton
           skin="dark"
           fluid
+          ellipsis={true}
           suffixIcon={<Icons.ChevronDown />}
           onClick={toggle}
           dataHook={'drop-down-opener'}
         >
-          <Text ellipsis={true}>{selectedOption.value || 'Please choose'}</Text>
+          {selectedOption.value || 'Please choose'}
         </TextButton>
       );
     }}

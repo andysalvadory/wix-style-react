@@ -50,6 +50,9 @@ import DisabledPrimaryExampleRaw from '!raw-loader!./examples/DisabledPrimaryExa
 import SecondaryWithDividerExample from './examples/SecondaryWithDividerExample';
 import SecondaryWithDividerExampleRaw from '!raw-loader!./examples/SecondaryWithDividerExample';
 
+import SmallButtonsExample from './examples/SmallButtonsExample';
+import SmallButtonsExampleRaw from '!raw-loader!./examples/SmallButtonsExample';
+
 const primaryActionOptions1 = {
   text: 'Details',
   skin: 'standard',
@@ -233,6 +236,12 @@ export default {
           code={PrimaryWithOnlyVisibleSecondaryExampleRaw}
         >
           <PrimaryWithOnlyVisibleSecondaryExample />
+        </CodeExample>
+      </div>
+
+      <div className={classes.example}>
+        <CodeExample title="Small buttons" code={SmallButtonsExampleRaw}>
+          <SmallButtonsExample />
         </CodeExample>
       </div>
     </div>

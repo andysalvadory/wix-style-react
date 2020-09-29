@@ -168,7 +168,7 @@ ColorPicker.propTypes = {
   /** Children would be rendered above action buttons */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
-  /** Content to show in add button tooltip. does not appear if `onAdd` is not passed. */
+  /** Content to show in add button tooltip. Does not appear if `onAdd` is not passed. */
   addTooltipContent: PropTypes.node,
 
   /** Allow to confirm when color is not selected. Returns color object with alpha equal to 0. */

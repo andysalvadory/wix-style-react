@@ -6,7 +6,7 @@ import { classes } from './FunnelChart.st.css';
 import { FunnelLabel } from './FunnelLabel';
 import { FunnelBar } from './FunnelBar';
 import { FunnelStep, EmptyFunnelStep } from './FunnelStep';
-import { countPercentageFromBase } from './utils/numberFormatters';
+import { countPercentageFromBase } from '../utils/numberFormatters';
 import { dataHooks } from './constants';
 
 // TODO - this can be memoized
@@ -55,6 +55,7 @@ const FunnelChart = props => {
                 <EmptyFunnelStep />
               ) : (
                 <FunnelStep
+                  currentBarIndex={index}
                   currentBarData={data[index]}
                   nextBarData={data[index + 1]}
                   currentBarHeight={currentBarHeight}
@@ -105,19 +106,15 @@ FunnelChart.propTypes = {
   /** A flag that controls the appearance of the calculated percentage badge */
   hideDifferenceBadge: PropTypes.bool,
 
-  /** Returns the tooltip content by item and badge's value (in percentage)
-   * ##### FunnelItem:
-   * { value: number, label: string }
+  /** Returns the tooltip content by current index and badge's value (in percentage)
    * ##### Signature:
-   * `({currentItem: FunnelItem, nextItem: FunnelItem, badgeValue: string}) => string`
+   * `({currentIndex: number, difference: string}) => string`
    */
   differenceBadgeTooltipContent: PropTypes.func,
 
-  /** Callback on tooltip content show event by item and badge's value (in percentage)
-   * ##### FunnelItem:
-   * { value: number, label: string }
+  /** Callback on tooltip content show event by current index and badge's value (in percentage)
    * ##### Signature:
-   * `({currentItem: FunnelItem, nextItem: FunnelItem, badgeValue: string}) => void`
+   * `({currentIndex: number, difference: string}) => void`
    */
   onDifferenceBadgeTooltipShow: PropTypes.func,
 };

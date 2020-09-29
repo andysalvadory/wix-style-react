@@ -22,11 +22,11 @@ function funnelChartWithAllProps() {
       className="className"
       data={data}
       hideDifferenceBadge
-      differenceBadgeTooltipContent={({currentItem, nextItem, difference}) =>
-        `${difference} from ${currentItem.label} moved to ${nextItem.label}`
+      differenceBadgeTooltipContent={({currentIndex, difference}) =>
+        `${difference} from ${data[currentIndex].label} moved to ${data[currentIndex + 1].label}`
       }
-      onDifferenceBadgeTooltipShow={({currentItem, nextItem, difference}) =>
-        console.log(`${difference} from ${currentItem.label} moved to ${nextItem.label}`)
+      onDifferenceBadgeTooltipShow={({currentIndex, difference}) =>
+        console.log(`${difference} from ${data[currentIndex].label} moved to ${data[currentIndex + 1].label}`)
       }
     />
   );

@@ -1,4 +1,4 @@
-import calc_color_vars from '../Foundation/stylable/mixins/calc_color_vars';
+import calc_color_vars from '../../Foundation/stylable/mixins/calc_color_vars';
 
 const colorRegEx = new RegExp(/^#(?:[0-9a-fA-F]{3}){1,2}$/i);
 

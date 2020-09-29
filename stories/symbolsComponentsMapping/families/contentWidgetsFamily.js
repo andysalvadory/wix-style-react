@@ -41,10 +41,14 @@ export const contentWidgetsSymbolsToComponents = {
 
   [contentWidgetsSymbols.barChart]: [contentWidgetsComponentsNames.BarChart],
 
-  [contentWidgetsSymbols.arenaChart]: [],
+  [contentWidgetsSymbols.areaChart]: [contentWidgetsComponentsNames.AreaChart],
 
   [contentWidgetsSymbols.timeline]: [
     contentWidgetsComponentsNames.Timeline,
     buttonsComponentsNames.TextButton,
+  ],
+
+  [contentWidgetsSymbols.funnelChart]: [
+    contentWidgetsComponentsNames.FunnelChart,
   ],
 };

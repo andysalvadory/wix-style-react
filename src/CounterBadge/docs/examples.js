@@ -26,6 +26,10 @@ export const skins = `
   </Cell>
   <Cell span={3}>standard</Cell>
   <Cell span={1}>
+    <CounterBadge skin="neutralStandard">1</CounterBadge>
+  </Cell>
+  <Cell span={3}>neutralStandard</Cell>
+  <Cell span={1}>
     <CounterBadge skin="danger">1</CounterBadge>
   </Cell>
   <Cell span={3}>danger</Cell>

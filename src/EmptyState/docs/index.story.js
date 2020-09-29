@@ -1,23 +1,27 @@
 import React from 'react';
-import { linkTo } from '@storybook/addon-links';
-import { storySettings } from './storySettings';
-
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
+import { storySettings } from '../test/storySettings';
 import EmptyState from '..';
-import Heading from '../../Heading';
 import { Add, Download, StatusComplete } from 'wix-ui-icons-common';
-
 import ImagePlaceholder from '../../../stories/utils/ImagePlaceholder';
-
-import { Category } from '../../../stories/storiesHierarchy';
 import { TextButton } from 'wix-style-react';
+import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
 
+const code = config => baseCode({ components: allComponents, ...config });
 const singleAction = <TextButton prefixIcon={<Add />}>New Item</TextButton>;
-
-const singleActionLongText = (
-  <TextButton ellipsis prefixIcon={<Add />}>
-    New Item with a ridiculous length name that does not fit to a single line
-  </TextButton>
-);
 
 const twoActions = (
   <span>
@@ -62,43 +66,108 @@ export default {
       { label: 'No children', value: null },
       { label: 'Single action', value: singleAction },
       { label: 'Two actions', value: twoActions },
-      { label: 'Single action with long text', value: singleActionLongText },
     ],
     align: [
       { label: 'start', value: 'start' },
       { label: 'center', value: 'center' },
       { label: 'end', value: 'end' },
     ],
+    title: [
+      { label: 'With title', value: `You don't have any items yet` },
+      { label: 'Without title', value: '' },
+    ],
+    subtitle: [
+      {
+        label: 'With subtitle',
+        value:
+          'Create your product item in an easy & fast way to display it on your site',
+      },
+      {
+        label: 'Without subtitle',
+        value: '',
+      },
+    ],
   },
 
-  examples: (
-    <div>
-      <Heading appearance="H2">
-        You can find more examples for components that utilize the EmptyState:
-      </Heading>
+  sections: [
+    header({
+      sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${EmptyState.displayName}/`,
+    }),
 
-      <ul>
-        <li>
-          <TextButton onClick={linkTo(Category.LAYOUT, '2.1 Page Layout')}>
-            Page
-          </TextButton>
-          <br />
-        </li>
-        <li>
-          <TextButton onClick={linkTo(Category.LAYOUT, '2.1 Page Layout')}>
-            Card
-          </TextButton>
-          <br />
-        </li>
-        <li>
-          <TextButton
-            onClick={linkTo(Category.COMPONENTS, 'MessageBoxFunctionalLayout')}
-          >
-            MessageBoxFunctionalLayout
-          </TextButton>
-          <br />
-        </li>
-      </ul>
-    </div>
-  ),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description({
+            title: 'Description',
+            text: 'Representing a state of an empty page, section, table, etc.',
+          }),
+
+          importExample(),
+
+          divider(),
+
+          title('Examples'),
+
+          description({
+            title: 'Structure',
+            text: `The EmptyState has a title, subtitle, and image (image URL or a node to render). All of these props are optional.`,
+          }),
+          code({
+            compact: true,
+            source: examples.structure,
+          }),
+
+          description({
+            title: 'Themes',
+            text: `There are 3 themes: 'page', 'page-no-border', 'section' (default)`,
+          }),
+          code({
+            compact: true,
+            source: examples.pageTheme,
+          }),
+          code({
+            compact: true,
+            source: examples.pageNoBorderTheme,
+          }),
+          code({
+            compact: true,
+            source: examples.sectionTheme,
+          }),
+
+          description({
+            title: 'With Children',
+            text: `Component can have children like action button that will be rendered below the subtitle/title/image.`,
+          }),
+          code({
+            compact: true,
+            source: examples.children,
+          }),
+
+          description({
+            title: 'Alignment',
+            text: `Component can be aligned to the 'start', 'center' (default), 'end'`,
+          }),
+          code({
+            compact: true,
+            source: examples.alignStart,
+          }),
+          code({
+            compact: true,
+            source: examples.alignCenter,
+          }),
+          code({
+            compact: true,
+            source: examples.alignEnd,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

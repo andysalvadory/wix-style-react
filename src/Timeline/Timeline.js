@@ -11,7 +11,7 @@ class Timeline extends React.PureComponent {
     const { dataHook, items, className } = this.props;
 
     return (
-      <ul className={st(classes.root, className)} data-hook={dataHook}>
+      <ol className={st(classes.root, className)} data-hook={dataHook}>
         {items.map((item, idx) => (
           <TimelineItem
             key={idx}
@@ -20,7 +20,7 @@ class Timeline extends React.PureComponent {
             dataHook={`${dataHooks.timelineListEvent}-${idx}`}
           />
         ))}
-      </ul>
+      </ol>
     );
   }
 }

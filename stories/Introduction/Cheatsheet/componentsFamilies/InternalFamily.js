@@ -22,10 +22,93 @@ import {
   ListItemEditable,
   ListItemSection,
   ListItemSelect,
+  DropdownLayout,
+  listItemSelectBuilder,
 } from 'wix-style-react';
 import Edit from 'wix-ui-icons-common/Edit';
 
 const groupSymbol = symbolsGroup.internalComponents;
+
+const DropdownLayoutExample = () => {
+  const symbol = internalComponentsSymbols.dropdownLayout;
+  const components = internalComponentsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Box height="230px">
+        <DropdownLayout
+          visible
+          selectedId={2}
+          options={[
+            listItemSelectBuilder({
+              id: 0,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Carmel Lloyd',
+              subtitle: 'Kaplan 41',
+            }),
+            listItemSelectBuilder({
+              id: 1,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Gracie-May Marsden',
+              subtitle: 'Sderot Ben Gurion 75',
+            }),
+            listItemSelectBuilder({
+              id: 2,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Keisha Decker',
+              subtitle: 'Aminadav 18',
+            }),
+            listItemSelectBuilder({
+              id: 3,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Ruairidh Fitzgerald',
+              subtitle: 'HaYarkon 228',
+              disabled: true,
+            }),
+            listItemSelectBuilder({
+              id: 4,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Sheldon Chavez',
+              subtitle: 'Pinkas 2',
+            }),
+            listItemSelectBuilder({
+              id: 5,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Brandan Gibbs',
+              subtitle: 'Frishman 38',
+            }),
+            listItemSelectBuilder({
+              id: 6,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Gordon Holmes',
+              subtitle: 'HaShalom road 66',
+            }),
+            listItemSelectBuilder({
+              id: 7,
+              checkbox: true,
+              prefix: <Avatar size="size30" />,
+              title: 'Aaisha Rios',
+              subtitle: 'Arlozorov 101',
+            }),
+          ]}
+        />
+      </Box>
+    </SingleComponentSideBySide>
+  );
+};
 
 const TagListExample = () => {
   const thumbTags = [
@@ -186,6 +269,7 @@ const ListItemSelectExample = () => {
 
 const InternalFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
+    <DropdownLayoutExample />
     <ListItemActionExample />
     <ListItemEditableExample />
     <ListItemSectionExample />

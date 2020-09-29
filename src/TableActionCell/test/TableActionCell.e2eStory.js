@@ -18,6 +18,7 @@ import PrimaryWithOnlyVisibleSecondaryExample from '../docs/examples/PrimaryWith
 import PrimarySecondaryRTLExample from '../docs/examples/PrimarySecondaryRTLExample';
 import DisabledSecondaryExample from '../docs/examples/DisabledSecondaryExample';
 import DisabledPrimaryExample from '../docs/examples/DisabledPrimaryExample';
+import SmallButtonsExample from '../docs/examples/SmallButtonsExample';
 
 const kind = getTestStoryKind(storySettings);
 
@@ -92,6 +93,12 @@ storiesOf(kind, module).add(testStories.tableActionCell, () => (
     <div className={classes.example}>
       <CodeExample title="Primary with only visible secondary actions">
         <PrimaryWithOnlyVisibleSecondaryExample />
+      </CodeExample>
+    </div>
+
+    <div className={classes.example}>
+      <CodeExample title="Small buttons">
+        <SmallButtonsExample />
       </CodeExample>
     </div>
   </div>

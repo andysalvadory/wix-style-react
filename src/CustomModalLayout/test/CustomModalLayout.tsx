@@ -51,6 +51,7 @@ function customModalLayoutWithAllProps() {
       footnote={<div />}
       width="3px"
       showHeaderDivider
+      showFooterDivider
       contentHideDividers
     />
   );

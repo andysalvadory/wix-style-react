@@ -61,6 +61,7 @@ describe('Table Action Cell', () => {
     'Secondary actions disabled': 'story-disabled-secondary',
     'Primary action with only visible secondary actions':
       'story-primary-with-only-visible-secondary',
+    'Small buttons': 'story-small-buttons',
   };
 
   beforeAll(async () => {

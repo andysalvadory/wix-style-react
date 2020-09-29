@@ -15,17 +15,73 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 ## Next
-### Added
-- `<FunnelChart/>` - create new component [#5904](https://github.com/wix/wix-style-react/pull/5904)
+### Changed
+- `<FunnelChart/>` - Change Tooltip function to expose index [#6021](https://github.com/wix/wix-style-react/pull/6021)
 
+## 9.15.0 - 2020-09-29
+### Added
+- `<VariableInput/>` - add readOnly prop [#6005](https://github.com/wix/wix-style-react/pull/6005)
+
+### Changed
+- Infra: replace `createReactContext` polyfill with the native one [#6034](https://github.com/wix/wix-style-react/pull/6034)
+- Infra: create a separate entry file per theme [#6035](https://github.com/wix/wix-style-react/pull/6035)
+
+
+### Docs
+- `Icons` - use wix-ui-icons-common icon list in storybook [#6017](https://github.com/wix/wix-style-react/pull/6017)
+- `<CustomModalLayout/>` - add dropdown example for storybook [#6026](https://github.com/wix/wix-style-react/pull/6026)
+
+## 9.14.0 - 2020-09-23
+### Added
+- `<AreaChart/>` - new component [#5901](https://github.com/wix/wix-style-react/pull/5901)
+- `<TableActionCell/>` - Add size prop [#5911](https://github.com/wix/wix-style-react/pull/5911)
+- `<CounterBadge/>` Add `light` skin [#6003](https://github.com/wix/wix-style-react/pull/6003)
+
+### Fixed
+- `<Input/>` - fix incorrect status values from displaying an indicator [#6018](https://github.com/wix/wix-style-react/pull/6018)
+- `<StatisticsWidget/>` - fixed description datahook [#6014](https://github.com/wix/wix-style-react/pull/6014)
+
+### Deprecated
+- `contactItemBuilder` && `<ContactItem/>`- deprecating component and builder [#6022](https://github.com/wix/wix-style-react/pull/6022)
+
+## 9.13.0 - 2020-09-21
+### Added
+- Performance: add a "FailWhale" to indicate when bundling without tree-shaking [#6007](https://github.com/wix/wix-style-react/pull/6007)
+
+### Fixed
+- `<RadioGroup/>` - added RadioButtonDriver types to getRadioAtIndex driver method [#5981](https://github.com/wix/wix-style-react/pull/5981)
+- `<CounterBadge/>` - align inner text [#6006](https://github.com/wix/wix-style-react/pull/6006)
+
+## 9.12.0 - 2020-09-17
+### Added
+- `<Button/>` - add ellipsis prop [#5914](https://github.com/wix/wix-style-react/pull/5914)
+- `<TextButton/>` - add ellipsis prop [#5945](https://github.com/wix/wix-style-react/pull/5945)
+- `<MultiSelectCheckbox /> `- add option for controlled value [#5973](https://github.com/wix/wix-style-react/pull/5973)
+- `<CustomModalLayout/>` - Adding support for `showFooterDivider` [#5983](https://github.com/wix/wix-style-react/pull/5983)
+- `<ListItemAction/>` - add subtitle property [#5960](https://github.com/wix/wix-style-react/pull/5960)
+- `<TableActionCell/>`- adding unidriver [#5963](https://github.com/wix/wix-style-react/pull/5963)
+
+### Fixed
+- `<TableActionCell/>` - Fix menu items get cut [#5992](https://github.com/wix/wix-style-react/pull/5992)
+- `<Text/>` - add `primary` to `TextSkin` prop type [#5990](https://github.com/wix/wix-style-react/pull/5990)
+- `<Timeline/>` - ordered list [#5989](https://github.com/wix/wix-style-react/pull/5989)
+- `<Button/>` - inverted-skin color fix [#5991](https://github.com/wix/wix-style-react/pull/5991)
+
+### Docs
+- `<Collapse/>` - refactor story page [#5984](https://github.com/wix/wix-style-react/pull/5984)
+- `<ColorPicker/>` - refactor story page [#5965](https://github.com/wix/wix-style-react/pull/5965)
+- `<EmptyState/>` - refactor story page [#5979](https://github.com/wix/wix-style-react/pull/5979)
+
+## 9.11.0 - 2020-09-16
+### Breaking:
+- `<ModalSelectorLayout/>` - use new `<CustomModalLayout/>` [#5831](https://github.com/wix/wix-style-react/pull/5831)
+
+## 9.10.0 - 2020-09-16
 ### Fixed:
 - `<Slider/>` - fix tooltip typography [#5974](https://github.com/wix/wix-style-react/pull/5974)
 
-### Breaking:
-- `<ModalSelectorLayout/>` - use new `<CustomModalLayout/>` [#5831](https://github.com/wix/wix-style-react/pull/5831), [#5972](https://github.com/wix/wix-style-react/pull/5972)
-
-## 9.10.0 - 2020-09-14
 ### Added:
+- `<FunnelChart/>` - create new component [#5904](https://github.com/wix/wix-style-react/pull/5904)
 - `<Ellipsis/>`- adding `maxLines` prop [#5885](https://github.com/wix/wix-style-react/pull/5885)
 
 ### Changed:

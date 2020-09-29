@@ -7,9 +7,7 @@ export const tableActionCellPrivateDriverFactory = ({
   eventTrigger,
 }) => {
   const getPrimaryActionPlaceholder = () =>
-    element.querySelector(
-      `[data-hook="${dataHooks.tableActionCellPlaceholder}"]`,
-    );
+    element.querySelector(`[data-hook="${dataHooks.placeholder}"]`);
 
   return {
     ...tableActionCellDriverFactory({ element, wrapper, eventTrigger }),

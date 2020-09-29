@@ -129,8 +129,10 @@ class Input extends Component {
     const isClearButtonVisible =
       this._isClearFeatureEnabled && !!value && !disabled;
 
+    const showSuffix =
+      !hideStatusSuffix && Object.values(STATUS).includes(status);
     const visibleSuffixCount = getVisibleSuffixCount({
-      status: !hideStatusSuffix && Object.values(STATUS).includes(status),
+      status: showSuffix,
       statusMessage,
       disabled,
       isClearButtonVisible,
@@ -199,7 +201,7 @@ class Input extends Component {
         <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
           {visibleSuffixCount > 0 && (
             <InputSuffix
-              status={hideStatusSuffix ? undefined : status}
+              status={showSuffix ? status : undefined}
               statusMessage={statusMessage}
               disabled={disabled}
               onIconClicked={onIconClicked}
@@ -415,11 +417,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
 
   /** Sets UI to indicate a status */
-  status: PropTypes.oneOf([
-    Input.StatusError,
-    Input.StatusWarning,
-    Input.StatusLoading,
-  ]),
+  status: PropTypes.oneOf(['error', 'warning', 'loading']),
 
   /** The status message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,

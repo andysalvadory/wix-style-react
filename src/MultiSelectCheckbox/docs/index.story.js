@@ -88,6 +88,12 @@ export default {
               'Use the Multi-selection dropdown behavior using the predefined list items',
             source: examples.usingBuilders,
           }),
+
+          example({
+            title: 'Controlled',
+            text: 'Use the `value` prop to control the input text',
+            source: examples.controlled,
+          }),
         ],
       }),
       ...[

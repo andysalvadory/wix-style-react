@@ -64,6 +64,7 @@ const menuItems = [
     text="Delete"
     onClick={e => console.log(e)}
     prefixIcon={<Delete />}
+    subtitle="delete"
   />,
 ];
 export default {

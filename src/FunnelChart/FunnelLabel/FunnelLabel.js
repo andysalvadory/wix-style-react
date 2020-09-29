@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import Text from '../../Text';
 import { dataHooks } from '../constants';
-import { formatToCompactNumber } from '../utils/numberFormatters';
+import { formatToCompactNumber } from '../../utils/numberFormatters';
+
 import { classes } from './FunnelLabel.st.css';
 
 export const FunnelLabel = ({ value, label }) => {

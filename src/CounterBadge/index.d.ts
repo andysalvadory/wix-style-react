@@ -1,11 +1,13 @@
 import * as React from 'react';
+
 export type CounterBadgeSkin =
   | 'general'
   | 'standard'
   | 'danger'
   | 'warning'
   | 'urgent'
-  | 'success';
+  | 'success'
+  | 'neutralStandard';
 
 export interface CounterBadgeProps {
   dataHook?: string;

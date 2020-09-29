@@ -21,9 +21,10 @@
 
 
 .root {
-  -st-states: skin(enum(standard, dark, destructive)), disabled, highlighted;
+  -st-states: skin(enum(standard, dark, destructive)), disabled, highlighted, ellipsis;
   -st-extends: Focusable;
 
+  overflow: hidden;
   display: inline-flex;
   padding: 6px 24px 6px 18px;
   width: 100%;
@@ -119,16 +120,28 @@
   color: value(D10-30);
 }
 
-.text {
-  margin: 0 0 0 6px;
+.prefixIcon {
+  -st-states: subtitle;
 }
 
 .prefixIcon {
   flex-shrink: 0;
 }
 
+.prefixIcon:subtitle {
+  margin: 0 0 auto 0;
+}
+
+.textBox {
+  margin: 0 0 0 6px;
+}
+
+.root:ellipsis .textBox {
+  overflow: hidden;
+}
+
 /* RTL support */
 
-:global([dir='rtl']) .text {
+:global([dir='rtl']) .textBox {
   margin: 0 6px 0 0;
 }

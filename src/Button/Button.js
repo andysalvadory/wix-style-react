@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
+import Ellipsis from '../common/Ellipsis';
+import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 import { generateDataAttr } from '../utils/generateDataAttr';
 import { FontUpgradeContext } from '../FontUpgrade/context';
 import { st, classes } from './Button.st.css';
@@ -46,12 +48,19 @@ class Button extends PureComponent {
     children: PropTypes.node,
     /** String based data hook */
     dataHook: PropTypes.string,
+    /** should the text get ellipsized with tooltip, or should it get broken into lines when it reaches the end of its container */
+    ellipsis: PropTypes.bool,
+    /** True by default, set it to false in order to show ellipsis without a tooltip. */
+    showTooltip: PropTypes.bool,
+    /** Props that modify the Tooltip created from text ellipsis */
+    tooltipProps: PropTypes.shape(TooltipCommonProps),
   };
 
   static defaultProps = {
     skin: 'standard',
     priority: 'primary',
     size: 'medium',
+    tooltipProps: {},
   };
 
   render() {
@@ -63,25 +72,37 @@ class Button extends PureComponent {
       fullWidth,
       children,
       dataHook,
+      ellipsis,
+      showTooltip,
+      tooltipProps,
       ...rest
     } = this.props;
 
     return (
       <FontUpgradeContext.Consumer>
         {context => (
-          <ButtonNext
-            data-madefor={context.active}
-            {...rest}
-            {...generateDataAttr(this.props, ['skin', 'size', 'priority'])}
-            className={st(
-              classes.root,
-              { fluid: fullWidth, skin, priority, size },
-              className,
+          <Ellipsis
+            ellipsis={ellipsis}
+            showTooltip={showTooltip}
+            {...tooltipProps}
+            render={({ ref, ellipsisClasses }) => (
+              <ButtonNext
+                data-madefor={context.active}
+                {...rest}
+                {...generateDataAttr(this.props, ['skin', 'size', 'priority'])}
+                className={st(
+                  classes.root,
+                  { fluid: fullWidth, skin, priority, size, ellipsis },
+                  className,
+                )}
+                data-hook={dataHook}
+                contentClassName={ellipsisClasses()}
+                contentRef={ref}
+              >
+                {children}
+              </ButtonNext>
             )}
-            data-hook={dataHook}
-          >
-            {children}
-          </ButtonNext>
+          />
         )}
       </FontUpgradeContext.Consumer>
     );

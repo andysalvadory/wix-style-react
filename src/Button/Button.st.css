@@ -19,7 +19,7 @@
 
 .root {
   -st-extends: ButtonNext;
-  -st-states: skin(string), size(string), priority(string), fluid;
+  -st-states: skin(string), size(string), priority(string), fluid, ellipsis;
 
   justify-content: center;
 
@@ -108,7 +108,7 @@
 .root:skin(inverted) {
   border-color: value(D80);
   background-color: value(D80);
-  color: value(B20);
+  color: value(B10);
 }
 
 .root:skin(inverted):hover {
@@ -483,6 +483,12 @@
 
 .root:fluid {
   width: 100%;
+}
+
+/* Ellipsis */
+
+.root:ellipsis {
+  max-width: 100%;
 }
 
 /* Suffix and prefix */

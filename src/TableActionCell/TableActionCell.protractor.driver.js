@@ -1,18 +1,19 @@
-const tableActionCellDriverFactory = component => ({
-  element: () => component,
+import { dataHooks } from './constants';
 
-  /** Get the primary action placeholder element */
-  getPrimaryActionPlaceholder: () =>
-    component.$('[data-hook="table-action-cell-placeholder"]'),
-  /** Get the primary action button element */
-  getPrimaryActionButton: () =>
-    component.$('[data-hook="table-action-cell-primary-action"]'),
-  /** Get the visible secondary actions wrapper element */
-  getVisibleActionsWrapper: () =>
-    component.$('[data-hook="table-action-cell-visible-actions"]'),
-  /** Get the secondary actions popover menu element */
-  getHiddenActionsPopoverMenu: () =>
-    component.$('[data-hook="table-action-cell-popover-menu"]'),
-});
+const tableActionCellDriverFactory = component => {
+  const getByHook = dataHook => component.$(`[data-hook="${dataHook}"]`);
+
+  return {
+    element: () => component,
+    /** Get the primary action placeholder element */
+    getPrimaryActionPlaceholder: () => getByHook(dataHooks.placeholder),
+    /** Get the primary action button element */
+    getPrimaryActionButton: () => getByHook(dataHooks.primaryAction),
+    /** Get the visible secondary actions wrapper element */
+    getVisibleActionsWrapper: () => getByHook(dataHooks.visibleActionsWrapper),
+    /** Get the secondary actions popover menu element */
+    getHiddenActionsPopoverMenu: () => getByHook(dataHooks.popoverMenu),
+  };
+};
 
 export default tableActionCellDriverFactory;

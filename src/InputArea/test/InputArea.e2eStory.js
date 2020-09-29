@@ -4,7 +4,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
-import { storySettings, testStories } from '../docs/storySettings';
+import { storySettings, testStories } from './storySettings';
 import InputArea from '../InputArea';
 
 const kind = getTestStoryKind(storySettings);

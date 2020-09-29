@@ -25,6 +25,7 @@ function VariableInputWithAllProps() {
       className="class-name"
       dataHook="data-hook"
       disabled
+      readOnly
       initialValue="hello"
       multiline
       onChange={(value: string) => {}}

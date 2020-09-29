@@ -287,3 +287,37 @@ export const custom = `
 />
 </div>
 `;
+
+export const subtitle = `
+<div
+  style={{
+    width: '284px',
+    height: '240px',
+  }}
+>
+  <DropdownLayout
+    visible
+    options={[
+      listItemActionBuilder({
+        id: 0,
+        title: 'option 1',
+        prefixIcon: <Icons.Edit />,
+        subtitle: 'option 1 subtitle',
+      }),
+      listItemActionBuilder({
+        id: 1,
+        title: 'option 2',
+        prefixIcon: <Icons.Edit />,
+        subtitle: 'option 2 subtitle - with a very long text that will eventually be wrapped',
+      }),
+      listItemActionBuilder({
+        id: 2,
+        ellipsis: true,
+        title: 'option 3',
+        prefixIcon: <Icons.Edit />,
+        subtitle: 'option 3 subtitle - with a very long text that will eventually be truncated by ellipsis',
+      }),
+    ]}
+  />
+</div>;
+`;

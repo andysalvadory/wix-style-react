@@ -67,12 +67,10 @@ export const custom = `
 </Layout>
 `;
 
-export const fluid = `
-<Box width="150px">
-  <TextButton fluid>
-    <Text ellipsis={true}>
-      TextButton that gets shrinked
-    </Text>
+export const ellipsis = `
+<Box width="300px">
+  <TextButton ellipsis>
+    This is a very very very very long text that will be cropped by ellipsis at some point
   </TextButton>
-</Box>  
+</Box>
 `;

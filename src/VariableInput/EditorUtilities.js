@@ -198,7 +198,6 @@ const decoratorFactory = ({ tag: { size, disabled } }) => {
             <Tag
               id={`variableinput-tag-${entityKey}`}
               dataHook={dataHooks.tag}
-              className={classes.tagEntity}
               removable={false}
               size={size}
               disabled={disabled}

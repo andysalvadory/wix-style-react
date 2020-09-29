@@ -17,5 +17,6 @@ import { listItemActionBuilder } from 'wix-style-react/ListItemAction';
 | `textSize` | `string` | `false` | option text size
 | `paddingSize` | `string` | `false` | option padding size
 | `disabled` | `boolean` | `false` | disable the option when set to true |
+| `subtitle` | `strun` | `false` | option subtitle text |
 
 ## Examples

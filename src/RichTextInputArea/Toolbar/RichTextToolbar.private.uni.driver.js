@@ -32,6 +32,7 @@ export default (base, body) => {
         ).attributes.disabled,
       ),
     isFormDisplayed: () => base.$('[data-hook=richtextarea-form]').exists(),
+    isActive: async element => (await element.attr('data-active')) === 'true',
     clickBoldButton: () => getButtonByType('bold').click(),
     clickItalicButton: () => getButtonByType('italic').click(),
     clickUnderlineButton: () => getButtonByType('underline').click(),

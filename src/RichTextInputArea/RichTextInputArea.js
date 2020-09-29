@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EditorState, Editor, CompositeDecorator } from 'draft-js';
 import { convertFromHTML } from 'draft-convert';
-import classNames from 'classnames';
 
-import styles from './RichTextInputArea.scss';
+import { st, classes, vars } from './RichTextInputArea.st.css';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 import { RichTextInputAreaContext } from './RichTextInputAreaContext';
@@ -21,7 +20,7 @@ const decorator = new CompositeDecorator([
         <a
           data-hook="richtextarea-link"
           href={url}
-          className={styles.link}
+          className={classes.link}
           target="_blank"
           // Avoids a potentially serious vulnerability for '_blank' links
           rel="noopener noreferrer"
@@ -63,6 +62,7 @@ class RichTextInputArea extends React.PureComponent {
   render() {
     const {
       dataHook,
+      className,
       placeholder,
       disabled,
       minHeight,
@@ -76,16 +76,20 @@ class RichTextInputArea extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={classNames(styles.root, {
-          [styles.hidePlaceholder]: !isEditorEmpty,
-          [styles.disabled]: disabled,
-          [styles.hasError]: !disabled && status === 'error',
-          [styles.hasWarning]: !disabled && status === 'warning',
-        })}
+        className={st(
+          classes.root,
+          {
+            hidePlaceholder: !isEditorEmpty,
+            disabled,
+            hasError: !disabled && status === 'error',
+            hasWarning: !disabled && status === 'warning',
+          },
+          className,
+        )}
         // Using CSS variable instead of applying minHeight & maxHeight on each child, down to the editor's content
         style={{
-          '--min-height': minHeight,
-          '--max-height': maxHeight,
+          [vars.minHeight]: minHeight,
+          [vars.maxHeight]: maxHeight,
         }}
       >
         <RichTextInputAreaContext.Provider
@@ -95,7 +99,7 @@ class RichTextInputArea extends React.PureComponent {
         >
           <RichTextToolbar
             dataHook="richtextarea-toolbar"
-            className={styles.toolbar}
+            className={classes.toolbar}
             isDisabled={disabled}
             editorState={this.state.editorState}
             onBold={this._setEditorState}
@@ -110,7 +114,7 @@ class RichTextInputArea extends React.PureComponent {
             onNumberedList={this._setEditorState}
           />
         </RichTextInputAreaContext.Provider>
-        <div className={styles.editorWrapper}>
+        <div className={classes.editorWrapper}>
           <Editor
             ref="editor"
             editorState={this.state.editorState}
@@ -120,7 +124,7 @@ class RichTextInputArea extends React.PureComponent {
             spellCheck={spellCheck}
           />
           {!disabled && status && (
-            <span className={styles.statusIndicator}>
+            <span className={classes.statusIndicator}>
               <StatusIndicator
                 dataHook="richtextarea-status-indicator"
                 status={status}
@@ -169,6 +173,8 @@ class RichTextInputArea extends React.PureComponent {
 RichTextInputArea.displayName = 'RichTextInputArea';
 
 RichTextInputArea.propTypes = {
+  /** A css class to be applied to the component’s root element */
+  className: PropTypes.string,
   /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
   /** Initial value to display in the editor */

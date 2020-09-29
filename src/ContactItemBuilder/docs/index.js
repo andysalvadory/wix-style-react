@@ -12,7 +12,7 @@ import ExampleRaw from '!raw-loader!./Example';
 
 import { Category } from '../../../stories/storiesHierarchy';
 
-storiesOf(`${Category.WIP}/Builders`, module).add('ContactItemBuilder', () => (
+storiesOf(`${Category.DEPRECATED}`, module).add('ContactItemBuilder', () => (
   <TabbedView tabs={['Usage']}>
     <div>
       <Markdown source={Readme} />

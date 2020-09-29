@@ -11,6 +11,9 @@
   "AnnouncementModalLayout": {
     "path": "src/AnnouncementModalLayout"
   },
+  "AreaChart": {
+    "path": "src/AreaChart"
+  },
   "AudioPlayer": {
     "path": "src/AudioPlayer"
   },
@@ -151,6 +154,12 @@
   },
   "FacesRatingBar": {
     "path": "src/FacesRatingBar"
+  },
+  "FailWhale": {
+    "path": "src/FailWhale",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "FeatureList": {
     "path": "src/FeatureList"

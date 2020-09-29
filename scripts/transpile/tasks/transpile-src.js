@@ -46,12 +46,10 @@ module.exports = function({ dir = '.' }) {
 
   const es = files.map(async fileName => {
     const ast = await readFileAst(path.join(src, fileName), 'utf8');
-    const filePath = path.join(src, fileName);
-
     const esnext = await transformFromAstAsync(ast, null, {
       babelrc: true,
       ast: false,
-      filename: await filePath,
+      filename: path.join(src, fileName),
       plugins: [[srcToEsBabelPlugin, { esToSrc: false }]],
     });
 
@@ -60,12 +58,10 @@ module.exports = function({ dir = '.' }) {
 
   const cjs = files.map(async fileName => {
     const ast = await readFileAst(path.join(src, fileName), 'utf8');
-    const filePath = path.join(src, fileName);
-
     const es5 = await transformFromAstAsync(ast, null, {
       babelrc: false,
       ast: false,
-      filename: await filePath,
+      filename: path.join(src, fileName),
       plugins: [
         [srcToEsBabelPlugin, { esToSrc: true }],
         sassToES,

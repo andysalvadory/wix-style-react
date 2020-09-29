@@ -245,6 +245,12 @@ describe('VariableInput', () => {
       expect(await driver.isDisabled()).toBe(true);
     });
   });
+  describe('readOnly', () => {
+    it('should disable component when passing `readOnly` prop', async () => {
+      const driver = createDriver(<VariableInput readOnly />);
+      expect(await driver.isDisabled()).toBe(true);
+    });
+  });
   describe('placeholder', () => {
     it('should render a placeholder', async () => {
       const placeholderText = 'Placeholder';

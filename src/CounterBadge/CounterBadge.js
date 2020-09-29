@@ -48,6 +48,7 @@ CounterBadge.propTypes = {
   skin: PropTypes.oneOf([
     'general',
     'standard',
+    'neutralStandard',
     'danger',
     'warning',
     'urgent',
