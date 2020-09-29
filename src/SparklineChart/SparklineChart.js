@@ -287,6 +287,7 @@ class SparklineChart extends React.PureComponent {
       width,
       color,
     } = context;
+
     const highlightedStartBefore = context.xScale(
       this._getLabelAt(data, highlightedStartingIndex - 1),
     );
