@@ -109,6 +109,7 @@ const javascriptFiles = [
   ['Search.bundle.min.js', 74],
   ['SectionHelper.bundle.min.js', 40],
   ['SegmentedToggle.bundle.min.js', 43],
+  ['SelectableAccordion.bundle.min.js', 47],
   ['Selector.bundle.min.js', 48],
   ['SidePanel.bundle.min.js', 48],
   ['Sidebar.bundle.min.js', 7],
@@ -152,7 +153,6 @@ const javascriptFiles = [
   ['VerticalTabs.bundle.min.js', 38],
   ['VerticalTabsItem.bundle.min.js', 38],
   ['WarningIndicator.bundle.min.js', 40],
-  ['SelectableAccordion.bundle.min.js', 10],
 ];
 
 const cssFiles = [
@@ -244,6 +244,7 @@ const cssFiles = [
   ['Search.min.css', 7],
   ['SectionHelper.min.css', 1],
   ['SegmentedToggle.min.css', 2],
+  ['SelectableAccordion.min.css', 1],
   ['Selector.min.css', 3],
   ['SidePanel.min.css', 2],
   ['Sidebar.min.css', 2],
@@ -269,7 +270,6 @@ const cssFiles = [
   ['Tooltip.min.css', 2],
   ['VariableInput.min.css', 2],
   ['WarningIndicator.min.css', 2],
-  ['SelectableAccordion.min.css', 1],
 ];
 
 const getJS = () =>
