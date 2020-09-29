@@ -6,23 +6,22 @@ import { line, area, curveMonotoneX } from 'd3-shape';
 import { select, pointer } from 'd3-selection';
 import { easeQuadIn } from 'd3-ease';
 import { ChartTooltip } from './ChartTooltip';
-import { classes } from './SparklineChart.st.css';
-import { classSelector } from './utils';
+import { dataHooks } from './constants';
+import { stVars as colors } from '../Foundation/stylable/colors.st.css';
 import 'd3-transition';
 
 const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
 const TOOLTIP_ELEMENT_RADIUS = 4;
-const DEFAULT_COLOR = '#3370FB';
+const DEFAULT_COLOR = colors.A1;
+const TRANSITION_DURATION = 300;
 
 /** SparklineChart */
 class SparklineChart extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { getTooltipContent, highlightedStartingIndex } = props;
+    const { highlightedStartingIndex } = props;
 
-    this.enableTooltip =
-      getTooltipContent && typeof getTooltipContent === 'function';
     this.randomComponentId = Math.random().toString();
     this.chartContext = {};
 
@@ -31,9 +30,19 @@ class SparklineChart extends React.PureComponent {
     this.enableHighlightedAreaEffect = highlightedStartingIndex > 0;
 
     this.state = {
-      hoveredLabels: [],
+      hoveredLabel: null,
     };
   }
+
+  _shouldShowTooltip = () => {
+    const { hoveredLabel } = this.state;
+    const { getTooltipContent } = this.props;
+    return (
+      getTooltipContent &&
+      typeof getTooltipContent === 'function' &&
+      hoveredLabel
+    );
+  };
 
   _useCreateContext = () => {
     const halfWidth = LINE_WIDTH / 2;
@@ -125,13 +134,13 @@ class SparklineChart extends React.PureComponent {
 
     container.attr('width', width).attr('height', height);
     const dataContainer = container.select(
-      classSelector(classes.dataContainer),
+      `[data-hook="${dataHooks.dataContainer}"]`,
     );
 
     this._drawLines(dataContainer);
     select(this.componentRef.current)
       .on('mouseleave', () => {
-        this.setState({ hoveredLabels: [] });
+        this.setState({ hoveredLabel: null });
       })
       .on('mousemove', d => {
         const dateUnderPointer = this.chartContext.xScale.invert(pointer(d)[0]);
@@ -148,7 +157,7 @@ class SparklineChart extends React.PureComponent {
             ? afterDate
             : beforeDate;
 
-        this.setState({ hoveredLabels: [closestDate] });
+        this.setState({ hoveredLabel: closestDate });
       });
   };
 
@@ -246,7 +255,7 @@ class SparklineChart extends React.PureComponent {
     container
       .select(className)
       .transition()
-      .duration(300)
+      .duration(TRANSITION_DURATION)
       .ease(easeQuadIn)
       .attr('d', fncUpdater);
   };
@@ -268,7 +277,7 @@ class SparklineChart extends React.PureComponent {
   render() {
     this._updateContext();
     const { getTooltipContent, className, dataHook } = this.props;
-    const { hoveredLabels } = this.state;
+    const { hoveredLabel } = this.state;
     const context = this.chartContext;
     const {
       data,
@@ -286,35 +295,23 @@ class SparklineChart extends React.PureComponent {
     );
     const highlightedRelativeLocation = highlightedStart / innerWidth;
     const inter = (highlightedStart - highlightedStartBefore) / 2 / innerWidth;
+
     const labels = this._getLabels(data);
+    const hoveredLabelIndex = bisector(function(d) {
+      return d;
+    }).left(labels, hoveredLabel, 0);
+    const currentHoveredLabel = this._getLabelAt(data, hoveredLabelIndex);
+    const currentHoveredValue = this._getValueAt(data, hoveredLabelIndex);
+    const dataPoint = {
+      content:
+        getTooltipContent &&
+        typeof getTooltipContent === 'function' &&
+        getTooltipContent(hoveredLabelIndex),
+      xCoordinate: context.xScale(currentHoveredLabel),
+      yCoordinate:
+        context.yScale(currentHoveredValue) - TOOLTIP_ELEMENT_RADIUS / 2,
+    };
 
-    const hoveredLabelsIndexes = hoveredLabels.map(dimension => {
-      return bisector(function(d) {
-        return d;
-      }).left(labels, dimension, 0);
-    });
-
-    const dataPointsTooltipColors = [];
-    const dataPoints = hoveredLabelsIndexes.reduce(
-      (pointsData, currentSelectedIndex) => {
-        const currentLabel = this._getLabelAt(data, currentSelectedIndex);
-        const currentValue = this._getValueAt(data, currentSelectedIndex);
-
-        const pointData = {
-          content:
-            getTooltipContent &&
-            typeof getTooltipContent === 'function' &&
-            getTooltipContent(currentSelectedIndex),
-          xCoordinate: context.xScale(currentLabel),
-          yCoordinate:
-            context.yScale(currentValue) - TOOLTIP_ELEMENT_RADIUS / 2,
-        };
-        pointsData.push(pointData);
-        dataPointsTooltipColors.push(color);
-        return pointsData;
-      },
-      [],
-    );
     return (
       <div
         style={{ width, height, position: 'relative' }}
@@ -390,26 +387,19 @@ class SparklineChart extends React.PureComponent {
             </linearGradient>
           </defs>
           <g>
-            <g className={classes.dataContainer}></g>
-            {this.enableTooltip &&
-              dataPoints.map((pointData, index) => {
-                return (
-                  <g
-                    key={index}
-                    transform={`translate(${
-                      pointData.xCoordinate
-                    }, ${pointData.yCoordinate + TOOLTIP_ELEMENT_RADIUS / 2})`}
-                  >
-                    <circle
-                      r={TOOLTIP_ELEMENT_RADIUS}
-                      fill={dataPointsTooltipColors[index]}
-                    ></circle>
-                  </g>
-                );
-              })}
+            <g data-hook={dataHooks.dataContainer}></g>
+            {this._shouldShowTooltip() && (
+              <g
+                transform={`translate(${
+                  dataPoint.xCoordinate
+                }, ${dataPoint.yCoordinate + TOOLTIP_ELEMENT_RADIUS / 2})`}
+              >
+                <circle r={TOOLTIP_ELEMENT_RADIUS} fill={color}></circle>
+              </g>
+            )}
           </g>
         </svg>
-        {this.enableTooltip && <ChartTooltip dataPoints={dataPoints} />}
+        {this._shouldShowTooltip() && <ChartTooltip dataPoint={dataPoint} />}
       </div>
     );
   }
