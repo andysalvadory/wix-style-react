@@ -1,6 +1,7 @@
 import { browser, $ } from 'protractor';
 import { createTestStoryUrl } from '../../../../test/utils/storybook-helpers';
 import { Category } from '../../../../stories/storiesHierarchy';
+import { inputTestkitFactory } from '../../../../testkit/protractor';
 
 describe('Ellipsis', () => {
   const navigateToTestUrl = async testName => {
@@ -20,9 +21,6 @@ describe('Ellipsis', () => {
     browser.isElementPresent($('[data-hook="popover-element"]'));
 
   const getEllipsisContent = () => $('[data-hook="popover-element"]').getText();
-
-  const changeInputValue = value =>
-    $('[data-hook="input-element"]').sendKeys(value);
 
   it('should have ellipsis', async () => {
     await navigateToTestUrl('with ellipsis');
@@ -47,6 +45,8 @@ describe('Ellipsis', () => {
   it('should update tooltip text when content changes', async () => {
     await navigateToTestUrl('with dynamic text');
 
+    const { enterText } = inputTestkitFactory('input-element');
+
     // Text element
     expect(isTextRendered()).toBe(true);
 
@@ -56,7 +56,7 @@ describe('Ellipsis', () => {
     // Ellipsis content
     expect(getEllipsisContent()).toBe('Hello World');
 
-    await changeInputValue('New Text');
+    await enterText('New Text');
 
     expect(isEllipsisRendered()).toBe(true);
 
