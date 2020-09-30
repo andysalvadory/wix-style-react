@@ -7,11 +7,18 @@ import {
 
 import SelectableAccordion from '../SelectableAccordion';
 import { selectableAccordionPrivateDriverFactory } from './SelectableAccordion.private.uni.driver';
+import { TYPE } from '../constants';
 
 describe(SelectableAccordion.displayName, () => {
   const render = createRendererWithUniDriver(
     selectableAccordionPrivateDriverFactory,
   );
+
+  const items = [
+    { title: 'Title1', content: 'Content1' },
+    { title: 'Title2', content: 'Content2' },
+    { title: 'Title3', content: 'Content3' },
+  ];
 
   afterEach(cleanup);
 
@@ -22,29 +29,13 @@ describe(SelectableAccordion.displayName, () => {
   });
 
   it('should render all items', async () => {
-    const { driver } = render(
-      <SelectableAccordion
-        items={[
-          { title: 'Title1', content: 'Content1' },
-          { title: 'Title2', content: 'Content2' },
-          { title: 'Title3', content: 'Content3' },
-        ]}
-      />,
-    );
+    const { driver } = render(<SelectableAccordion items={items} />);
 
     expect(await driver.getItemsCount()).toBe(3);
   });
 
   it('should dynamically rerender items', async () => {
-    const { driver, rerender } = render(
-      <SelectableAccordion
-        items={[
-          { title: 'Title1', content: 'Content1' },
-          { title: 'Title2', content: 'Content2' },
-          { title: 'Title3', content: 'Content3' },
-        ]}
-      />,
-    );
+    const { driver, rerender } = render(<SelectableAccordion items={items} />);
 
     expect(await driver.getItemsCount()).toBe(3);
 
@@ -79,33 +70,20 @@ describe(SelectableAccordion.displayName, () => {
   });
 
   describe('Type Radio', () => {
+    const props = {
+      type: TYPE.RADIO,
+      items,
+    };
+
     it('should open item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="radio"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+      const { driver } = render(<SelectableAccordion {...props} />);
 
       await driver.clickItemAt(0);
       expect(await driver.isItemExpandedAt(0)).toBe(true);
     });
 
     it('should not close open item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="radio"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+      const { driver } = render(<SelectableAccordion {...props} />);
 
       await driver.clickItemAt(0);
       expect(await driver.isItemExpandedAt(0)).toBe(true);
@@ -114,16 +92,7 @@ describe(SelectableAccordion.displayName, () => {
     });
 
     it('should close previously open item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="radio"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+      const { driver } = render(<SelectableAccordion {...props} />);
 
       await driver.clickItemAt(0);
       expect(await driver.isItemExpandedAt(0)).toBe(true);
@@ -132,113 +101,35 @@ describe(SelectableAccordion.displayName, () => {
     });
   });
 
-  describe('Type Toggle', () => {
-    it('should open item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="toggle"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+  [TYPE.TOGGLE, TYPE.CHECKBOX].forEach(type => {
+    describe(`Type ${type}`, () => {
+      const props = { items, type };
 
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-    });
+      it('should open item', async () => {
+        const { driver } = render(<SelectableAccordion {...props} />);
 
-    it('should close item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="toggle"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+        await driver.clickItemAt(0);
+        expect(await driver.isItemExpandedAt(0)).toBe(true);
+      });
 
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(false);
-    });
+      it('should close item', async () => {
+        const { driver } = render(<SelectableAccordion {...props} />);
 
-    it('should open multiple items', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="toggle"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
+        await driver.clickItemAt(0);
+        expect(await driver.isItemExpandedAt(0)).toBe(true);
+        await driver.clickItemAt(0);
+        expect(await driver.isItemExpandedAt(0)).toBe(false);
+      });
 
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      await driver.clickItemAt(1);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      expect(await driver.isItemExpandedAt(1)).toBe(true);
-    });
-  });
+      it('should open multiple items', async () => {
+        const { driver } = render(<SelectableAccordion {...props} />);
 
-  describe('Type Checkbox', () => {
-    it('should open item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="checkbox"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
-
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-    });
-
-    it('should close item', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="checkbox"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
-
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(false);
-    });
-
-    it('should open multiple items', async () => {
-      const { driver } = render(
-        <SelectableAccordion
-          type="checkbox"
-          items={[
-            { title: 'Title1', content: 'Content1' },
-            { title: 'Title2', content: 'Content2' },
-            { title: 'Title3', content: 'Content3' },
-          ]}
-        />,
-      );
-
-      await driver.clickItemAt(0);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      await driver.clickItemAt(1);
-      expect(await driver.isItemExpandedAt(0)).toBe(true);
-      expect(await driver.isItemExpandedAt(1)).toBe(true);
+        await driver.clickItemAt(0);
+        expect(await driver.isItemExpandedAt(0)).toBe(true);
+        await driver.clickItemAt(1);
+        expect(await driver.isItemExpandedAt(0)).toBe(true);
+        expect(await driver.isItemExpandedAt(1)).toBe(true);
+      });
     });
   });
 });
