@@ -78,6 +78,7 @@ describe(SelectableAccordion.displayName, () => {
     it('should open item', async () => {
       const { driver } = render(<SelectableAccordion {...props} />);
 
+      expect(await driver.isItemExpandedAt(0)).toBe(false);
       await driver.clickItemAt(0);
       expect(await driver.isItemExpandedAt(0)).toBe(true);
     });
@@ -108,6 +109,7 @@ describe(SelectableAccordion.displayName, () => {
       it('should open item', async () => {
         const { driver } = render(<SelectableAccordion {...props} />);
 
+        expect(await driver.isItemExpandedAt(0)).toBe(false);
         await driver.clickItemAt(0);
         expect(await driver.isItemExpandedAt(0)).toBe(true);
       });
