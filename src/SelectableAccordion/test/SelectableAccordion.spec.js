@@ -7,7 +7,7 @@ import {
 
 import SelectableAccordion from '../SelectableAccordion';
 import { selectableAccordionPrivateDriverFactory } from './SelectableAccordion.private.uni.driver';
-import { TYPE } from '../constants';
+import { TYPES } from '../constants';
 
 describe(SelectableAccordion.displayName, () => {
   const render = createRendererWithUniDriver(
@@ -71,7 +71,7 @@ describe(SelectableAccordion.displayName, () => {
 
   describe('Type Radio', () => {
     const props = {
-      type: TYPE.RADIO,
+      type: TYPES.RADIO,
       items,
     };
 
@@ -101,7 +101,7 @@ describe(SelectableAccordion.displayName, () => {
     });
   });
 
-  [TYPE.TOGGLE, TYPE.CHECKBOX].forEach(type => {
+  [TYPES.TOGGLE, TYPES.CHECKBOX].forEach(type => {
     describe(`Type ${type}`, () => {
       const props = { items, type };
 
