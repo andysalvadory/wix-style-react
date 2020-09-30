@@ -1,7 +1,10 @@
 import { BaseUniDriver } from 'wix-ui-test-utils/unidriver';
 
 export interface AddressInputUniDriver extends BaseUniDriver {
-  getCountText(): Promise<string>;
-  clickButtonTimes(times: number): Promise<void>;
-  getButtonText(): Promise<string>;
+  getInputValue: () => Promise<string>;
+  enterText: (value: string) => Promise<void>;
+  clearText: () => Promise<void>;
+  isDisabled: () => Promise<boolean>;
+  clickAtOption: (index: number) => Promise<void>;
+  clickAtOptionWithValue: (value: string) => Promise<void>;
 }

@@ -15,7 +15,6 @@ function addressInputWithAllProps() {
     <AddressInput
       dataHook="dataHook"
       className="className"
-      buttonText="buttonText"
     />
   );
 }

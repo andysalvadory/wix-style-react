@@ -1,32 +1,21 @@
 import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
-import { dataHooks } from './constants';
+import { inputWithOptionsUniDriverFactory } from '../InputWithOptions/InputWithOptions.uni.driver';
 
 export const addressInputDriverFactory = (base, body) => {
+  const {
+    driver,
+    inputDriver,
+    dropdownLayoutDriver,
+  } = inputWithOptionsUniDriverFactory(base, body);
+
   return {
     ...baseUniDriverFactory(base, body),
 
-    /**
-     * Gets the current count
-     * @returns {Promise<string>}
-     */
-    getCountText: () => findByHook(base, dataHooks.addressInputCount).text(),
-
-    /**
-     * Clicks the button
-     * @param {number} times Times to click
-     * @returns {Promise<void>}
-     */
-    clickButtonTimes: async times => {
-      const buttonElement = findByHook(base, dataHooks.addressInputButton);
-      for (let i = 0; i < times; i++) {
-        await buttonElement.click();
-      }
-    },
-
-    /**
-     * Gets the button text
-     * @returns {Promise<string>}
-     */
-    getButtonText: () => findByHook(base, dataHooks.addressInputButton).text(),
+    getInputValue: inputDriver.getValue,
+    enterText: inputDriver.enterText,
+    clearText: inputDriver.clearText,
+    isDisabled: driver.isDisabled,
+    clickAtOption: dropdownLayoutDriver.clickAtOption,
+    clickAtOptionWithValue: dropdownLayoutDriver.clickAtOptionWithValue,
   };
 };

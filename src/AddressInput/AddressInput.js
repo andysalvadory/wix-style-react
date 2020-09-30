@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
-import { st, classes } from './AddressInput.st.css';
 import debounce from 'lodash/debounce';
-import { dataHooks } from './constants';
 import Input from '../Input';
 
 /** AddressInput */
@@ -59,6 +57,7 @@ class AddressInput extends React.PureComponent {
       roundInput,
       clearButton,
       options,
+      status,
     } = this.props;
 
     return (
@@ -72,6 +71,9 @@ class AddressInput extends React.PureComponent {
         onSelect={this._onSelect}
         value={this.state.inputValue}
         onClear={this._onClear}
+        status={status}
+        menuArrow={false}
+        highlight
         prefix={
           <Input.IconAffix>
             <SearchIcon />
