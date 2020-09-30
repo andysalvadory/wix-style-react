@@ -10,3 +10,7 @@ export const TYPE = {
   CHECKBOX: 'checkbox',
   TOGGLE: 'toggle',
 };
+
+export const dataAttr = {
+  STATE: 'data-state',
+};

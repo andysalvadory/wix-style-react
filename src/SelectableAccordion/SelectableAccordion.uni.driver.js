@@ -1,24 +1,25 @@
 import {
   baseUniDriverFactory,
   findByHookAtIndex,
+  findByHook,
+  getDataAttributeValue,
 } from '../../test/utils/unidriver';
-import { dataHooks } from './constants';
+import { dataHooks, dataAttr } from './constants';
 
 export const selectableAccordionDriverFactory = (base, body) => {
   return {
     ...baseUniDriverFactory(base, body),
 
-    clickItemAt: idx =>
-      findByHookAtIndex(base, dataHooks.item, idx)
-        .$(`[data-hook="${dataHooks.itemHeader}"]`)
-        .click(),
+    clickItemAt: async idx => {
+      const item = await findByHookAtIndex(base, dataHooks.item, idx);
+      return findByHook(item, dataHooks.itemHeader).click();
+    },
 
     isItemExpandedAt: async idx => {
-      const value = await findByHookAtIndex(base, dataHooks.item, idx).attr(
-        'data-state',
-      );
+      const item = await findByHookAtIndex(base, dataHooks.item, idx);
+      const itemState = await getDataAttributeValue(item, dataAttr.STATE);
 
-      return value === 'open';
+      return itemState === 'open';
     },
   };
 };

@@ -17,7 +17,12 @@ class SelectableAccordion extends React.PureComponent {
     /** A type can be ether radio, checkbox, or toggle, which will effect the way an accordion item is selected */
     type: PropTypes.oneOf(['radio', 'checkbox', 'toggle']),
 
-    /** An array of Accordion items */
+    /** An array of Accordion items:
+     * - `title`: A title of the item
+     * - `subtitle`: An optional second row of the header
+     * - `content`: A content of the item
+     * - `initiallyOpen`: Whether the item is initially open
+     * */
     items: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.node,
