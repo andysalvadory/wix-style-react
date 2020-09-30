@@ -20,7 +20,9 @@ class AddressInput extends React.PureComponent {
     onChange && onChange(value);
   };
 
-  _debouncedOnChange = debounce(this._onChange, this.props.debounceDuration);
+  _debouncedOnChange = debounce(this._onChange, this.props.debounceDuration, {
+    leading: true,
+  });
 
   _onInputChange = ({ target: { value } }) => {
     this.setState({

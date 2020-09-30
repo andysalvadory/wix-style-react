@@ -1,4 +1,5 @@
 import React from 'react';
+import Sinon from 'sinon';
 import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
 
 import AddressInput from '../AddressInput';
@@ -15,19 +16,39 @@ describe(AddressInput.displayName, () => {
     expect(await driver.exists()).toBe(true);
   });
 
-  it('should increment', async () => {
-    const { driver } = render(<AddressInput />);
+  it('should insert initial value', async () => {
+    const initialValue = 'test';
+    const props = {
+      initialValue,
+    };
+    const { driver } = render(<AddressInput {...props} />);
 
-    await driver.clickButtonTimes(2);
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button even number (2) of times',
-    );
+    expect(await driver.getInputValue()).toEqual(initialValue);
   });
 
-  it('should allow changing the button text', async () => {
-    const { driver } = render(<AddressInput buttonText="Press me" />);
+  it('should invoke onChange', async () => {
+    const text = 'test';
+    const props = {
+      onChange: Sinon.spy(),
+    };
+    const { driver } = render(<AddressInput {...props} />);
 
-    expect(await driver.getButtonText()).toEqual('Press me');
+    await driver.enterText(text);
+
+    expect(props.onChange.called).toEqual(true);
+    expect(await driver.getInputValue()).toEqual(text);
+  });
+
+  it('should invoke onSelect', async () => {
+    const option = { id: 0, value: 'First' };
+    const props = {
+      onSelect: Sinon.spy(),
+      options: [option],
+    };
+    const { driver } = render(<AddressInput {...props} />);
+
+    await driver.clickAtOption(0);
+
+    expect(props.onSelect.calledWith(option)).toEqual(true);
   });
 });
