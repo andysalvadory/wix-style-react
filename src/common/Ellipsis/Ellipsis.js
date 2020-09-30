@@ -17,11 +17,11 @@ class TextComponent extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.props.textDidUpdate();
+    this.props.onTextChange();
   }
 
   componentDidUpdate() {
-    this.props.textDidUpdate();
+    this.props.onTextChange();
   }
 
   render() {
@@ -83,7 +83,7 @@ class Ellipsis extends React.PureComponent {
    * Update text content and tooltip active state
    * @private
    */
-  _textDidUpdate = () => {
+  _onTextChange = () => {
     const { isActive, textContent } = this.state;
     const newState = {};
 
@@ -163,7 +163,7 @@ class Ellipsis extends React.PureComponent {
     return (
       <TextComponent
         {...{ render, ellipsis, maxLines }}
-        textDidUpdate={this._textDidUpdate}
+        onTextChange={this._onTextChange}
         textElementRef={this.ref}
       />
     );
