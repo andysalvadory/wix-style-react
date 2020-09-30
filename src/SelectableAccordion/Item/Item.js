@@ -44,9 +44,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   static displayName = 'SelectableAccordionItem';
 
-  state = {
-    hovered: false,
-  };
+  state = { hovered: false };
 
   _onChange = () => {
     const { idx, type, open, onChange } = this.props;
@@ -58,17 +56,9 @@ export default class SelectableAccordionItem extends React.PureComponent {
     onChange(idx, !open);
   };
 
-  _onMouseEnter = () => {
-    this.setState({
-      hovered: true,
-    });
-  };
+  _onMouseEnter = () => this.setState({ hovered: true });
 
-  _onMouseLeave = () => {
-    this.setState({
-      hovered: false,
-    });
-  };
+  _onMouseLeave = () => this.setState({ hovered: false });
 
   _renderSelector() {
     const { type, open } = this.props;
