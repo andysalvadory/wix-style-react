@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Ellipsis, { extractEllipsisProps } from '..';
 import Box from '../../../Box';
+import Input from '../../../Input';
 import { Category } from '../../../../stories/storiesHierarchy';
 
 const MyText = React.forwardRef((props, ref) => (
@@ -43,6 +44,25 @@ storiesOf(Category.INTERNAL + '/Ellipsis', module).add(
         <MyTextWithEllipsis className="my-class">
           Hello World
         </MyTextWithEllipsis>
+      </Box>
+    );
+  },
+);
+
+storiesOf(Category.INTERNAL + '/Ellipsis', module).add(
+  'with dynamic text',
+  () => {
+    const [inputValue, setInputValue] = useState('Hello World');
+    return (
+      <Box margin="150px" width="50px" dataHook="wrapper-element">
+        <MyTextWithEllipsis className="my-class">
+          {inputValue}
+        </MyTextWithEllipsis>
+        <Input
+          value={inputValue}
+          onChange={({ target: { value } }) => setInputValue(value)}
+          dataHook="input-element"
+        />
       </Box>
     );
   },

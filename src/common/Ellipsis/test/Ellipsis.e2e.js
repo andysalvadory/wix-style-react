@@ -19,6 +19,11 @@ describe('Ellipsis', () => {
   const isEllipsisRendered = () =>
     browser.isElementPresent($('[data-hook="popover-element"]'));
 
+  const getEllipsisContent = () => $('[data-hook="popover-element"]').getText();
+
+  const changeInputValue = value =>
+    $('[data-hook="input-element"]').sendKeys(value);
+
   it('should have ellipsis', async () => {
     await navigateToTestUrl('with ellipsis');
 
@@ -37,5 +42,24 @@ describe('Ellipsis', () => {
 
     // Ellipsis element
     expect(isEllipsisRendered()).toBe(false);
+  });
+
+  it('should update tooltip text when content changes', async () => {
+    await navigateToTestUrl('with dynamic text');
+
+    // Text element
+    expect(isTextRendered()).toBe(true);
+
+    // Ellipsis element
+    expect(isEllipsisRendered()).toBe(true);
+
+    // Ellipsis content
+    expect(getEllipsisContent()).toBe('Hello World');
+
+    await changeInputValue('New Text');
+
+    expect(isEllipsisRendered()).toBe(true);
+
+    expect(getEllipsisContent()).toBe('New Text');
   });
 });
