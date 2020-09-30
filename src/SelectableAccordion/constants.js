@@ -5,7 +5,7 @@ export const dataHooks = {
   itemHeader: `${prefix}-item-header`,
 };
 
-export const TYPE = {
+export const TYPES = {
   RADIO: 'radio',
   CHECKBOX: 'checkbox',
   TOGGLE: 'toggle',

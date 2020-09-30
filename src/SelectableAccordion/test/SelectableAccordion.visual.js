@@ -1,22 +1,20 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import SelectableAccordion from '../SelectableAccordion';
+import { TYPES } from '../constants';
 
-const commonProps = {
-  // use for repeated props across the tests (e.g. {buttonText: 'example'})
-};
+const types = Object.values(TYPES);
+
+const items = [
+  { title: 'Title1', content: 'Content1' },
+  { title: 'Title2', content: 'Content2' },
+  { title: 'Title3', content: 'Content3' },
+];
 
 const tests = [
   {
-    describe: 'sanity', // prop name (e.g. size)
-    its: [
-      {
-        it: 'default', // prop variation (e.g. small)
-        props: {
-          // the simulation (e.g. {size: "small"})
-        },
-      },
-    ],
+    describe: 'type',
+    its: types.map(type => ({ it: type, props: { type } })),
   },
 ];
 
@@ -25,6 +23,6 @@ tests.forEach(({ describe, its }) => {
     storiesOf(
       `${SelectableAccordion.displayName}${describe ? '/' + describe : ''}`,
       module,
-    ).add(it, () => <SelectableAccordion {...commonProps} {...props} />);
+    ).add(it, () => <SelectableAccordion items={items} {...props} />);
   });
 });

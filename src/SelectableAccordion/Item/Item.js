@@ -8,7 +8,7 @@ import Heading from '../../Heading';
 import Text from '../../Text';
 import Collapse from '../../Collapse';
 import Divider from '../../Divider';
-import { dataHooks, TYPE } from '../constants';
+import { dataHooks, TYPES } from '../constants';
 import { isString } from '../../utils/StringUtils';
 
 import { st, classes } from './Item.st.css';
@@ -65,15 +65,15 @@ export default class SelectableAccordionItem extends React.PureComponent {
     let selector = null;
 
     switch (type) {
-      case TYPE.CHECKBOX:
+      case TYPES.CHECKBOX:
         selector = <Checkbox checked={open} onChange={this._onChange} />;
         break;
-      case TYPE.RADIO:
+      case TYPES.RADIO:
         selector = (
           <RadioGroup.Radio checked={open} onChange={this._onChange} />
         );
         break;
-      case TYPE.TOGGLE:
+      case TYPES.TOGGLE:
         selector = (
           <ToggleSwitch checked={open} onChange={this._onChange} size="small" />
         );
