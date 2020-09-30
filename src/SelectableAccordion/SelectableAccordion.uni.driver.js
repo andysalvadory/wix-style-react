@@ -10,11 +10,21 @@ export const selectableAccordionDriverFactory = (base, body) => {
   return {
     ...baseUniDriverFactory(base, body),
 
+    /**
+     * Clicks the item by item index
+     * @param {number} idx Item index
+     * @returns {Promise<void>} Title at item index
+     */
     clickItemAt: async idx => {
       const item = await getItemAt(base, idx);
       return findByHook(item, dataHooks.itemHeader).click();
     },
 
+    /**
+     * Checks whether the item is expanded by item index
+     * @param {number} idx Item index
+     * @returns {Promise<boolean>} Title at item index
+     */
     isItemExpandedAt: async idx => {
       const item = await getItemAt(base, idx);
       const itemState = await getDataAttributeValue(item, dataAttr.STATE);
