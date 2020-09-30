@@ -8,7 +8,8 @@ import Heading from '../../Heading';
 import Text from '../../Text';
 import Collapse from '../../Collapse';
 import Divider from '../../Divider';
-import { dataHooks } from '../constants';
+import { dataHooks, TYPE } from '../constants';
+import { isString } from '../../utils/StringUtils';
 
 import { st, classes } from './Item.st.css';
 
@@ -71,16 +72,25 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   _renderSelector() {
     const { type, open } = this.props;
+    let selector = null;
 
-    if (type === 'checkbox') {
-      return <Checkbox checked={open} onChange={this._onChange} />;
-    } else if (type === 'toggle') {
-      return (
-        <ToggleSwitch checked={open} onChange={this._onChange} size="small" />
-      );
-    } else if (type === 'radio') {
-      return <RadioGroup.Radio checked={open} onChange={this._onChange} />;
+    switch (type) {
+      case TYPE.CHECKBOX:
+        selector = <Checkbox checked={open} onChange={this._onChange} />;
+        break;
+      case TYPE.RADIO:
+        selector = (
+          <RadioGroup.Radio checked={open} onChange={this._onChange} />
+        );
+        break;
+      case TYPE.TOGGLE:
+        selector = (
+          <ToggleSwitch checked={open} onChange={this._onChange} size="small" />
+        );
+        break;
     }
+
+    return selector;
   }
 
   _renderContent() {
@@ -141,7 +151,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   render() {
     const { hovered } = this.state;
-    const { open } = this.props;
+    const { open, content, title, subtitle } = this.props;
 
     return (
       <div
