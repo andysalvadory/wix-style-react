@@ -131,6 +131,12 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
     background-color: rgba($D10, 0.42);
   }
 
+  .imageBackgroundLargerContainer {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.01);
+  }
+
   .imageBackground {
     background-repeat: no-repeat;
     background-size: cover;

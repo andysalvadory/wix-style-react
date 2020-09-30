@@ -395,10 +395,15 @@ class Page extends React.PureComponent {
           style={{ height: backgroundHeight }}
           data-hook="page-background-image"
         >
-          <div
-            className={s.imageBackground}
-            style={{ backgroundImage: `url(${this.props.backgroundImageUrl})` }}
-          />
+          {/* This is used to keep image edges sharp when there is scroll on the page */}
+          <div className={s.imageBackgroundLargerContainer}>
+            <div
+              className={s.imageBackground}
+              style={{
+                backgroundImage: `url(${this.props.backgroundImageUrl})`,
+              }}
+            />
+          </div>
         </div>
       );
     }
