@@ -1,6 +1,8 @@
+const prefix = 'selectable-accordion';
+
 export const dataHooks = {
-  item: 'selectable-accordion--item',
-  itemHeader: 'selectable-accordion--item--header',
+  item: `${prefix}-item`,
+  itemHeader: `${prefix}-item-header`,
 };
 
 export const TYPE = {

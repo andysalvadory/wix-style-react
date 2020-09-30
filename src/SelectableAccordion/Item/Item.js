@@ -8,6 +8,7 @@ import Heading from '../../Heading';
 import Text from '../../Text';
 import Collapse from '../../Collapse';
 import Divider from '../../Divider';
+import { dataHooks } from '../constants';
 
 import { st, classes } from './Item.st.css';
 
@@ -91,7 +92,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
     if (typeof content === 'string') {
       return (
-        <Text className={st(classes.text)} size="small" weight="thin">
+        <Text className={classes.text} size="small" weight="thin">
           {content}
         </Text>
       );
@@ -144,7 +145,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
     return (
       <div
-        data-hook="selectable-accordion--item"
+        data-hook={dataHooks.item}
         data-state={open ? 'open' : 'collapsed'}
         className={st(classes.item, { hovered })}
       >
@@ -152,25 +153,25 @@ export default class SelectableAccordionItem extends React.PureComponent {
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onClick={this._onChange}
-          className={st(classes.selector)}
+          className={classes.selector}
         >
           {this._renderSelector()}
         </div>
         <div
-          data-hook="selectable-accordion--item--header"
+          data-hook={dataHooks.itemHeader}
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onClick={this._onChange}
-          className={st(classes.header)}
+          className={classes.header}
         >
           {this._renderTitle()}
           {this._renderSubtitle()}
         </div>
-        <div className={st(classes.content)}>
+        <div className={classes.content}>
           <Collapse open={open}>
-            <div className={st(classes.inner)}>{this._renderContent()}</div>
+            <div className={classes.inner}>{this._renderContent()}</div>
           </Collapse>
-          <Divider className={st(classes.divider)} />
+          <Divider className={classes.divider} />
         </div>
       </div>
     );
