@@ -5,7 +5,6 @@
 
 .item {
   -st-states: hovered;
-
   display: grid;
   grid-template-columns: auto 1fr;
 }
@@ -19,8 +18,7 @@
   display: none;
 }
 
-.selector,
-.header {
+.selector, .header {
   transition: background-color 0.3s;
 }
 
@@ -38,7 +36,6 @@
 .header {
   overflow: hidden;
   cursor: pointer;
-
   padding: 24px 30px 24px 0;
 }
 

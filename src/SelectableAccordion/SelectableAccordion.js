@@ -59,9 +59,7 @@ class SelectableAccordion extends React.PureComponent {
     const { items } = this.props;
     const openIndices = {};
 
-    for (let i = 0; i < items.length; i++) {
-      openIndices[i] = Boolean(items[i].initiallyOpen);
-    }
+    items.forEach((item, i) => (openIndices[i] = Boolean(item.initiallyOpen)));
 
     return openIndices;
   }
@@ -76,9 +74,7 @@ class SelectableAccordion extends React.PureComponent {
     let openIndices = {};
 
     if (type === 'radio') {
-      for (let i = 0; i < items.length; i++) {
-        openIndices[i] = i === idx;
-      }
+      items.forEach((item, i) => (openIndices[i] = i === idx));
     } else {
       openIndices = {
         ...this.state.openIndices,

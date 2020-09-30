@@ -8,7 +8,6 @@ import {
   title,
   divider,
   example as baseExample,
-  code as baseCode,
   playground,
   api,
   testkit,
@@ -18,12 +17,9 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import SelectableAccordion from '..';
-import SelectableAccordionRadioExample from '!raw-loader!./RadioExample';
-import SelectableAccordionToggleExample from '!raw-loader!./ToggleExample';
-import SelectableAccordionCheckboxExample from '!raw-loader!./CheckboxExample';
+import * as examples from './examples';
 
 const example = config => baseExample({ components: allComponents, ...config });
-const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -56,18 +52,10 @@ export default {
           title('Examples'),
 
           example({
-            title: 'Radio type',
-            source: SelectableAccordionRadioExample,
-          }),
-
-          example({
-            title: 'Toggle type',
-            source: SelectableAccordionToggleExample,
-          }),
-
-          example({
-            title: 'Checkbox type',
-            source: SelectableAccordionCheckboxExample,
+            title: 'Types',
+            text:
+              '`<SelectableAccordion/>` has 3 different types: `toggle` (default), `radio` and `checkbox`',
+            source: examples.typesExample,
           }),
         ],
       }),
