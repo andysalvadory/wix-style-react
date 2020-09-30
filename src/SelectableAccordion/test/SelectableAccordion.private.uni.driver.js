@@ -1,19 +1,18 @@
 import { selectableAccordionDriverFactory as publicDriverFactory } from '../SelectableAccordion.uni.driver';
 import { dataHooks } from '../constants';
-
-const getItemAt = (idx, base) =>
-  base.$$(`[data-hook="${dataHooks.item}"]`).get(idx);
+import { getItemAt } from '../utils';
+import { findByHook, countByHook } from '../../../test/utils/unidriver';
 
 export const selectableAccordionPrivateDriverFactory = (base, body) => {
   return {
     ...publicDriverFactory(base, body),
 
-    getItemsCount: async () =>
-      base.$$(`[data-hook="${dataHooks.item}"]`).count(),
+    getItemsCount: () => countByHook(base, dataHooks.item),
 
-    hoverOnItem: async idx =>
-      await getItemAt(idx, base)
-        .$(`[data-hook="${dataHooks.itemHeader}"]`)
-        .hover(),
+    hoverOnItem: async idx => {
+      const item = await getItemAt(base, idx);
+
+      return findByHook(item, dataHooks.itemHeader).hover();
+    },
   };
 };
