@@ -93,65 +93,44 @@ export default class SelectableAccordionItem extends React.PureComponent {
     return selector;
   }
 
+  _renderTitle() {
+    const { title } = this.props;
+    return isString(title) ? (
+      <Heading ellipsis appearance="H4">
+        {title}
+      </Heading>
+    ) : (
+      title
+    );
+  }
+
   _renderContent() {
     const { content } = this.props;
 
-    if (!content) {
-      return null;
-    }
-
-    if (typeof content === 'string') {
-      return (
-        <Text className={classes.text} size="small" weight="thin">
-          {content}
-        </Text>
-      );
-    }
-
-    return content;
-  }
-
-  _renderTitle() {
-    const { title } = this.props;
-
-    if (!title) {
-      return null;
-    }
-
-    if (typeof title === 'string') {
-      return (
-        <Heading ellipsis appearance="H4">
-          {title}
-        </Heading>
-      );
-    }
-
-    return title;
+    return isString(content) ? (
+      <Text className={classes.text} size="small" weight="thin">
+        {content}
+      </Text>
+    ) : (
+      content
+    );
   }
 
   _renderSubtitle() {
     const { subtitle } = this.props;
 
-    if (!subtitle) {
-      return null;
-    }
-
-    if (typeof subtitle === 'string') {
-      return (
-        <div>
-          <Text ellipsis size="small" weight="thin">
-            {subtitle}
-          </Text>
-        </div>
-      );
-    }
-
-    return subtitle;
+    return isString(subtitle) ? (
+      <Text ellipsis size="small" weight="thin">
+        {subtitle}
+      </Text>
+    ) : (
+      subtitle
+    );
   }
 
   render() {
     const { hovered } = this.state;
-    const { open, content, title, subtitle } = this.props;
+    const { open } = this.props;
 
     return (
       <div
