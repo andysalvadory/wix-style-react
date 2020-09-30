@@ -97,8 +97,7 @@ class Ellipsis extends React.PureComponent {
       newState.isActive = shouldBeActive;
     }
 
-    const stateChanged = Object.keys(newState).length > 0;
-    if (stateChanged) {
+    if (Object.keys(newState).length > 0) {
       this.setState(newState);
     }
   };
