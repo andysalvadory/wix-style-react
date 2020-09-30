@@ -38,13 +38,9 @@ class SelectableAccordion extends React.PureComponent {
 
   static displayName = 'SelectableAccordion';
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      openIndices: this._populateInitiallyOpenIndices(),
-    };
-  }
+  state = {
+    openIndices: this._populateInitiallyOpenIndices(),
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {

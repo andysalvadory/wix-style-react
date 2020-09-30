@@ -33,7 +33,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
     /** An index of the item in the items list */
     idx: PropTypes.number,
 
-    /** A callback which is ivoked every time the selection of the item is changed */
+    /** A callback which is invoked every time the selection of the item is changed */
     onChange: PropTypes.func,
   };
 
