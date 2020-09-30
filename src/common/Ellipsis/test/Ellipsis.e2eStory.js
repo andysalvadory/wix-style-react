@@ -55,7 +55,7 @@ storiesOf(Category.INTERNAL + '/Ellipsis', module).add(
     const [inputValue, setInputValue] = useState('Hello World');
     return (
       <Box margin="150px" width="50px" dataHook="wrapper-element">
-        <MyTextWithEllipsis className="my-class">
+        <MyTextWithEllipsis ellipsis className="my-class">
           {inputValue}
         </MyTextWithEllipsis>
         <Input
