@@ -126,7 +126,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
       <div
         data-hook={dataHooks.item}
         data-state={open ? 'open' : 'collapsed'}
-        className={st(classes.item, { hovered })}
+        className={st(classes.item, { hovered: !open && hovered })}
       >
         <div
           onMouseEnter={this._onMouseEnter}
