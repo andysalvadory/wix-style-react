@@ -50,7 +50,7 @@ export default {
           description({
             title: 'Description',
             text:
-              'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              'An input to be used when implementing address input with provider. Uses `<InputWithOptions />`.',
           }),
 
           importExample(),
@@ -61,7 +61,7 @@ export default {
 
           example({
             title: 'Simple Usage',
-            text: 'A simple example with compact preview',
+            text: 'A simple example.',
             source: `<AddressInput options={[
               { id: 0, value: 'First option' },
               { id: 1, value: 'Second option' },
