@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DropdownLayoutOption } from '../DropdownLayout';
 
 export interface AddressInputProps {
   dataHook?: string;
@@ -8,7 +9,7 @@ export interface AddressInputProps {
   onSelect?: (value) => void,
   debounceDuration?: number,
   onChange?: (value) => void,
-  options?: any[],
+  options?: DropdownLayoutOption[],
   onClear?: () => void,
   status?: 'loading' | 'error' | 'warning',
   roundInput?: boolean,
