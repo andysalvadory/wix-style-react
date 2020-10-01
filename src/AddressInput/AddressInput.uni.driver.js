@@ -16,6 +16,11 @@ export const addressInputDriverFactory = (base, body) => {
     clearText: () => inputDriver.clearText(),
     isDisabled: () => driver.isDisabled(),
     clickAtOption: position => dropdownLayoutDriver.clickAtOption(position),
+   /**
+    * Clicks an option with a given value
+    * @param {string} value The option value
+    * @returns {Promise<void>}
+    */
     clickAtOptionWithValue: value =>
       dropdownLayoutDriver.clickAtOptionWithValue(value),
   };
