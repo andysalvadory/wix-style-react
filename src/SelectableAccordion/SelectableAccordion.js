@@ -37,7 +37,7 @@ class SelectableAccordion extends React.PureComponent {
   };
 
   static defaultProps = {
-    type: 'toggle',
+    type: 'radio',
     items: [],
   };
 

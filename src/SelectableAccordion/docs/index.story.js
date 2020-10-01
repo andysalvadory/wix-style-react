@@ -111,10 +111,7 @@ export default {
           example({
             title: 'Type',
             text:
-              '`<SelectableAccordion/>` supports three types of controllers— `radio`, `checkbox` and `toggle` (default). ' +
-              '- Use a radio when a user has to select one option. ' +
-              '- Use a checkbox when a user has to include options from the list. ' +
-              '- Use a toggle when a user has to enable features.',
+              '`<SelectableAccordion/>` supports three types of controllers— `radio` (default), `checkbox` and `toggle`. Use a radio when a user has to select one option. Use a checkbox when a user has to include options from the list. Use a toggle when a user has to enable features.',
             source: examples.typesExample,
           }),
 
