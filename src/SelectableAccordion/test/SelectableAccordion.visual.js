@@ -13,6 +13,10 @@ const items = [
 
 const tests = [
   {
+    describe: 'Sanity',
+    its: [{ it: 'sanity', props: {} }],
+  },
+  {
     describe: 'type',
     its: types.map(type => ({ it: type, props: { type } })),
   },

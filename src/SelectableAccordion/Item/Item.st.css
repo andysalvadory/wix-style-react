@@ -34,6 +34,8 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   cursor: pointer;
   padding: 24px 30px 24px 0;
