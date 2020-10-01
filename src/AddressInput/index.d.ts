@@ -8,7 +8,7 @@ export interface AddressInputProps {
   onSelect?: (value) => void,
   debounceDuration?: number,
   onChange?: (value) => void,
-  options?: [],
+  options?: any[],
   onClear?: () => void,
   status?: 'loading' | 'error' | 'warning',
   roundInput?: boolean,

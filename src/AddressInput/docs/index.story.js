@@ -49,8 +49,7 @@ export default {
         sections: [
           description({
             title: 'Description',
-            text:
-              'An input to be used when implementing address input with provider. Uses `<InputWithOptions />`.',
+            text: 'An address search component, requires an address provider.',
           }),
 
           importExample(),
