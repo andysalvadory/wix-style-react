@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ThemeProvider from '..';
 import { theme } from '../../Themes/floatingPanels';
+import Close from 'wix-ui-icons-common/system/Close';
 
 function themeProviderWithMandatoryProps() {
   return <ThemeProvider />;
@@ -11,6 +12,17 @@ function themeProviderWithAllProps() {
     <ThemeProvider
       dataHook="dataHook"
       theme={{
+        className: 'some-class',
+        icons:{
+          CloseButton: {
+            small: Close,
+            medium: Close,
+            large: Close,
+          },
+          BaseModalLayout: {
+            HeloButton: Close,
+          }
+        },
         color00: '#FF0000',
         color05: '#FF0000',
         color10: '#FF0000',

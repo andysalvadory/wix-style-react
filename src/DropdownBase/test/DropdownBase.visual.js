@@ -1,22 +1,10 @@
 import React, { useEffect } from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 import { storiesOf } from '@storybook/react';
-import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-import { dropdownBaseDriverFactory } from '../DropdownBase.uni.driver';
 import DropdownBase from '..';
-import TextButton from '../../TextButton';
 
 const dataHook = 'interactive';
 const triggerElementDatahook = 'interactive-button';
-
-const dropdownBaseTestkitDriver = uniTestkitFactoryCreator(
-  dropdownBaseDriverFactory,
-);
-
-const getDriver = () =>
-  dropdownBaseTestkitDriver({
-    wrapper: document.body,
-    dataHook,
-  });
 
 const DropdownBaseWrapper = ({ componentDidMount, ...rest }) => {
   useEffect(() => {
@@ -37,13 +25,9 @@ const defaultProps = {
   ],
   children: ({ toggle, selectedOption = {} }) => {
     return (
-      <TextButton
-        skin="dark"
-        dataHook={triggerElementDatahook}
-        onClick={toggle}
-      >
+      <button data-hook={triggerElementDatahook} onClick={toggle}>
         {selectedOption.value || 'Please choose'}
-      </TextButton>
+      </button>
     );
   },
 };
@@ -57,8 +41,10 @@ const tests = [
         props: {
           ...defaultProps,
         },
-        componentDidMount: async () => {
-          await getDriver().clickTargetElement(triggerElementDatahook);
+        componentDidMount: () => {
+          ReactTestUtils.Simulate.click(
+            document.querySelector(`[data-hook=${triggerElementDatahook}]`),
+          );
         },
       },
     ],

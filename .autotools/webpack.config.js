@@ -1,16 +1,10 @@
-const wixStorybookConfig = require('yoshi/config/webpack.config.storybook');
+const merge = require('lodash/merge');
 const path = require('path');
-const packagePath = path.resolve(__dirname, '..');
+const commonWebpackConfig = require('../scripts/webpack-config/common-webpack.config');
 
 const config = {
-  context: packagePath,
+  context: path.resolve(__dirname, '..'),
   mode: 'development',
-  module: {},
-  resolve: {
-    extensions: []
-  }
 };
 
-const yoshiConfig = wixStorybookConfig(config);
-
-module.exports = yoshiConfig;
+module.exports = merge(commonWebpackConfig, config);

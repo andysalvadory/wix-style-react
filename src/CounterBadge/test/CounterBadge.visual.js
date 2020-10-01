@@ -1,41 +1,38 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import CounterBadge from '../CounterBadge';
-import { Cell, Layout } from '../../Layout';
 import HeartFilled from 'wix-ui-icons-common/HeartFilled';
+import { storyOfAllPermutations } from '../../../test/utils/visual/utils';
+import Box from '../../Box';
 
-const componentProps = {
-  children: [undefined, 0, 33, 1000, 'Hello World', <HeartFilled />],
-  skin: [
-    'general',
-    'standard',
-    'neutralStandard',
-    'danger',
-    'warning',
-    'urgent',
-    'success',
+const options = {
+  props: [
+    {
+      name: 'children',
+      values: [undefined, 0, 33, 1000, 'Hello World', <HeartFilled />],
+    },
+    'size',
   ],
+  skipUndefinedValue: true,
 };
 
-let permutations = [];
-Object.keys(componentProps).forEach(key => {
-  if (permutations.length === 0) {
-    componentProps[key].forEach(value => permutations.push({ [key]: value }));
-  } else {
-    const arr = [];
-    componentProps[key].forEach(value =>
-      permutations.forEach(group => arr.push({ ...group, [key]: value })),
-    );
-    permutations = arr;
-  }
-});
+const skins = [
+  'general',
+  'standard',
+  'neutralStandard',
+  'danger',
+  'warning',
+  'urgent',
+  'success',
+];
 
-storiesOf('CounterBadge', module).add('default', () => (
-  <Layout cols={6}>
-    {permutations.map((props, key) => (
-      <Cell key={key} span={1}>
-        <CounterBadge {...props} />
-      </Cell>
+const Story = props => (
+  <Box margin={1}>
+    {skins.map(skin => (
+      <Box margin={1} maxWidth={100} key={skin}>
+        <CounterBadge {...props} skin={skin} />
+      </Box>
     ))}
-  </Layout>
-));
+  </Box>
+);
+
+storyOfAllPermutations(Story, CounterBadge, options);

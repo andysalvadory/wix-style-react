@@ -165,6 +165,10 @@ class Page extends React.PureComponent {
   }
 
   _getMinimizedHeaderWrapperHeight() {
+    if (!this._hasHeader()) {
+      return 0;
+    }
+
     return this._hasTail()
       ? MINIMIZED_HEADER_WRAPPER_WITH_TAIL_HEIGHT_PX
       : MINIMIZED_HEADER_WRAPPER_HEIGHT_PX;
@@ -360,6 +364,10 @@ class Page extends React.PureComponent {
 
   _hasTail() {
     return !!this._getNamedChildren().PageTail;
+  }
+
+  _hasHeader() {
+    return !!this._getNamedChildren().PageHeader;
   }
 
   _renderMinimizationPlaceholder() {

@@ -680,16 +680,7 @@ const FunnelChartExample = () => {
   return (
     <SingleComponentStacked {...singleComponentProps}>
       <Preview stretch wrapWithCardContent>
-        <FunnelChart
-          data={funnelChartData}
-          differenceBadgeTooltipContent={({
-            currentItem,
-            nextItem,
-            difference,
-          }) =>
-            `${difference} from  ${currentItem.label} continued to ${nextItem.label}`
-          }
-        />
+        <FunnelChart data={funnelChartData} />
       </Preview>
     </SingleComponentStacked>
   );

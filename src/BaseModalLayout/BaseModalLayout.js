@@ -5,6 +5,7 @@ import { st, classes } from './BaseModalLayout.st.css';
 import { dataHooks } from './constants';
 import CloseButton from '../CloseButton';
 import Help from 'wix-ui-icons-common/system/Help24';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 import { BaseModalLayoutContext } from './BaseModalLayoutContext';
 import {
   Header,
@@ -59,28 +60,42 @@ class BaseModalLayout extends React.PureComponent {
           {children}
         </BaseModalLayoutContext.Provider>
         {controlButtonAmount > 0 && (
-          <Box direction="horizontal" className={classes.controlButtons}>
-            {onHelpButtonClick && (
-              <CloseButton
-                dataHook={dataHooks.helpButton}
-                className={classes.controlButton}
-                onClick={onHelpButtonClick}
-                size="large"
-                skin="dark"
-              >
-                <Help className={classes.helpIcon} />
-              </CloseButton>
+          <ThemeProviderConsumerBackwardCompatible
+            defaultIcons={{
+              BaseModalLayout: {
+                HelpIcon: Help,
+              },
+            }}
+          >
+            {({
+              icons: {
+                BaseModalLayout: { HelpIcon },
+              },
+            }) => (
+              <Box direction="horizontal" className={classes.controlButtons}>
+                {onHelpButtonClick && (
+                  <CloseButton
+                    dataHook={dataHooks.helpButton}
+                    className={classes.helpButton}
+                    onClick={onHelpButtonClick}
+                    size="large"
+                    skin="dark"
+                  >
+                    <HelpIcon className={classes.helpIcon} />
+                  </CloseButton>
+                )}
+                {onCloseButtonClick && (
+                  <CloseButton
+                    dataHook={dataHooks.closeButton}
+                    className={classes.closeButton}
+                    onClick={onCloseButtonClick}
+                    size="large"
+                    skin="dark"
+                  />
+                )}
+              </Box>
             )}
-            {onCloseButtonClick && (
-              <CloseButton
-                dataHook={dataHooks.closeButton}
-                className={classes.controlButton}
-                onClick={onCloseButtonClick}
-                size="large"
-                skin="dark"
-              />
-            )}
-          </Box>
+          </ThemeProviderConsumerBackwardCompatible>
         )}
       </div>
     );

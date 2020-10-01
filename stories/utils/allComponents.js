@@ -1,6 +1,7 @@
 import * as Icons from 'wix-ui-icons-common';
 import * as SystemIcons from 'wix-ui-icons-common/system';
 import * as wsr from '../../src/index';
+import * as editorX from '../../src/Themes/editorX';
 import * as floatingPanels from '../../src/Themes/floatingPanels';
 
 /*
@@ -18,4 +19,9 @@ export default defaultComponents;
 export const floatingPanelsComponents = {
   ...defaultComponents,
   ...floatingPanels,
+};
+
+export const editorXComponents = {
+  ...defaultComponents,
+  ...editorX,
 };

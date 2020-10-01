@@ -298,4 +298,27 @@ class PageWithScroll extends React.Component {
       />
     );
   });
+
+  Stories.add(`${prefix(10)}Multiple Stickies Without a Header`, () => {
+    return (
+      <PageContainer>
+        <Page {...defaultPageProps}>
+          <Page.Content>
+            {[1, 2, 3, 4, 5, 6].map(i => {
+              return (
+                <div>
+                  <Page.Sticky style={{ height: '50px', background: 'grey' }}>
+                    Sticky {i}
+                  </Page.Sticky>
+                  <div style={{ height: '200px', background: 'white' }}>
+                    Gap {i}
+                  </div>
+                </div>
+              );
+            })}
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  });
 });

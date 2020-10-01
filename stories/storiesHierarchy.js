@@ -26,4 +26,5 @@ export const Category = {
   WIP: 'Components API|Work in Progress',
   INTERNAL: 'Components API|Internal',
   DEPRECATED: 'Deprecated',
+  EDITOR_X_THEME: 'Themes|EditorX',
 };

@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
+import { ThemeContext } from './ThemeContext';
 
 /** ThemeProvider */
 class ThemeProvider extends React.PureComponent {
   _parseTheme(theme) {
     const style = {};
     for (const [key, value] of Object.entries(theme)) {
-      style[`--wsr-${kebabCase(key)}`] = value;
+      if (key !== 'className' && key !== 'icons') {
+        style[`--wsr-${kebabCase(key)}`] = value;
+      }
     }
 
     return style;
@@ -15,10 +18,15 @@ class ThemeProvider extends React.PureComponent {
 
   render() {
     const { dataHook, theme = {}, children } = this.props;
-
     return (
-      <div style={this._parseTheme(theme)} data-hook={dataHook}>
-        {children}
+      <div
+        className={theme.className}
+        style={this._parseTheme(theme)}
+        data-hook={dataHook}
+      >
+        <ThemeContext.Provider value={{ icons: theme.icons }}>
+          {children}
+        </ThemeContext.Provider>
       </div>
     );
   }
@@ -32,6 +40,8 @@ ThemeProvider.propTypes = {
 
   /** A theme object */
   theme: PropTypes.shape({
+    className: PropTypes.string, // Applies a main class on the root element, useful when theming with the stylable approach
+    icons: PropTypes.object, // an object of icons mapping per component
     color00: PropTypes.string,
     color05: PropTypes.string,
     color10: PropTypes.string,

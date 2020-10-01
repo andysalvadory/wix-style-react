@@ -13,13 +13,15 @@ import {
   title,
   description,
   code as baseCode,
+  example as baseExample,
 } from 'wix-storybook-utils/dist/src/Sections';
-import React from 'react';
 import * as examples from './examples';
 import allComponents from '../../../stories/utils/allComponents';
 import { columns } from 'wix-storybook-utils/Sections';
 import { commonPopoverPropsExample } from '../../../stories/utils/playgroundUtils';
 import { convertTokens } from '@date-fns/upgrade/v2';
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 const defaultValue = new Date('2017/05/01');
 const today = new Date();
@@ -115,36 +117,28 @@ export default {
 
           title('Examples'),
 
-          code({
+          example({
             title: 'Simple generic use',
             source: examples.simple,
           }),
 
-          code({
+          example({
             title: 'DatePicker customizations',
             source: examples.customizations,
           }),
 
-          description({
+          example({
             title: 'Using filterDate',
             text:
               'The function filterDate gets a date and returns true if this date valid to select, in this example only prior dates to today can be selected.',
-          }),
-
-          code({
             source: examples.filterDate,
           }),
 
-          columns([
-            description({
-              title: 'With Status',
-              text: `Setting a status to indicate some there's an issue.`,
-            }),
-            code({
-              compact: true,
-              source: examples.status,
-            }),
-          ]),
+          example({
+            title: 'With Status',
+            text: `Setting a status to indicate some there's an issue.`,
+            source: examples.status,
+          }),
 
           // TODO - disabled until https://github.com/wix/wix-style-react/issues/4157 is fixed
           // code({

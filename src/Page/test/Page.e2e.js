@@ -249,5 +249,26 @@ describe('Page', () => {
         },
       );
     });
+
+    describe('10. Multiple Stickies Without A Header', () => {
+      eyes.it('should scroll and trigger mini-header', async () => {
+        const GAP_HEIGHT_PX = 200;
+        const STICKY_HEIGHT = 50;
+
+        await initTest({
+          storyUrl: testScrollStoryUrl('7. Multiple Stickies'),
+          dataHook,
+        });
+        await privateDriver.scrollVertically(Constants.scrollTrigger + 1);
+        await browser.sleep(ANIMATION_DURATION_MS + 100); // eslint-disable-line no-restricted-properties
+        await eyes.checkWindow('trigger mini-header');
+
+        await privateDriver.scrollVertically(GAP_HEIGHT_PX / 2);
+        await eyes.checkWindow('first gap scrolled half way');
+
+        await privateDriver.scrollVertically(GAP_HEIGHT_PX / 2 + STICKY_HEIGHT);
+        await eyes.checkWindow('second sticky at top');
+      });
+    });
   });
 });

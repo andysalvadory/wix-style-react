@@ -1,15 +1,14 @@
-# What should i do when i get in trouble?
+# What should I do when I get in trouble?
 
-When i find my self in times of trouble, this small readme comes to me.
+In this doc we will share how we troubleshoot issues that we experience when we struggle with a component or a testkit usage:
 
-In this doc we will share with you how we are finding our way around, when struggling with a component, step by step:
-
-1. Check whether there is an example that fits your scenario in the [storybook](https://wix-wix-style-react.surge.sh/).
-2. Check the [Cheetsheet](https://wix-wix-style-react.surge.sh/?selectedKind=Introduction&selectedStory=Components%20Cheatsheet&full=0&addons=0&stories=1&panelRight=0) - sometimes the answer can come from there. 
-3. Use the [Playground](https://wix-wix-style-react.surge.sh/?selectedKind=Introduction&selectedStory=Playground&full=0&addons=0&stories=1&panelRight=0) to easily test the component abilities.
-4. For each component in the library we have many tests, you can learn from them on how to use/test the component. Checkout the [sourcecode](https://github.com/wix/wix-style-react)
-5. Create a new [Yoshi](https://github.com/wix/yoshi) project to serve as a clean environment to test the component - isolate all the noise you got from your own project.
-6. Strip down abilities until you get to the bottom of it. Saying we have for example the `<Table/>` component which does not work as we expect it to. All the above steps did not help us. The thing we would do is one of the 2:
+1. Check whether there is an example that fits your scenario in the [storybook](https://www.wix-style-react.com).
+2. Check our [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) which includes a view of most of the library components inventory and links to the relevant documentation pages.
+3. Use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities.
+4. You may find an answer to your question in our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article.
+5. Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used / tested. Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
+`src/ComponentName/test/...`.
+6. Strip down abilities until you get to the bottom of it. Saying we have for example the `<Table/>` component which does not work as we expect it to. All the above steps did not help us. The thing we would do is one of the two:
     - Take the most basic and clean table example and on top of it add your own feature in small parts.
     - Take your current code which does not work and strip it's features slowly, one by one, until you reach to the point where things are working, then slowly add them back again so you will be able to find the root cause of the problem.
 7. Still stuck? Let's debug.

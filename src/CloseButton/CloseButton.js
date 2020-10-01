@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 import { generateDataAttr } from '../utils/generateDataAttr';
 import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
 import Close from 'wix-ui-icons-common/system/Close';
@@ -49,15 +50,15 @@ class CloseButton extends PureComponent {
     disabled: false,
   };
 
-  _renderCloseIcon(size) {
+  _renderCloseIcon(Icon, size) {
     let CloseIcon;
     if (size === SIZES.small) {
       // fallback to Close icon if children not provided (current behavior)
-      CloseIcon = <Close data-hook="close" />;
+      CloseIcon = <Icon data-hook="close" />;
     } else if (size === SIZES.medium) {
-      CloseIcon = <CloseLarge data-hook="close-medium" />;
+      CloseIcon = <Icon data-hook="close-medium" />;
     } else {
-      CloseIcon = <CloseLarge data-hook="close-large" size="12" />;
+      CloseIcon = <Icon data-hook="close-large" size="12" />;
     }
     return CloseIcon;
   }
@@ -72,13 +73,27 @@ class CloseButton extends PureComponent {
         {...generateDataAttr(this.props, ['skin', 'size'])}
         data-hook={dataHook}
       >
-        {children
-          ? React.cloneElement(children, {
-              size: childSize,
-              width: childSize,
-              height: childSize,
-            })
-          : this._renderCloseIcon(size)}
+        {children ? (
+          React.cloneElement(children, {
+            size: childSize,
+            width: childSize,
+            height: childSize,
+          })
+        ) : (
+          <ThemeProviderConsumerBackwardCompatible
+            defaultIcons={{
+              CloseButton: {
+                small: Close,
+                medium: CloseLarge,
+                large: CloseLarge,
+              },
+            }}
+          >
+            {({ icons }) =>
+              this._renderCloseIcon(icons.CloseButton[size], size)
+            }
+          </ThemeProviderConsumerBackwardCompatible>
+        )}
       </ButtonNext>
     );
   }

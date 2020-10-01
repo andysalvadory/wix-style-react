@@ -30,6 +30,7 @@ export default {
   componentPath: '..',
 
   componentProps: {
+    size: 'small',
     children: 1,
     skin: 'general',
   },
@@ -66,7 +67,7 @@ export default {
           example({
             title: 'Number counter',
             text:
-              'The most common use of CounterBadge is with a number value truncated to 99.',
+              'The most common use of CounterBadge is with a number value truncated to 99. CounterBadge comes in two sizes `small` (default) and `medium`.',
             source: examples.numbers,
           }),
 

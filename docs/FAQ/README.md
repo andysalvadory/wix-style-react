@@ -9,6 +9,8 @@ Please create a pull request with the solution if it worth sharing.
 
 - [Usage issues](#%f0%9f%91%a8%e2%80%8d%f0%9f%8f%ab-usage-issues)
   - [How should I import a component properly?](#how-should-i-import-a-component-properly)
+  - [I'm not sure which component to use to implement the desired spec](#i'm-not-sure-which-component-to-use-to-implement-the-desired-spec)
+  - [The component I'm using does not look or behave as expected](#the-component-i'm-using-does-not-look-or-behave-as-expected)
   - [Making Server-Side-Rendering (SSR) work](#making-server-side-rendering-ssr-work)
   - [Components do not have styling in the first render of Server-Side-Rendering (SSR)](#components-do-not-have-styling-in-the-first-render-of-server-side-rendering-ssr)
   - [My PR was merged, why can't I see it in my project?](#my-pr-was-merged-why-cant-i-see-it-in-my-project)
@@ -36,6 +38,20 @@ import { Button } from 'wix-style-react';
 ```
 
 `import`ing a component directly from `dist/src` is strongly prohibited.
+
+### I'm not sure which component to use to implement the desired spec
+We recommend checking out our [cheatsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) page which includes a view of most of the library components inventory.
+Furthermore, it includes links to the components and ux stories. If you cannot find it there and you're unable to find it by the regular search, please contact us at #wix-style-ux or #wix-style-react channels.
+
+### The component I'm using does not look or behave as expected
+Firstly, make sure that you use the component as described within the examples and API description. Should the issue persists,
+please try to recreate it within storybook. Once you are able to recreate it, please contact #wix-style-react channel and provide us with the following information:
+- A storybook link to the code snippet:
+![](../assets/storybook_snippet_url.png)
+- A link to a Zeplin spec of what you are trying to implement.
+- A link to the repository of the project.
+- Information about the difference between the current and expected behaviour or look.
+
 
 ### Making Server-Side-Rendering (SSR) work
 

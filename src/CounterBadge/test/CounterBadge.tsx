@@ -10,7 +10,7 @@ function CounterBadgeWithMandatoryProps() {
 
 function CounterBadgeWithAllProps() {
   return (
-    <CounterBadge dataHook="hook" skin="danger">
+    <CounterBadge dataHook="hook" skin="danger" size="small">
       text
     </CounterBadge>
   );

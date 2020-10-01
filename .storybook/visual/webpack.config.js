@@ -1,17 +1,16 @@
 const merge = require('lodash/merge');
 const path = require('path');
-const wixStorybookConfig = require('yoshi/config/webpack.config.storybook');
+
+const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
+const commonWebpackConfig = require('../../scripts/webpack-config/common-webpack.config');
 
 module.exports = ({ config }) => {
-  config.module.rules[0].use[0].loader = require.resolve('babel-loader');
-  config.plugins.find(
-    plugin => plugin.constructor.name === 'ProgressPlugin',
-  ).handler = () => undefined;
+  config.module.rules = commonWebpackConfig.module.rules;
+  config.plugins.push(new StylableWebpackPlugin());
 
-  const newConfig = wixStorybookConfig(config);
   const srcPath = path.resolve(__dirname, '../..', 'src');
 
-  return merge(newConfig, {
+  return merge(config, {
     context: srcPath,
     resolve: {
       alias: {
