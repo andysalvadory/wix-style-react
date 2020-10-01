@@ -42,7 +42,7 @@ export default {
           description({
             title: 'Description',
             text:
-              'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              'Selectable Accordion is a list of collapsible content that shows up when the controller is clicked. It supports three types of controllers — radio, checkbox, toggle. Use it to list selectable features which have more controls when they are enabled.',
           }),
 
           importExample(),
@@ -52,10 +52,41 @@ export default {
           title('Examples'),
 
           example({
-            title: 'Types',
+            title: 'Structure',
             text:
-              '`<SelectableAccordion/>` has 3 different types: `toggle` (default), `radio` and `checkbox`',
+              '`<SelectableAccordion/>` consists of list items with the clickable header, and content area.',
+            source: examples.structure,
+          }),
+
+          example({
+            title: 'Type',
+            text:
+              '`<SelectableAccordion/>` supports three types of controllers— `radio`, `checkbox` and `toggle` (default). ' +
+              '- Use a radio when a user has to select one option. ' +
+              '- Use a checkbox when a user has to include options from the list. ' +
+              '- Use a toggle when a user has to enable features.',
             source: examples.typesExample,
+          }),
+
+          example({
+            title: 'Subtitle',
+            text:
+              '`<SelectableAccordion/>` item header can have a subtitle. Use it to explain the options.',
+            source: examples.subtitle,
+          }),
+
+          example({
+            title: 'Initially Active / Open',
+            text:
+              '`<SelectableAccordion/>` items can load open by setting `initiallyOpen` to `true`.',
+            source: examples.initiallyOpen,
+          }),
+
+          example({
+            title: 'Advanced Example',
+            text:
+              'This example shows how it can be applied to a real case scenario while using it with other components.',
+            source: examples.advancedExample,
           }),
         ],
       }),
