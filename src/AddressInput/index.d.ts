@@ -6,9 +6,9 @@ export interface AddressInputProps {
   className?: string
   clearButton?: boolean,
   initialValue?: string,
-  onSelect?: (value) => void,
+  onSelect?: (value: DropdownLayoutValueOption) => void,
   debounceDuration?: number,
-  onChange?: (value) => void,
+  onChange?: React.ChangeEventHandler<HTMLInputElement>,
   options?: DropdownLayoutOption[],
   onClear?: () => void,
   status?: 'loading' | 'error' | 'warning',
