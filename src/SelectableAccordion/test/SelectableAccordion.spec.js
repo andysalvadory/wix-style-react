@@ -69,6 +69,18 @@ describe(SelectableAccordion.displayName, () => {
     });
   });
 
+  it('should execute onSelectionChanged callback on item selection', async () => {
+    const props = {
+      onSelectionChanged: jest.fn(),
+      items,
+    };
+
+    const { driver } = render(<SelectableAccordion {...props} />);
+
+    await driver.clickItemAt(0);
+    expect(props.onSelectionChanged).toBeCalledTimes(1);
+  });
+
   describe('Type Radio', () => {
     const props = {
       type: TYPES.RADIO,
