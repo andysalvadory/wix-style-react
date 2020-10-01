@@ -33,6 +33,9 @@ describe(AddressInput.displayName, () => {
     };
     const { driver } = render(<AddressInput {...props} />);
 
+    expect(props.onChange.called).toEqual(false);
+    expect(await driver.getInputValue()).toEqual('');
+
     await driver.enterText(text);
 
     expect(props.onChange.called).toEqual(true);
