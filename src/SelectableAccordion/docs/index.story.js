@@ -15,11 +15,54 @@ import {
 
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
-
+import { TYPES } from '../constants';
 import SelectableAccordion from '..';
 import * as examples from './examples';
+import FormField from '../../FormField';
+import Dropdown from '../../Dropdown';
 
 const example = config => baseExample({ components: allComponents, ...config });
+
+const item = config => ({
+  title: 'Item',
+  subtitle: 'Subtitle',
+  content: 'Content',
+  ...config,
+});
+
+const exampleItems = [
+  {
+    label: 'Simple Example',
+    value: [item({ initiallyOpen: true }), item()],
+  },
+  {
+    label: 'Advanced Example',
+    value: [
+      item({
+        initiallyOpen: true,
+        title: 'Free Plan',
+        subtitle: 'Offer this plan free of charge',
+        content: (
+          <FormField label="Length of Plan" required>
+            <Dropdown
+              placeholder="Select"
+              options={[{ id: 0, value: '1 Month' }]}
+            />
+          </FormField>
+        ),
+      }),
+      item({
+        title: 'One-time Payment',
+        subtitle: 'Charge a single upfront fee',
+      }),
+
+      item({
+        title: 'Recurring Payments',
+        subtitle: 'Charge a weekly, monthly or yearly fee',
+      }),
+    ],
+  },
+];
 
 export default {
   category: storySettings.category,
@@ -28,7 +71,14 @@ export default {
   component: SelectableAccordion,
   componentPath: '..',
 
-  componentProps: {},
+  componentProps: {
+    items: exampleItems[0].value,
+  },
+
+  exampleProps: {
+    items: exampleItems,
+    type: Object.values(TYPES),
+  },
 
   sections: [
     header({
