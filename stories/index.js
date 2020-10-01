@@ -204,8 +204,5 @@ require('./PopoverMenu/index.story'); // 7.3 PopoverMenu
 require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
 require('../src/MessageBox/docs');
 
-// TODO: move to correct position
-require('../src/SelectableAccordion/docs/index.story');
-
 // Editor-X
 require('../src/Themes/editorX/docs');
