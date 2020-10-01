@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 export interface SelectableAccordionItemCommonProps {
-  title?: string;
-  subtitle?: string;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
   content?: React.ReactNode;
 }
 

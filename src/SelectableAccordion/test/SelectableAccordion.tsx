@@ -17,9 +17,9 @@ function selectableAccordionWithAllProps() {
       className="className"
       items={[
         {
-          title: 'hello',
-          subtitle: 'hello',
-          content: <div />,
+          title: <div>hello</div>,
+          subtitle: <div>hello</div>,
+          content: <div>content</div>,
           initiallyOpen: true,
         },
       ]}
